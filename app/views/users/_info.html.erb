@@ -1,0 +1,10 @@
+<div class="clearfix imgDIV">
+	<div class="fl">
+    <%= image_tag "photo.jpg", :alt => "photo" %>
+	</div>
+	<div class="fl usrTop">
+		<p><%= current_user.nickname %></p> 
+		<p class="red">积分：<%= current_user.profile.score %></p> 
+	</div>
+</div>
+<div class="userId">用户ID：<%= current_user.id %></div> 

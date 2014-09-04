@@ -1,0 +1,13 @@
+<ul class="selfNav">
+	<li class="dt">我的预约</li>
+	<li class="dd last active">• &nbsp;<%= link_to '预约列表', appointments_user_path(current_user.nickname) %></li>
+	<li class="dt">我的代金券</li>
+	<li class="dd">• &nbsp;<%= link_to '已领取的代金券', coupons_user_path(current_user.nickname) %></li>
+	<li class="dd">• &nbsp;<%= link_to '已激活的代金券', actived_coupons_user_path(current_user.nickname) %></li>
+  <li class="dd last">• &nbsp;<%= link_to "激活代金券", active_code_user_path(current_user.nickname) %></li>
+	<li class="dt">我的评价</li>
+	<li class="dd">• &nbsp;<%= link_to "已评价", comments_user_path(current_user.nickname) %></li>
+	<li class="dd last">• &nbsp;<%= link_to "未评价", uncomments_user_path(current_user.nickname) %></li>
+	<li class="dt">我的账户</li>
+	<li class="dd last">• &nbsp;<%= link_to "账户设置", edit_user_registration_path %></li>
+</ul> 

@@ -1,0 +1,16 @@
+<%= simple_form_for [:cpanel, @page], :html => { :class => "form-horizontal", :enctype => "multipart/form-data" } do |f| %>
+  <%= render "shared/error_messages", :target => @page %>
+  <fieldset>
+    <legend><%= legend %></legend>
+    <%= f.input :title, :label => "标题", :input_html => { :class => "span4" } %>
+    <%= f.input :body, :label => "内容", as: :text, :input_html => { :class => "span6", :row => 10 } %>
+    
+    <%= f.input :slug, :label => "slug", :input_html => { :style => "width:80px;" } %>
+    <%= f.input :sort, :label => "显示顺序", :input_html => { :style => "width:80px;", :hint => "值越大显示越靠前" }  %>
+    
+    <div class="form-actions">
+      <%= f.submit "保存", :disable_with => "正在提交...", :class => "btn btn-success" %>
+      <%= link_to "返回", :back, :class => "btn" %>
+    </div>
+  </fieldset>
+<% end %>

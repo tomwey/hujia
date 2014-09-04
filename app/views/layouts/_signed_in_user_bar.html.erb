@@ -1,0 +1,13 @@
+<ul class="nav pull-right">
+  <li class="dropdown" id="user_menu">
+    <a href="#user_menu" class="dropdown-toggle" data-toggle="dropdown">
+      <%= current_user.nickname %><b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li><%= link_to "我的主页", user_path(current_user.nickname) %></li>
+      <li><%= link_to "个人资料设置", edit_user_registration_path %></li>
+      <li class="divider"></li>
+      <li><%= link_to "退出登录", destroy_user_session_path, method: :delete %></li>
+    </ul>
+  </li>
+</ul>

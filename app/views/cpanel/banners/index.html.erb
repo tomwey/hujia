@@ -1,0 +1,30 @@
+<% content_for :sitemap do %>
+  <span class="current">广告信息</span>
+<% end %>
+<%= render_list_header("广告列表", "新建广告", "/cpanel/ads/new" ) %>
+<table class="table table-hover">
+  <tr class="head">
+    <td class="first">ID</td>
+    <td>广告标题</td>
+    <td>广告描述</td>
+    <td>广告链接地址</td>
+    <td>at</td>
+    <td style="width:140px"></td>
+  </tr>
+  
+  <% @banners.each do |banner| %>
+  <tr>
+    <td class="first"><%= banner.id %></td>
+    <td><%= banner.title %></td>
+    <td><%= banner.summary %></td>
+    <td><%= banner.url %></td>
+    <td><%= l banner.created_at, :format => :short %></td>
+    <td>
+      <%= link_to "编辑", edit_cpanel_banner_path(banner), :class => "btn btn-mini" %>
+      <%= link_to "删除", cpanel_banner_path(banner), :confirm => "你确定吗？", :method => :delete, :class => "btn btn-mini btn-danger" %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<div style="text-align:center;"><%= will_paginate @banners %></div>

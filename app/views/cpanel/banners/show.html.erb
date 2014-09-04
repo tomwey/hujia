@@ -1,0 +1,9 @@
+<% content_for :sitemap do %>
+  <span class="current">广告详细</span>
+<% end %>
+<div class="app">
+  <p><strong>标题：</strong><%= @banner.title %></p>
+  <p><strong>简介：</strong><%= @banner.summary %></p>
+  <p><strong>广告链接地址：</strong><%= @banner.url %></p>
+  <p><strong>广告图片：</strong><%= image_tag @banner.screenshot_url %></p>
+</div>

@@ -1,0 +1,37 @@
+<% content_for :sitemap do %>
+  <span class="current">代金券信息</span>
+<% end %>
+
+<h2>代金券信息</h2>
+<table class="table table-hover">
+  <tr class="head">
+    <td class="first">ID</td>
+    <td>面额</td>
+    <td>发行数量</td>
+    <td>激活数量</td>
+    <td>开始日期</td>
+    <td>结束日期</td>
+    <td>所有人</td>
+    <td>at</td>
+    <td style="width:140px"></td>
+  </tr>
+  
+  <% @coupons.each do |coupon| %>
+  <tr>
+    <td class="first"><%= coupon.id %></td>
+    <td><%= coupon.value %></td>
+    <td><%= coupon.publish_count %></td>
+    <td><%= coupon.actives_count %></td>
+    <td><%= coupon.start_date %></td>
+    <td><%= coupon.end_date %></td>
+    <td><%= render_owner(coupon) %></td>
+    <td><%= l coupon.created_at, :format => :short %></td>
+    <td>
+      <%= link_to "编辑", edit_cpanel_coupon_path(coupon), :class => "btn btn-mini" %>
+      <%= link_to "删除", cpanel_coupon_path(coupon), :confirm => "你确定吗？", :method => :delete, :class => "btn btn-mini btn-danger" %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<div style="text-align:center;"><%= will_paginate @coupons %></div>

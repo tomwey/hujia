@@ -1,0 +1,20 @@
+<% content_for :sitemap do %>
+  <span class="current">用户详细信息</span>
+<% end %>
+
+<div class="box">
+  <h2>登录信息</h2>
+  <p>用户名：<%= @user.nickname %></p>
+  <p>邮箱：<%= @user.email %></p>
+</div>
+
+<div class="box">
+  <h2>用户信息</h2>
+  <p>真实姓名：<%= @customer.real_name %></p>
+  <p>积分：<%= @customer.score %></p>
+  <p>QQ：<%= @customer.qq %></p>
+  <% if @customer.is_student -%>
+  <p>大学校区：<%= @customer.college %></p>
+  <% end -%>
+  
+</div>

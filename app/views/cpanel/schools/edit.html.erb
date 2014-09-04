@@ -1,0 +1,63 @@
+<% content_for :sitemap do %>
+  <span class="current">修改驾校信息</span>
+<% end %>
+
+<%= simple_form_for([:cpanel, @school], :html => { :class => "form-horizontal",:enctype => "multipart/form-data" }) do |f| %>
+  <fieldset>
+    <%= render "shared/error_messages", :target => @school %>
+    <legend>修改驾校信息</legend>
+    
+    <%= f.input :name, label: "驾校名称", :input_html => { :style => "width: 180px;" } %>
+    <%= f.input :linkman, label: "联系人", :input_html => { :style => "width: 180px;" } %>
+
+    <%= f.input :zcode, label: "邮编" %>
+
+    <% if @school.image? -%>
+    <div class="controls">
+      <%= image_tag(@school.image.normal) %>
+    </div>
+    <% end -%>
+    
+    <%= f.input :image, label: "图片" %>
+    <%= f.hidden_field :image_cache %>
+
+    <%= f.input :price, label: "学车价格" %>
+    
+    <%= f.input :drive_type, as: :select, :label => "驾照类型", :collection => [['C1', 'C1'], ['C2', 'C2']], :prompt => "-- 请选择驾照类型 --" %>
+<%= f.input :service_type, as: :select, :label => "服务类型", :collection => [['不接送', '不接送'], ['教练接送', '教练接送'],['班车接送', '班车接送']], :prompt => "-- 请选择服务类型 --" %>
+
+    <%= f.input :mobile, label: "手机", :hint => "务必输入正确的手机号，以便联系您" %>
+    <%= f.input :phone, label: "电话",:placeholder => "028-86701234", :hint => "务必输入正确的手机号，以便联系您" %>
+    
+    <%= f.input :star_count, label: "初始评分", :collection => [['1','1'],['2','2'],['3','3'],['4','4'],['5','5']] %>
+    
+    <%= f.input :is_3a, as: :radio, :label => "是否3A资质", :collection => [['是', true], ['否', false]], :item_wrapper_class => 'inline' %>
+    <%= f.input :is_check, as: :radio, :label => "支持吃拿卡先行赔付", :collection => [['是', true], ['否', false]], :item_wrapper_class => 'inline' %>
+
+    <%= f.input :city, label: "城市" %>
+    <%= f.input :location, label: "报名地址", :input_html => { :class => "span5", :placeholder => "输入您的详细地址" } %>
+    <%= f.input :teach_location, label: "场地地址", :input_html => { :class => "span5", :placeholder => "输入您的详细地址" } %>
+
+
+    <%= f.input :website, label: "网址", :placeholder => "http://", :input_html => { :style => "width: 300px;" } %>
+
+    <%= f.input :qq, label: "QQ" %>
+
+    <%= f.input :intro, as: :text, label: "简介", :input_html => { :style => "width: 400px", :rows => 6 } %>
+    
+    <%= f.simple_fields_for :coupons do |b| %>
+    <%= render "/cpanel/coupons/form_fields", :f => b %>
+    <% end %>
+    <div class="control-group">
+      <div class="controls">
+        <%= link_to_add_fields("添加代金券", f, :coupons) %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+      <%= f.submit "保存", :disable_with => "正在提交...", :class => "btn btn-success" %>
+      <%= link_to "返回", :back, :class => "btn" %>
+    </div>
+    
+  </fieldset>
+<% end %>

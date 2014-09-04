@@ -1,0 +1,76 @@
+@charset "utf-8";
+/*author yong  2014-08-25*/
+#slides {
+    position: relative;
+}
+#slides a {
+    display: none;
+}
+
+.slidesjs-navigation {
+    cursor: pointer;
+    height: 80px;
+    position: absolute;
+    text-indent: -999em;
+    top: 130px;
+    width: 60px;
+    z-index: 21;
+    opacity: 0.8;
+}
+.slidesjs-navigation :hover{opacity: 1;}
+.slidesjs-previous { 
+    background: image-url("arrow.gif") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    cursor: pointer;
+    height: 50px;
+    left: 20px;
+    position: absolute;
+    top: 100px;
+    width: 40px;
+    z-index: 2;
+}
+.slidesjs-next {
+ background: image-url("arrow.gif") no-repeat scroll -40px 0 rgba(0, 0, 0, 0); 
+ cursor: pointer;
+ height: 50px;
+ right: 20px;
+ position: absolute;
+ top: 100px;
+ width: 40px;
+ z-index: 2;
+}
+.slidesjs-play {
+    left: -100px;
+    top: 600px;
+}
+.slidesjs-stop {
+    left: -100px;
+    top: 600px;
+}
+.slidesjs-pagination {
+    top: 0;
+    right: 10px;
+    position: absolute;
+    z-index: 22;
+    margin-top: -30px;  
+}
+.slidesjs-pagination-item {
+    float: left;
+    margin: 5px; 
+}
+.slidesjs-pagination li a {
+    background: image-url("dot.gif") no-repeat scroll -13px 0;
+    display: block;
+    height: 10px;
+    text-indent: -999em;
+    width: 12px;
+}
+.slidesjs-pagination li.active a, .slidesjs-pagination li a.active:hover {
+    background: image-url("dot.gif") no-repeat scroll 0 0;
+}
+.slidesjs-pagination li a:hover {
+    background: image-url("dot.gif") no-repeat scroll 0 0;
+}
+#slides img {
+    width: 630px;
+    height: 230px;
+}

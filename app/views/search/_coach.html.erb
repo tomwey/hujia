@@ -1,0 +1,30 @@
+<li class="inBlock fl">
+  <p class="pic">
+      <a href="">
+          <%= link_to image_tag(coach.image.url, :alt => coach.real_name, :size => "150x200"), coach %>
+      </a>
+  </p>
+  <p class="coachName"><%= link_to render_coach_info(coach), coach %>
+  </p>
+  <p class="condition"><%= render_coach_service_type(coach) %></p>
+  <p class="priceP">
+      <a href=""><span class="orange"><i>￥</i><%= coach.price %></span></a>
+      <a href=""><span class="coupon">300元现金券</span></a> 
+      <span class="cost">门店价<span>￥100</span>
+      </span>
+  </p>
+  <div class="clearfix sale">
+      <div class="fl">已售<span>5145</span>
+      </div>
+      <div class="fr">
+          <span class="evaluate clearfix">
+            <%= image_tag "icon_star_2.gif", alt: "star" %>
+            <%= image_tag "icon_star_2.gif", alt: "star" %>
+            <%= image_tag "icon_star_2.gif", alt: "star" %>
+            <%= image_tag "icon_star_3.gif", alt: "star" %>
+            <%= image_tag "icon_star_1.gif", alt: "star" %>
+          </span>
+          1093人评价
+      </div>
+  </div>
+</li>

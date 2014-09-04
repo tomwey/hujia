@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= render_page_title %>
+  <%= stylesheet_link_tag "front" %>
+  <%= yield :styles %>
+  <meta name="keywords" content="<%= @meta_keywords %>" />
+  <meta name="description" content="<%= @meta_description %>" />
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="<%= asset_path("favico.png") %>" />
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <%= csrf_meta_tags %>
+</head>
+
+<%= render_body_tag %>
+
+<%= render "layouts/header" %>
+
+<div class="wrapper">
+  <div class="mainWrap clearfix">
+    <%= notice_message %>
+    <%= content_for?(:content) ? yield(:content) : yield %>
+  </div>
+  
+  <%= render "layouts/footer" %>
+</div>
+
+<%= javascript_include_tag "application" %>
+
+<%= yield :scripts %>
+</body>
+</html>

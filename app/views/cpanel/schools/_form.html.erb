@@ -1,0 +1,35 @@
+<%= simple_form_for [:cpanel, @app], :html => { :class => "form-horizontal", :enctype => "multipart/form-data" } do |f| %>
+  <%= render "shared/error_messages", :target => @app %>
+  <fieldset>
+    <legend><%= legend %></legend>
+    <%= f.input :name, :label => "App名称", :input_html => { :style => "width: 300px" } %>
+    
+    <% if @app.icon? -%>
+    <div class="controls">
+      <%= image_tag(@app.icon.normal) %>
+      <!--label class="checkbox inline">
+        <%= f.check_box :remove_icon %> 删除
+      </label-->
+    </div>
+    <% end -%>
+    <%= f.input :icon, :label => "App图标" %>
+    <%= f.hidden_field :icon_cache %>
+    
+    <%= f.input :version, :label => "App当前版本", :input_html => { :style => "width: 60px; text-align:center" } %>
+    <%= f.input :app_type, :label => "App类别", :collection => App::TYPE, :input_html => { :style => "width: 100px" } %>
+    <%= f.input :os_type, :label => "App操作系统", :collection => App::OS_TYPE, :input_html => { :style => "width: 100px" } %>
+
+    
+    <%= f.input :intro, :label => "App简介", as: :text, :input_html => { :style => "width: 400px", :rows => 6 } %>
+    
+    <%= f.input :published_at, :label => "发布时间", :as => :string, :placeholder => "2012-01-01", :input_html => { :style => "width: 120px" } %>
+    <%= f.input :app_url, :label => "App下载地址", 
+                :placeholder => "https://itunes.apple.com/us/app/dong-dong-nao-zi-feng-kuang/id756268888?ls=1&mt=8",
+                :input_html => { :class => "span9" } %>
+    
+    <div class="form-actions">
+      <%= f.submit "保存", :disable_with => "正在提交...", :class => "btn btn-success" %>
+      <%= link_to "返回", :back, :class => "btn" %>
+    </div>
+  </fieldset>
+<% end %>

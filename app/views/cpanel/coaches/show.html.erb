@@ -1,0 +1,17 @@
+<% content_for :sitemap do %>
+  <span class="current">教练详细信息</span>
+<% end %>
+
+<div class="box">
+  <h2>登录信息</h2>
+  <p>用户名：<%= @user.nickname %></p>
+  <p>邮箱：<%= @user.email %></p>
+</div>
+
+<div class="box">
+  <h2>教练信息</h2>
+  <p>真实姓名：<%= @coach.real_name %></p>
+  <p>所属公司：<%= @coach.company %></p>
+  <p>手机：<%= @coach.mobile %></p>
+  <p>地址：<%= @coach.location %></p>
+</div>

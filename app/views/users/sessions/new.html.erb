@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="ch">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>登陆页面</title>
+	<meta name="keywords" content="护驾">
+	<meta name="description" content="帮助你更快的找到好驾校和教练"> 
+	<meta name="author" content="YONG"> 
+  <%= stylesheet_link_tag "bootstrap" %>
+  <%= stylesheet_link_tag :front %>
+  <%= stylesheet_link_tag "user_login" %>
+  
+</head>
+<body>
+<div class="wrapper">
+	 <div class="titleHj">
+	 	<h1>护驾</h1>
+	 	<a href="">huajia361.com</a>
+	 </div>
+	 <div class="clearfix">
+	 	<div class="fl">
+	 		<%= image_tag "loginBg.jpg" %>
+	 	</div>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name) ) do |f| %>
+      <ul class="fr loginT">
+        <%= notice_message %>
+        <li>账号登录</li>
+        <li class="inLi">
+          <i class="user"></i>
+          <%= f.input :login, label: false,placeholder: "用户名或邮箱", :input_html => { :class => "in" } %>
+        </li>
+        
+        <li class="inLi">
+          <i class="psw"></i>
+          <%= f.input :password, label: false, placeholder: "密码", required: false, :input_html => { :class => "in" } %>
+        </li>
+        
+   			<li class="check"> 
+   				<%= f.check_box :remember_me %> 记住账号
+          <%= link_to "忘记密码？", new_password_path(resource_name), :class => "red" %>
+   			</li>
+      
+   			<li><%= f.submit "登录", :class => "next" %></li>
+   			<li>
+   				还没有账号？&nbsp;
+          <%= link_to "免费注册", u_sign_up_path, :class => "red" %>
+   			</li>
+        
+      </ul>
+      
+    <% end %>
+    
+	 </div>
+</div>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>   
+<script type="text/javascript" src="js/jquery.placeholder.js"></script>
+<%= javascript_include_tag :application %>
+<script type="text/javascript">	
+$(function(){
+	$('.in').placeholder(); 
+}); 
+</script> 
+</body>
+</html>

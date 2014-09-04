@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="span12">
+    <div class="box">
+      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), :html => { :class => "form-horizontal" }) do |f| %>
+        
+        <fieldset>
+          <legend>忘记了密码?</legend>
+          <%= f.input :email, required: true,:hint => "输入你注册时的邮箱地址，会发一个重置的链接到该邮箱。", autofocus: true, :input_html => { :class => "span6" } %>
+          <div class="form-actions">
+            <%= f.button :submit, "找回密码", :class => "next" %>
+          </div>
+        </fieldset>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+

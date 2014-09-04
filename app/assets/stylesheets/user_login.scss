@@ -1,0 +1,18 @@
+.wrapper{margin: 30px auto;width: 900px;}
+.titleHj{ color: #f00;font-family:arial;}
+.titleHj h1{font-size: 48px;font-weight: 700;}
+.titleHj a{color: #f00;}
+.loginBg{width: 342px;height: 296px;}
+/*loginTabel*/
+.loginT{width: 300px;color: #666;}
+.loginT li{margin: 10px 0;}
+.red{font-weight: bold;}
+.red:hover{text-decoration: underline;}
+.loginT .inLi{position: relative;*margin-left:-35px;}
+.in{border: 1px solid #686866;height: 30px;width: 235px;text-indent: 3em;line-height: 30px;}
+.in:hover{background-color: #FAFFBD;border: 1px solid #f00;}
+.user{background:url('/assets/user.gif') no-repeat;width: 18px;height: 17px;position: absolute;left: 12px;top: 7px;*left:48px;}
+.psw{background:url('/assets/psw.gif') no-repeat;width: 18px;height: 18px;position: absolute;left: 12px;top: 7px;*left:48px;}
+.next{width: 235px;}
+.check{color: #333;}
+.check input{vertical-align: middle;}

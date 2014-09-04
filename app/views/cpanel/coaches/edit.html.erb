@@ -1,0 +1,65 @@
+<% content_for :sitemap do %>
+  <span class="current">修改教练信息</span>
+<% end %>
+
+<%= simple_form_for([:cpanel, @coach], :html => { :class => "form-horizontal",:enctype => "multipart/form-data" }) do |f| %>
+  <fieldset>
+    <%= render "shared/error_messages", :target => @coach %>
+    <legend>修改教练信息</legend>
+
+    <%= f.input :real_name, label: "真实姓名",placeholder: "真实姓名", :input_html => { :style => "width: 180px;" }, :hint => "务必输入真实的姓名，以便核实" %>
+    <%= f.input :sex, :collection => [["男", 0], ["女", 1]], :as => :radio, label: "性别",:item_wrapper_class => 'inline' %>
+
+    <% if @coach.image? -%>
+    <div class="controls">
+      <%= image_tag(@coach.image.normal) %>
+    </div>
+    <% end -%>
+    <%= f.input :image, label: "证件照", :hint => "一寸免冠照片" %>
+    <%= f.hidden_field :image_cache %>
+    
+    <%= f.input :price, label: "价格" %>
+    
+    <%= f.input :star_count, label: "初始评分", :collection => [['1','1'],['2','2'],['3','3'],['4','4'],['5','5']] %>
+    
+    <%= f.input :drive_type, as: :select, :label => "驾照类型", :collection => [['C1', 'C1'], ['C2', 'C2']], :prompt => "-- 请选择驾照类型 --" %>
+    <%= f.input :service_type, as: :select, :label => "服务类型", :collection => Coach::SERVICE_TYPES, :prompt => "-- 请选择服务类型 --" %>
+    
+    <%= f.input :mobile, label: "手机", :hint => "务必输入正确的手机号，以便联系您" %>
+    <%= f.input :qq, label: "QQ" %>
+    <%= f.input :company, label: "所属公司" %>
+    <%= f.input :city, label: "城市" %>
+    
+    <div class="control-group">
+      <%= f.label "服务区域", :class => "control-label" %>
+      <div class="controls">
+        <% College.all.each do |sa| %>
+        <label class="checkbox inline">
+          <%= check_box_tag "coach[service_area_ids][]", sa.id, @coach.service_areas.include?(sa) %> <%= "#{sa.name}" %>
+        </label>
+        <% end %>
+      </div>
+    </div>
+    
+    <%= f.input :location, label: "报名地址", :input_html => { :class => "span5", :placeholder => "输入您的详细地址" } %>
+    <%= f.input :teach_location, label: "场地地址", :input_html => { :class => "span5", :placeholder => "输入详细的接送教员的地址" } %>
+    <%= f.input :intro, as: :text, label: "简介", :input_html => { :style => "width: 400px", :rows => 6 } %>
+    
+    <%= f.input :is_check, as: :radio, :label => "支持吃拿卡先行赔付", :collection => [['是', true], ['否', false]], :item_wrapper_class => 'inline' %>
+    
+    <%= f.simple_fields_for :coupons do |b| %>
+    <%= render "/cpanel/coupons/form_fields", :f => b %>
+    <% end %>
+    <div class="control-group">
+      <div class="controls">
+        <%= link_to_add_fields("添加代金券", f, :coupons) %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+      <%= f.submit "保存", :disable_with => "正在提交...", :class => "btn btn-success" %>
+      <%= link_to "返回", :back, :class => "btn" %>
+    </div>
+    
+  </fieldset>
+<% end %>

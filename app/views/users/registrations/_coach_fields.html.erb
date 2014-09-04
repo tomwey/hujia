@@ -1,0 +1,14 @@
+<%= f.input :real_name, label: "真实姓名",placeholder: "真实姓名", :input_html => { :style => "width: 180px;" }, :hint => "务必输入真实的姓名，以便核实" %>
+<%= f.input :sex, :collection => [["男", 0], ["女", 1]], :as => :radio, label: "性别",:item_wrapper_class => 'inline' %>
+
+<%= f.input :image, label: "证件照", :hint => "一寸免冠照片" %>
+<%= f.hidden_field :image_cache %>
+
+<%= f.input :mobile, label: "手机", :hint => "务必输入正确的手机号，以便联系您" %>
+<%= f.input :qq, label: "QQ" %>
+<%= f.input :company, label: "所属公司" %>
+<%= f.input :city, label: "城市" %>
+<%= f.input :location, label: "地址", :input_html => { :class => "span5", :placeholder => "输入您的详细地址" } %>
+<%= f.input :pickup_location, label: "接送地址", :input_html => { :class => "span5", :placeholder => "输入详细的接送教员的地址" } %>
+<%= f.input :intro, as: :text, label: "简介", :input_html => { :style => "width: 400px", :rows => 6 } %>
+<%= f.input :service_type, label: "服务类型" %>

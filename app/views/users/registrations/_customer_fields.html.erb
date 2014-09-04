@@ -1,0 +1,27 @@
+<%= f.input :is_student, as: :radio, 
+            :label => "学生", 
+            :collection => [['否', false], ['是', true]], 
+            :item_wrapper_class => 'inline' %>
+
+<%= f.input :college, :label => "大学校区", :collection => College.all.map { |c| [c.name, c.name] }, :prompt => "-- 请选择大学校区 --"  %>
+
+<% content_for :scripts do %>
+
+<script>
+
+var radio = $("input[name='user[customer][is_student]']:checked");
+if ( radio.val() === 'true' ) {
+  $('.user_customer_college').show();
+} else {
+  $('.user_customer_college').hide();
+}
+$("input[name='user[customer][is_student]']").click(function() {
+  if ( $(this).val() === 'true' ) {
+    $('.user_customer_college').show();
+  } else {
+    $('.user_customer_college').hide();
+  }
+});
+</script>
+
+<% end %>

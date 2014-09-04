@@ -1,0 +1,22 @@
+<table class="table table-hover">
+  <tr class="head">
+    <td class="first">ID</td>
+    <td>代金券面额</td>
+    <td>代金券有效期</td>
+    <td>代金券剩余数量</td>
+    <td>代金券是否激活</td>
+    <td>领取时间</td>
+    <td style="width:140px"></td>
+  </tr>
+  
+  <% @coupons.each do |coupon| %>
+  <tr>
+    <td class="first"><%= coupon.id %></td>
+    <td><%= coupon.value %></td>
+    <td><%= "#{coupon.start_date}至#{coupon.end_date}" %></td>
+    <td><%= coupon.publish_count - coupon.actives_count %></td>
+    <td><%= render_coupon_status(coupon) %></td>
+    <td><%= l coupon.claimed_at, :format => :short %></td>
+  </tr>
+  <% end %>
+</table>

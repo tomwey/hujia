@@ -1,0 +1,26 @@
+<% @comments.each do |comment| %>
+<div class="user-comment">
+  <%= image_tag comment.commentable.image.url, :size => "100x60" %>
+  <%= render_ownerable_title(comment.commentable) %>
+  <%= comment.content %>
+  
+  <% if comment.user == @user %>
+    <%= link_to '修改', '#' %>
+    <%= link_to '删除', '#' %>
+  <% end %>
+  
+	<div>
+		<label class="text">我的总体评价：<%= render_star_tag(comment, 'overall_rating', false) %></label>
+	</div>
+	<div>
+		<label class="text">态度：<%= render_star_tag(comment, 'attitude_rating', false) %></label>
+	</div>
+	<div>
+		<label class="text">服务：<%= render_star_tag(comment, 'service_rating', false) %></label>
+	</div>
+	<div>
+		<label class="text">环境：<%= render_star_tag(comment, 'env_rating', false) %></label>
+	</div>
+  
+</div>
+<% end %>

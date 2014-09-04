@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="span9">
+    <div class="box">
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), :html => { :class => "form-horizontal" }) do |f| %>
+        <fieldset>
+          <legend>用户登录</legend>
+          <%= f.input :login, label: "用户名",placeholder: "用户名或邮箱", :input_html => { :style => "width: 180px;" } %>
+          <%= f.input :password, label: "密码", required: false, :input_html => { :style => "width:180px;" } %>
+          <% if devise_mapping.rememberable? -%>
+          <!--div class="control-group checkbox optional">
+            <label class="checkbox optional control-label"></label>
+            <div class="controls">
+        
+            </div>
+          </div-->
+            <div class="controls">
+              <label class="checkbox">
+                <%= f.check_box :remember_me %> 记住我
+              </label>
+            </div>
+        
+          <% end -%>
+          <div class="form-actions">
+            <%= f.button :submit, "登录", :class => "btn btn-success" %>
+          </div>
+        </fieldset>
+      <% end %>
+    </div>
+  </div>
+  <div class="span3">
+    <div class="box">
+      <h2>还没有账号？</h2>
+      <%= render "users/shared/links" %>
+    </div>
+  </div>
+</div>

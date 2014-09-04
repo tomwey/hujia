@@ -1,0 +1,136 @@
+<% if current_user %>
+<div class="rate clearfix">
+  <div id="rate_result"></div>
+	<div class="fl">
+		<a href=""><%= image_tag @commentable.image.url, :size => "100x40" %></a>
+	</div>
+	<div class="fl rateCon">
+		<p class="name"><%= render_ownerable_title(@commentable) %></p>
+		<p class="des">你为团购打几分?</p>
+		<div class="rateItem">
+  		<div>
+        <span class="J-rate-tip rate-tip">请点击星星打分</span>
+  			<label class="text">我的总体评价：<%= render_star_tag(@commentable, 'overall_rating') %></label>
+  		</div>
+			<div>
+				<label class="text">态度：<%= render_star_tag(@commentable, 'attitude_rating') %></label>
+			</div>
+			<div>
+				<label class="text">服务：<%= render_star_tag(@commentable, 'service_rating') %></label>
+			</div>
+			<div>
+				<label class="text">环境：<%= render_star_tag(@commentable, 'env_rating') %></label>
+			</div>
+    </div>
+		<div class="rateArea">
+      <%= form_for @comment, :remote => true do |f| %>
+      <%= f.hidden_field :commentable_type %>
+      <%= f.hidden_field :commentable_id %>
+      <%= f.hidden_field :overall_rating, :id => "overall_rating" %>
+      <%= f.hidden_field :service_rating, :id => "service_rating" %>
+      <%= f.hidden_field :env_rating, :id => "env_rating" %>
+      <%= f.hidden_field :attitude_rating, :id => "attitude_rating" %>
+      <%= f.text_area :content, :rows => "4", :style => "width:660px"  %>
+      <% end %>
+		</div>
+		<p class="areaP">* 请上传原创、真实、合法的图片，如果发现用户上传的图片有侵权内容，护驾有权先行删除</p>
+		<p class="areaP">* 成为推荐人，其他用户可以通过QQ和您联系</p>
+		<div class="areaBtn"> 
+			<input type="button" class="orangeBtn" value="发表评论" onclick="submitForm();">
+			&emsp;&emsp;
+			<input type="checkbox">成为推荐人
+		</div>
+		<div class="creditDiv">
+			<span class="red">积分+5</span>
+			&emsp;&emsp;
+			<span class="red">积分+10</span>
+		</div>  
+		</div> 
+	</div>
+  <% end %>
+  
+<% content_for :scripts do %>
+<script>
+
+var hash = {
+  "overall_rating": false,
+  "service_rating": false,
+  "attitude_rating": false,
+  "env_rating": false,
+};
+
+var positions = {
+  "overall_rating": 0,
+  "service_rating": 0,
+  "attitude_rating": 0,
+  "env_rating": 0,
+};
+
+$(".rateItem a").bind({
+  click: function() {
+    var id = $(this).data("id");
+    var type = $(this).data("type");
+    
+    var position = parseInt(id);
+    
+    hash[type] = true;
+    positions[type] = position;
+    
+    $("#" + type).val(parseInt(position)+1);
+    
+    // 重置状态
+    for (var i = 0; i <= 4; i++) {
+      var obj = $(eval(type + "_star_" + i));
+      var img = $(obj).children("img")[0];
+      $(img).attr("src", "/assets/icon_star_1.gif");
+    }
+    
+    for (var i = 0; i <= position; i++) {
+      var obj = $(eval(type + "_star_" + i));
+      var img = $(obj).children("img")[0];
+      $(img).attr("src", "/assets/icon_star_2.gif");
+    }
+    
+  },
+  mouseover: function() {
+    
+    var id = $(this).data("id");
+    var type = $(this).data("type");
+    
+    var pos = positions[type];
+    if ( hash[type]) {
+      pos += 1;
+    }
+    
+    for (var i = pos; i <= parseInt(id); i++) {
+      var obj = $(eval(type + "_star_" + i));
+      var img = $(obj).children("img")[0];
+      $(img).attr("src", "/assets/icon_star_2.gif");
+    }
+  },
+  mouseout: function() {
+    var id = $(this).data("id");
+    var type = $(this).data("type");
+    
+    var rated = hash[type];
+    
+    var pos = positions[type];
+    if (rated) {
+      pos += 1;
+    }
+    
+    for (var i = pos; i <= parseInt(id); i++) {
+      var obj = $(eval(type + "_star_" + i));
+      var img = $(obj).children("img")[0];
+      $(img).attr("src", "/assets/icon_star_1.gif");
+    }
+  }
+  
+});
+
+function submitForm(){
+  $("#new_comment").submit();
+}
+
+</script>
+<% end %>

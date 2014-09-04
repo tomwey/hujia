@@ -1,0 +1,5 @@
+<%= @user.login %>,
+
+感谢注册！！！
+
+修改个人资料: <%= edit_user_url(@user) %>

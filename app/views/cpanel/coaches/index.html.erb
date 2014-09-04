@@ -1,0 +1,35 @@
+<% content_for :sitemap do %>
+  <span class="current">教练信息</span>
+<% end %>
+
+<%= render_list_header("教练信息", "新建教练信息", "/cpanel/coaches/new" ) %>
+<table class="table table-hover">
+  <tr class="head">
+    <td class="first">ID</td>
+    <td>Icon</td>
+    <td>真实姓名</td>
+    <td>所属公司</td>
+    <td style="width:200px">地址</td>
+    <td>手机</td>
+    <td>at</td>
+    <td style="width:140px"></td>
+  </tr>
+  
+  <% @coaches.each do |coach| %>
+  <tr>
+    <td class="first"><%= coach.id %></td>
+    <td><%= render_coach_icon(coach) %></td>
+    <td><%= link_to coach.real_name, [:cpanel, coach] %></td>
+    <td><%= coach.company %></td>
+    <td><%= coach.location %></td>
+    <td><%= coach.mobile %></td>
+    <td><%= l coach.created_at, :format => :short %></td>
+    <td>
+      <%= link_to "编辑", edit_cpanel_coach_path(coach), :class => "btn btn-mini" %>
+      <%= link_to "删除", cpanel_coach_path(coach), :confirm => "你确定吗？", :method => :delete, :class => "btn btn-mini btn-danger" %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<div style="text-align:center;"><%= will_paginate @coaches %></div>

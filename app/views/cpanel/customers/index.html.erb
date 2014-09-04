@@ -1,0 +1,32 @@
+<% content_for :sitemap do %>
+  <span class="current">用户信息</span>
+<% end %>
+
+<h2>用户列表</h2>
+<table class="table table-hover">
+  <tr class="head">
+    <td class="first">ID</td>
+    <td>用户名</td>
+    <td>真实姓名</td>
+    <td style="width:200px">邮箱</td>
+    <td>积分</td>
+    <td>at</td>
+    <td style="width:140px"></td>
+  </tr>
+  
+  <% @customers.each do |customer| %>
+  <tr>
+    <td class="first"><%= customer.id %></td>
+    <td><%= link_to customer.user.nickname, [:cpanel, customer] %></td>
+    <td><%= customer.real_name %></td>
+    <td><%= customer.user.email %></td>
+    <td><%= customer.score %></td>
+    <td><%= l customer.created_at, :format => :short %></td>
+    <td>
+      <%= link_to "删除", cpanel_customer_path(customer), :confirm => "你确定吗？", :method => :delete, :class => "btn btn-mini btn-danger" %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<div style="text-align:center;"><%= will_paginate @customers %></div>

@@ -1,0 +1,29 @@
+<% content_for :styles do %>
+  <%= stylesheet_link_tag "users" %>
+<% end %>
+
+<div class="row">
+  <div class="span2">
+    <div class="user_sidebar">
+      <div class="user_info">
+        <p><%= current_user.nickname %></p>
+        <p>积分: <%= current_user.profile.score %></p>
+        用户ID: <%= current_user.id %>
+      </div>
+      
+      <ul class="nav nav-list">
+        <li class="nav-header"><%= link_to '我的预约', appointments_user_path(current_user.nickname) %></li>
+        <li class="nav-header">我的代金券</li>
+        <li><%= link_to "已领取的代金券", coupons_user_path(current_user.nickname) %></li>
+        <% if current_user.has_actived_code? %>
+        <li>代金券已经激活</li>
+        <% else %>
+        <li><%= link_to "激活代金券", active_code_user_path(current_user.nickname) %></li>
+        <% end %>
+        <li class="nav-header">我的账户</li>
+        <li><%= link_to "个人资料修改", edit_user_registration_path %></li>
+        <li><%= link_to "修改密码", edit_user_registration_path %></li>
+      </ul>
+    </div>
+  </div>
+</div>

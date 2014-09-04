@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="span9">
+    <div class="box">
+      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), :html => { method: :put, :class => "form-horizontal" }) do |f| %>
+        
+      <%= f.input :reset_password_token, as: :hidden %>
+      <%= f.full_error :reset_password_token %>
+      
+        <fieldset>
+          <legend>忘记了密码?</legend>
+          <%= f.input :password, label: "新密码", required: true, autofocus: true %>
+          <%= f.input :password_confirmation, label: "确认新密码", required: true %>
+          <div class="form-actions">
+            <%= f.button :submit, "修改密码", :class => "btn btn-primary" %>
+          </div>
+        </fieldset>
+      <% end %>
+    </div>
+  </div>
+  <div class="span3">
+    <div class="box">
+      <%= render "users/shared/links" %>
+    </div>
+  </div>
+</div>

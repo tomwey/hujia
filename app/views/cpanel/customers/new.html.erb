@@ -1,0 +1,56 @@
+<% content_for :sitemap do %>
+  <span class="current">新建用户</span>
+<% end %>
+
+<%= simple_form_for([:cpanel, @customer], :html => { :class => "form-horizontal",:enctype => "multipart/form-data" }) do |f| %>
+  <fieldset>
+    <%= my_custom_error_messages!(@customer) %>
+    <legend>新建用户信息</legend>
+    
+    <%= f.fields_for @customer.user do |uf| %>
+    <%= uf.input :nickname, label: "用户名",placeholder: "用户名", :input_html => { :style => "width: 180px;" } %>
+    <%= uf.input :email, label: "邮箱",placeholder: "邮箱", :input_html => { :class => "span5", :placeholder => "foo@bar.com" } %>          
+    <%= uf.input :password, label: "密码" %>
+    <%= uf.input :password, label: "确认密码" %>
+    <% end %>
+    
+    <%= f.input :real_name, label: "真实姓名",placeholder: "真实姓名", :input_html => { :style => "width: 180px;" }, :hint => "务必输入真实的姓名，以便核实" %>
+    <%= f.input :id_number, label: "身份证" %>
+    <%= f.input :mobile, label: "手机", :hint => "务必输入正确的手机号，以便联系您" %>
+    <%= f.input :qq, label: "QQ" %>
+    
+    <%= f.input :is_student, as: :radio, 
+                :label => "学生", 
+                :collection => [['否', false], ['是', true]], 
+                :item_wrapper_class => 'inline' %>
+
+    <%= f.input :college, :label => "大学校区", :collection => College.all.map { |c| [c.name, c.name] }, :prompt => "-- 请选择大学校区 --"  %>
+    
+    <div class="form-actions">
+      <%= f.submit "保存", :disable_with => "正在提交...", :class => "btn btn-success" %>
+      <%= link_to "返回", :back, :class => "btn" %>
+    </div>
+    
+  </fieldset>
+<% end %>
+
+<% content_for :scripts do %>
+
+<script>
+
+var radio = $("input[name='customer[is_student]']:checked");
+if ( radio.val() === 'true' ) {
+  $('.customer_college').show();
+} else {
+  $('.customer_college').hide();
+}
+$("input[name='customer[is_student]']").click(function() {
+  if ( $(this).val() === 'true' ) {
+    $('.customer_college').show();
+  } else {
+    $('.customer_college').hide();
+  }
+});
+</script>
+
+<% end %>

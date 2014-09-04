@@ -1,0 +1,14 @@
+<% content_for :styles do %>
+  <%= stylesheet_link_tag "users" %>
+<% end %>
+
+<%= simple_form_for @code, :url => active_user_path, :method => :put, html: { :class => "form-horizontal" } do |f| %>
+  <fieldset>
+    <legend>激活代金券</legend>
+    <%= f.input :code, :label => "验证码", :input_html => { :class => "span6"}, :hint => "请输入10位数验证码" %>
+    <%= f.hidden_field :user_id, :value => @user.id %>
+    <div class="form-actions">
+      <%= f.submit "验证", :class => "btn btn-success", :disable_with => "正在验证..." %>
+    </div>
+  </fieldset>
+<% end %>

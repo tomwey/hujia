@@ -1,0 +1,33 @@
+<% content_for :sitemap do %>
+  <span class="current">Wiki信息</span>
+<% end %>
+
+<%= render_list_header("Wiki信息", "新建Wiki", "/cpanel/wiki/new" ) %>
+<table class="table table-hover">
+  <tr class="head">
+    <td class="first">ID</td>
+    <td>标题</td>
+    <td>内容</td>
+    <td>slug</td>
+    <td>显示顺序</td>
+    <td>at</td>
+    <td style="width:140px"></td>
+  </tr>
+  
+  <% @pages.each do |page| %>
+  <tr>
+    <td class="first"><%= page.id %></td>
+    <td><%= page.title %></td>
+    <td><%= truncate(page.body,:length => 30) %></td>
+    <td><%= page.slug %></td>
+    <td><%= page.sort %></td>
+    <td><%= l page.created_at, :format => :short %></td>
+    <td>
+      <%= link_to "编辑", edit_cpanel_page_path(page), :class => "btn btn-mini" %>
+      <%= link_to "删除", cpanel_page_path(page), :confirm => "你确定吗？", :method => :delete, :class => "btn btn-mini btn-danger" %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<div style="text-align:center;"><%= will_paginate @pages %></div>

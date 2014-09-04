@@ -1,0 +1,16 @@
+<%= simple_form_for [:cpanel, @coupon], :html => { :class => "form-horizontal", :enctype => "multipart/form-data" } do |f| %>
+  <%= render "shared/error_messages", :target => @coupon %>
+  <fieldset>
+    <legend><%= legend %></legend>
+    <%= f.input :value, :label => "面额" %>
+    <%= f.input :publish_count, :label => "发行数量" %>
+    
+    <%= f.input :start_date, :label => "开始日期", :input_html => { :style => "width:80px;" } %>
+    <%= f.input :end_date, :label => "结束日期", :input_html => { :style => "width:80px;" }  %>
+    
+    <div class="form-actions">
+      <%= f.submit "保存", :disable_with => "正在提交...", :class => "btn btn-success" %>
+      <%= link_to "返回", :back, :class => "btn" %>
+    </div>
+  </fieldset>
+<% end %>

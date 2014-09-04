@@ -1,0 +1,23 @@
+<%= simple_form_for([:cpanel,@site_config]) do |f| %>
+  <%= render 'shared/error_messages', :target => @site_config %>
+  <fieldset>
+    <legend><%= legend %></legend>
+    <div class="control-group">
+      <label class="control-label">配置项</label>
+      <div class="controls">
+        <%= @site_config.key  %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">说明</label>
+      <div class="controls">
+        <%= t("site_config.#{@site_config.key}")  %>
+      </div>
+    </div>
+    <%= f.input :value, :as => :text, :input_html => { :class => "span8", :rows => "20" } %>
+    <div class="form-actions">
+      <%= f.submit "保存", :class => "btn btn-primary", 'data-disable-with' => "正在保存..." %>
+      <a href="<%= cpanel_site_configs_path %>" class="btn">取消</a>
+    </div>
+  </fieldset>
+<% end %>

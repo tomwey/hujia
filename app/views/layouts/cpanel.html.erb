@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>护驾网 - 后台管理系统</title>
+  <%= stylesheet_link_tag "cpanel" %>
+  <link rel="shortcut icon" href="<%= asset_path("favico.png") %>" />
+  <%= csrf_meta_tags %>
+</head>
+<%= render_body_tag %>
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <%= link_to "控制台", cpanel_root_path, :class => "brand" %>
+        <%= render_list :class => "nav" do |li| 
+        li << link_to('站点配置', cpanel_site_configs_path)
+        li << link_to('用户', cpanel_customers_path)
+        li << link_to('驾校', cpanel_schools_path)
+        li << link_to('教练', cpanel_coaches_path)
+        li << link_to('驾校/教练预约', cpanel_appointments_path)
+        li << link_to('代金券', cpanel_coupons_path)
+        li << link_to('评价', cpanel_comments_path)
+        li << link_to('广告', cpanel_banners_path)
+        li << link_to('Wiki', cpanel_pages_path)
+        end %>
+        
+        <% if current_user %>
+        <ul class="nav pull-right">
+          <li class="dropdown" id="user_menu">
+            <a href="#user_menu" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "回到前台", root_path %></li>
+              <li><%= link_to "修改密码", edit_user_registration_path %></li>
+              <li><%= link_to "退出", destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </li>
+        </ul>
+        <% else %>
+        <ul class="nav pull-right">
+          <li><%= link_to "登录", new_user_session_path %></li>
+        </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <div id="main" class="container">
+    <div class="breadcrumb">
+      <a href="<%= cpanel_root_path %>">Root</a> &gt;
+      <%= yield :sitemap %>
+    </div>
+    <%= notice_message %>
+    <%= yield %>
+    
+    <footer class="footer">
+      <div class="container">
+        <p class="suggest">使用 <a href="http://www.mozillaonline.com/" target="_blank" rel="nofollow">Firefox</a> 或 <a href="http://www.google.com/chrome" target="_blank" rel="nofollow">Chrome</a> 浏览访问本站将会获得更佳的视觉体验.</p>
+      </div>
+    </footer>
+    
+  </div>
+
+  <%= javascript_include_tag "application" %>
+  <%= yield :scripts %>
+</body>
+</html>

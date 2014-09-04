@@ -72,6 +72,14 @@ class User < ActiveRecord::Base
                             :user_id => self.id)
   end
   
+  def super_admin?
+    self.email == 'tomwey@163.com'
+  end
+  
+  def admin?
+    self.super_admin? or SiteConfig.admin_emails.split(",").include?(self.email)
+  end
+  
   def coach?
     self.profile_type == 'Coach'
   end

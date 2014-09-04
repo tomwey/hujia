@@ -6,6 +6,9 @@
           <% if user_signed_in? %>
           <li>Hi, <%= current_user.nickname %></li>
           <li><%= link_to '我的护驾', user_path(current_user.nickname) %></li>
+          <% if current_user.admin? %>
+          <li><%= link_to '进入后台', cpanel_root_path %></li>
+          <% end %>
           <li><%= link_to '退出', destroy_user_session_path, :method => :delete %></li>
           <% else %>
           <li>来人护驾</li>

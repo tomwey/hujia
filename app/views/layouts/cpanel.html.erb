@@ -13,7 +13,7 @@
       <div class="container">
         <%= link_to "控制台", cpanel_root_path, :class => "brand" %>
         <%= render_list :class => "nav" do |li| 
-        li << link_to('站点配置', cpanel_site_configs_path)
+        li << link_to('站点配置', cpanel_site_configs_path) if current_user.super_admin?
         li << link_to('用户', cpanel_customers_path)
         li << link_to('驾校', cpanel_schools_path)
         li << link_to('教练', cpanel_coaches_path)

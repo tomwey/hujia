@@ -37,7 +37,7 @@ module ApplicationHelper
   def my_devise_error_messages!
     
     profile = resource.profile
-    puts '123'
+    return "" if profile.nil?
     return "" if resource.errors.empty? && profile.errors.empty?
     
     messages = profile_messages = ""

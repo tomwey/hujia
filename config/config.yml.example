@@ -1,6 +1,6 @@
 # coding: utf-8
 defaults: &defaults
-    app_name: "护驾网"
+    app_name: ""
     domain: ""
     email_sender: ""
     email_password: ""

@@ -77,7 +77,14 @@ class User < ActiveRecord::Base
   end
   
   def admin?
-    self.super_admin? or SiteConfig.admin_emails.split(",").include?(self.email)
+    
+    if SiteConfig.admin_emails
+      flag = SiteConfig.admin_emails.split(",").include?(self.email)
+    else
+      flag = true
+    end
+    
+    self.super_admin? or flag
   end
   
   def coach?

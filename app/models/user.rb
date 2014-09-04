@@ -81,7 +81,7 @@ class User < ActiveRecord::Base
     if SiteConfig.admin_emails
       flag = SiteConfig.admin_emails.split(",").include?(self.email)
     else
-      flag = true
+      flag = false
     end
     
     self.super_admin? or flag

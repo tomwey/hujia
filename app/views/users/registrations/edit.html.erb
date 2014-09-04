@@ -10,11 +10,15 @@
           <%= f.input :nickname, label: "用户名",placeholder: "用户名", :input_html => { :style => "width: 180px;" } %>
           <%= f.input :email, label: "邮箱",placeholder: "邮箱", :input_html => { :class => "span3", :readonly => true } %>
           
+          <% if resource.profile %>
+          
           <%= f.fields_for resource.profile do |pf| %>
           <% render :partial => "#{resource.profile_type.underscore}_fields", :locals => { :f => pf } %>
           <% end %>
           
           <%= hidden_field :user, :user_type, :value => resource.profile_type.downcase %>
+          
+          <% end %>
           
           <div class="form-actions">
             <%= f.button :submit, "更新资料", :class => "btn btn-primary", :disable_with => "保存中..." %>

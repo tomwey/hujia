@@ -71,9 +71,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
       user_type = params[:user][:user_type]
       if user_type == 'customer'
         profile.is_student = params[:user][:customer][:is_student]
-        profile.college = params[:user][:customer][:college]
-        profile.province = params[:user][:customer][:province]
-        profile.city = params[:user][:customer][:city]
+        if profile.is_student
+          profile.college = params[:user][:customer][:college]
+          profile.province = params[:user][:customer][:province]
+          profile.city = params[:user][:customer][:city]
+        else
+          profile.college = nil
+          profile.province = nil
+          profile.city = nil
+        end
         profile.real_name = params[:user][:customer][:real_name]
         profile.mobile = params[:user][:customer][:mobile]
         profile.qq = params[:user][:customer][:qq]

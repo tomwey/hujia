@@ -47,7 +47,7 @@ HujiaWebsite::Application.routes.draw do
   
   # resources :active_codes, only: [:update]
   
-  resources :coupons do
+  resources :coupons, only: [:user_index] do
     member do
       match "user/:user_id" => "coupons#user_index", :via => :put, :as => :getted
     end

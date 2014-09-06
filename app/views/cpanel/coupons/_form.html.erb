@@ -2,6 +2,8 @@
   <%= render "shared/error_messages", :target => @coupon %>
   <fieldset>
     <legend><%= legend %></legend>
+    <%= f.input :title, :label => "主标题" %>
+    <%= f.input :subtitle, :label => "副标题", input_html: { class:"span5" } %>
     <%= f.input :value, :label => "面额" %>
     <%= f.input :publish_count, :label => "发行数量" %>
     

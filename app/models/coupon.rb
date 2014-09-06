@@ -1,6 +1,6 @@
 # coding: utf-8
 class Coupon < ActiveRecord::Base
-  attr_accessible :code, :image,:publish_count, :ownerable_id, :ownerable_type, :user_id, :value, :start_date, :end_date
+  attr_accessible :code, :image, :title, :subtitle, :publish_count, :ownerable_id, :ownerable_type, :user_id, :value, :start_date, :end_date
 
   belongs_to :ownerable, :polymorphic => true
   
@@ -21,6 +21,10 @@ class Coupon < ActiveRecord::Base
   
   def active
     self.class.increment_counter(:actives_count, self.id)
+  end
+  
+  def add_visit
+    self.class.increment_counter(:claims_count, self.id)
   end
   
 end

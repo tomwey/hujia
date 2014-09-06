@@ -3,6 +3,21 @@ window.App =
   # 警告信息显示
   alert: (msg, to) ->
     $(to).before("<div data-alert class='alert-message'><a class='close' href='#'>X</a>#{msg}</div>")
+  
+  # 删除评论
+  deleteComment: (el) ->
+    id = $(el).data("id")
+    tr = $("#comment_tr_#{id}")
+    $.ajax
+      url: "/cpanel/comments/#{id}"
+      type: "DELETE"
+      success: (re) -> 
+        if re == "1"
+          tr.remove()
+        else
+          App.alert("抱歉，系统异常，提交失败。")
+    false
+    
   appointable: (el) ->
     appointable_type = $(el).data("type")
     appointable_id = $(el).data("id")

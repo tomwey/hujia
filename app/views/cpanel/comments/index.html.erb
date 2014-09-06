@@ -1,0 +1,30 @@
+<% content_for :sitemap do %>
+  <span class="current">评价信息</span>
+<% end %>
+
+<h2>评价信息</h2>
+<table class="table table-hover">
+  <tr class="head">
+    <td class="first">ID</td>
+    <td>评价人</td>
+    <td>评价内容</td>
+    <td>评分</td>
+    <td>所属教练/驾校</td>
+    <td>最后评论时间</td>
+    <td style="width:140px"></td>
+  </tr>
+  
+  <% @comments.each do |comment| %>
+  <tr id="comment_tr_<%= comment.id %>">
+    <td class="first"><%= comment.id %></td>
+    <td><%= comment.user.try(:nickname) %></td>
+    <td><%= comment.content %></td>
+    <td><%= render_all_ratings(comment) %></td>
+    <td><%= render_ownerable_title(comment.commentable) %></td>
+    <td><%= l comment.updated_at, :format => :short %></td>
+    <td>
+      <a href="#" class="btn btn-mini btn-danger" data-confirm="你确定吗？" data-remote="true" data-id="<%= comment.id %>" onclick="App.deleteComment(this)">删除</a>
+    </td>
+  </tr>
+  <% end %>
+</table>

@@ -6,6 +6,9 @@ class Comment < ActiveRecord::Base
   
   attr_accessible :content, :user_id, :commentable_id, :commentable_type, :overall_rating, :attitude_rating, :service_rating, :env_rating
 
+  default_scope order('created_at DESC')
+  scope :visibled, lambda { where( :visible => true ) }
+
   validates_presence_of :content
 
   def avarge_rating

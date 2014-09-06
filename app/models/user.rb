@@ -47,7 +47,6 @@ class User < ActiveRecord::Base
   end
   
   def update_with_password(params={})
-    puts params
     if !params[:current_password].blank? or !params[:password].blank? or !params[:password_confirmation].blank?
       super
     else

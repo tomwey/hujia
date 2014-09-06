@@ -29,9 +29,8 @@ class UsersController < ApplicationController
   end
   
   def comments
-    @comments = @user.comments.order('created_at desc')
+    @comments = @user.comments.visibled.order('created_at desc')
     @commentables = @comments.collect { |comment| comment.commentable }
-    puts @commentables
   end
   
   def uncomments    

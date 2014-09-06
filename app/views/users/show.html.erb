@@ -7,7 +7,7 @@
     <div class="user_sidebar">
       <div class="user_info">
         <p><%= current_user.nickname %></p>
-        <p>积分: <%= current_user.profile.try(:score) %></p>
+        <p>积分: <%= current_user.profile.try(:score) || '0' %></p>
         用户ID: <%= current_user.id %>
       </div>
       

@@ -72,9 +72,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if user_type == 'customer'
         profile.is_student = params[:user][:customer][:is_student]
         profile.college = params[:user][:customer][:college]
+        profile.province = params[:user][:customer][:province]
+        profile.city = params[:user][:customer][:city]
+        profile.real_name = params[:user][:customer][:real_name]
+        profile.mobile = params[:user][:customer][:mobile]
       end
             
-      if @user.save && profile.save(:validate => false)#&& profile.update_attributes(account_update_params[user_type.to_sym])
+      if @user.save && profile.save#(:validate => false)#&& profile.update_attributes(account_update_params[user_type.to_sym])
         if is_flashing_format?
           prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
           flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?

@@ -1,9 +1,37 @@
+<% if not resource.profile.new_record? %>
+<%= f.input :real_name, :label => "真实姓名" %>
+<%= f.input :mobile, :label => "手机" %>
+<% end %>
+<%= f.input :qq, :label => "QQ" %>
 <%= f.input :is_student, as: :radio, 
             :label => "学生", 
             :collection => [['否', false], ['是', true]], 
             :item_wrapper_class => 'inline' %>
 
-<%= f.input :college, :label => "大学校区", :collection => College.all.map { |c| [c.name, c.name] }, :prompt => "-- 请选择大学校区 --"  %>
+
+<div class="control-group select optional user_customer_college">
+  <label class="select optional control-label" for="user_provinces">城市</label>
+  <div class="controls">
+    <select class="select optional span2" style="width:80px;" id="user_provinces" name="user[customer][province]" onchange="App.getCities(this)">
+      <option value="">-- 请选择省份 --</option>
+      <%= options_for_select( Province.order('code asc').map { |p| ["#{p.code}", "#{p.name}"] }, :province) %>
+    </select>
+    <select class="select optional" style="width:120px;" id="user_cities" name="user[customer][city]" onchange="App.getColleges(this)">
+      <option value="">-- 请选择城市 --</option>
+      <%= options_for_select( City.joins(:province).where("provinces.code = ?", resource.profile.province).order('code asc').map { |p| ["#{p.code}", "#{p.name}"] }, :city) %>
+    </select>
+  </div>
+</div>
+            
+<div class="control-group select optional user_customer_college">
+  <label class="select optional control-label" for="user_customer_college">大学校区</label>
+  <div class="controls">
+    <select class="select optional" id="user_customer_college" name="user[customer][college]">
+      <option value="">-- 请选择大学校区 --</option>
+      <%= options_for_select( College.joins(:city).where("cities.code = ?", resource.profile.city).map { |p| ["#{p.name}", "#{p.name}"] }, :college) %>
+    </select>
+  </div>
+</div>
 
 <% content_for :scripts do %>
 
@@ -22,6 +50,7 @@ $("input[name='user[customer][is_student]']").click(function() {
     $('.user_customer_college').hide();
   }
 });
+
 </script>
 
 <% end %>

@@ -25,6 +25,18 @@ HujiaWebsite::Application.routes.draw do
     end
   end
   
+  resources :cities do
+    collection do 
+      match ":province_id" => "cities#province", :via => :get, :as => :province
+    end
+  end
+  
+  resources :colleges do
+    collection do
+      match ":city_id" => "colleges#city", :via => :get, :as => :city
+    end
+  end
+  
   resources :coaches, only: [:show] do
     member do
       get :comments

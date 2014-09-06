@@ -24,6 +24,8 @@
         college: "大学校区"
         id_number: "身份证号"
         qq: "QQ"
+        province: "省份"
+        city: "城市"
       coach:
         real_name: "真实姓名"
         sex: "性别"

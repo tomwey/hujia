@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   
   belongs_to :profile, polymorphic: true
   
-  validates :nickname, :email, :presence => true
+  # validates :nickname, :email, :presence => true
   validates :nickname, :format => { :with => /\A\w+\z/, :message => '只允许数字、大小写字母和下划线'}, 
             :length => { :in => 3..20 }, :presence => true, :uniqueness => { :case_sensitive => false }
             

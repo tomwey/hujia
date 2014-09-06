@@ -100,6 +100,23 @@ module ApplicationHelper
     html.html_safe
   end
   
+  def options_for_select(collection, type)
+    return '' if resource.blank?
+    return '' if resource.profile.blank?
+    
+    if resource.profile.new_record? and type != :province
+      return ''
+    end
+    
+    return '' if collection.empty?
+    
+    html = ''
+    collection.each do |item|
+      html +=  content_tag :option, item[1], :value => item[0], :selected => item[0] == resource.profile[type]
+    end
+    html.html_safe
+  end
+  
   def filterable(column, title = nil, value = nil, onclick = nil)
     title ||= '全部'
     value ||= ''
@@ -248,7 +265,8 @@ module ApplicationHelper
   end
   
   def price_scopes
-    %w(3500-3699 3700-3899 3900-4099 4100元以上)
+    # %w(3500-3699 3700-3899 3900-4099 4100元以上)
+    SiteConfig.price_scope.split(',') if SiteConfig.price_scope
   end
   
 end

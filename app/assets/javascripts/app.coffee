@@ -50,4 +50,21 @@ window.App =
     $.ajax
       url: $(el).href
       type: "GET"
+  
+  getCities: (el) ->
+    $("#user_cities").html('<option value="">-- 请选择城市 --</option>')
+    $("#user_customer_college").html('<option value="">-- 请选择大学校区 --</option>')
+    code = $(el).val()
+    $.ajax
+      url: "/cities/#{code}"
+      type: "GET"
+    false
+  
+  getColleges: (el) ->
+    $("#user_customer_college").html('<option value="">-- 请选择大学校区 --</option>')
+    code = $(el).val()
+    $.ajax
+      url: "/colleges/#{code}"
+      type: "GET"
+    false
       

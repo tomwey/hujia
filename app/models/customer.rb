@@ -31,7 +31,7 @@ class Customer < ActiveRecord::Base
   end
   
   def check_mobile_not_blank?
-    not mobile.blank? or not new_record?
+    not mobile.blank? or (not new_record? and mobile.length > 0 )
   end
   
   def check_id_number_not_blank?

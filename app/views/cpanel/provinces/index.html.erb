@@ -1,0 +1,28 @@
+<% content_for :sitemap do %>
+  <span class="current">省份信息</span>
+<% end %>
+
+<%= render_list_header("省份信息", "新建省份", "/cpanel/provinces/new" ) %>
+<table class="table table-hover">
+  <tr class="head">
+    <td class="first">ID</td>
+    <td>名称</td>
+    <td>代码</td>
+    <td>at</td>
+    <td style="width:140px"></td>
+  </tr>
+  
+  <% @provinces.each do |province| %>
+  <tr>
+    <td class="first"><%= province.id %></td>
+    <td><%= province.name %></td>
+    <td><%= province.code %></td>
+    <td><%= l province.created_at, :format => :short %></td>
+    <td>
+      <%= link_to "编辑", edit_cpanel_province_path(province), :class => "btn btn-mini" %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<div style="text-align:center;"><%= will_paginate @provinces %></div>

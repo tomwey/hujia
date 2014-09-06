@@ -20,6 +20,9 @@
       banner: "广告"
       coupon: "代金券"
       comment: "评论"
+      province: "省份"
+      city: "城市"
+      college: "大学校区"
     attributes:
       user:
         nickname: "用户名"
@@ -77,9 +80,17 @@
         end_date: "结束日期"
       comment:
         content: "内容"
-      site_config:
-        price_scope: "价格范围"
-        admin_emails: "管理员邮箱"
+      province:
+        name: "省份名"
+        code: "省份代码"
+      city:
+        name: "城市名"
+        code: "城市代码"
+        province_id: "所属省份"
+      college:
+        name: "大学校区"
+        city_id: "所属城市"
+      
     errors:
       models:
         user: "用户"

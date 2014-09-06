@@ -69,6 +69,9 @@ HujiaWebsite::Application.routes.draw do
     resources :comments
     resources :banners, :path => "ads"
     resources :pages, :path => "wiki"
+    resources :provinces, except: [:show, :destroy]
+    resources :cities, except: [:show, :destroy]
+    resources :colleges, except: [:show, :destroy]
   end
   
   resources :users, :path => "" do

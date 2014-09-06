@@ -1,0 +1,30 @@
+<% content_for :sitemap do %>
+  <span class="current">城市信息</span>
+<% end %>
+
+<%= render_list_header("城市信息", "新建城市", "/cpanel/cities/new" ) %>
+<table class="table table-hover">
+  <tr class="head">
+    <td class="first">ID</td>
+    <td>城市名称</td>
+    <td>城市代码</td>
+    <td>所属省份</td>
+    <td>at</td>
+    <td style="width:140px"></td>
+  </tr>
+  
+  <% @cities.each do |city| %>
+  <tr>
+    <td class="first"><%= city.id %></td>
+    <td><%= city.name %></td>
+    <td><%= city.code %></td>
+    <td><%= city.province.try(:name) %></td>
+    <td><%= l city.created_at, :format => :short %></td>
+    <td>
+      <%= link_to "编辑", edit_cpanel_city_path(city), :class => "btn btn-mini" %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<div style="text-align:center;"><%= will_paginate @cities %></div>

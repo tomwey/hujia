@@ -1,0 +1,13 @@
+<%= simple_form_for [:cpanel, @province], :html => { :class => "form-horizontal", :enctype => "multipart/form-data" } do |f| %>
+  <%= render "shared/error_messages", :target => @province %>
+  <fieldset>
+    <legend><%= legend %></legend>
+    <%= f.input :name, :label => "省份名称", placeholder: "例如：四川" %>
+    <%= f.input :code, :label => "代码", placeholder: "例如：510000", hint: "标示唯一的省份代码, 查询地址：http://wenku.baidu.com/view/af4281bafd0a79563c1e7287.html"%>
+    
+    <div class="form-actions">
+      <%= f.submit "保存", :disable_with => "正在提交...", :class => "btn btn-success" %>
+      <%= link_to "返回", :back, :class => "btn" %>
+    </div>
+  </fieldset>
+<% end %>

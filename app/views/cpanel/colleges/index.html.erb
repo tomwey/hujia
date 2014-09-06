@@ -1,0 +1,28 @@
+<% content_for :sitemap do %>
+  <span class="current">大学校区信息</span>
+<% end %>
+
+<%= render_list_header("大学校区信息", "新建大学校区", "/cpanel/colleges/new" ) %>
+<table class="table table-hover">
+  <tr class="head">
+    <td class="first">ID</td>
+    <td>大学名称</td>
+    <td>所属城市</td>
+    <td>at</td>
+    <td style="width:140px"></td>
+  </tr>
+  
+  <% @colleges.each do |college| %>
+  <tr>
+    <td class="first"><%= college.id %></td>
+    <td><%= college.name %></td>
+    <td><%= college.city.try(:name) %></td>
+    <td><%= l college.created_at, :format => :short %></td>
+    <td>
+      <%= link_to "编辑", edit_cpanel_college_path(college), :class => "btn btn-mini" %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<div style="text-align:center;"><%= will_paginate @colleges %></div>

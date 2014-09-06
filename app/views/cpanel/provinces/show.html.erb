@@ -1,0 +1,17 @@
+<% content_for :sitemap do %>
+  <span class="current">驾校详细信息</span>
+<% end %>
+
+<div class="box">
+  <h2>用户信息</h2>
+  <p>用户名：<%= @user.nickname %></p>
+  <p>邮箱：<%= @user.email %></p>
+</div>
+
+<div class="box">
+  <h2>驾校信息</h2>
+  <p>驾校名称：<%= @school.name %></p>
+  <p>驾校地址：<%= @school.location %></p>
+  <p>联系人：<%= @school.linkman %></p>
+  <p>价格：<%= @school.price %></p>
+</div>

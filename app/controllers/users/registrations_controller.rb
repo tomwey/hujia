@@ -76,6 +76,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         profile.city = params[:user][:customer][:city]
         profile.real_name = params[:user][:customer][:real_name]
         profile.mobile = params[:user][:customer][:mobile]
+        profile.qq = params[:user][:customer][:qq]
       end
             
       if @user.save && profile.save#(:validate => false)#&& profile.update_attributes(account_update_params[user_type.to_sym])

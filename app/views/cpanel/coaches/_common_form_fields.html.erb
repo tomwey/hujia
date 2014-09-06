@@ -1,0 +1,58 @@
+<legend>个人信息</legend>
+<%= f.input :real_name, label: "真实姓名", placeholder: "真实姓名", input_html: { style: "width: 180px;" }, hint: "务必输入真实的姓名，以便核实" %>
+<%= f.input :sex, :collection => [["男", 0], ["女", 1]], :as => :radio_buttons, label: "性别",:item_wrapper_class => 'inline' %>
+<% if @coach.image? -%>
+<div class="controls">
+  <%= image_tag(@coach.image.normal) %>
+</div>
+<% end -%>
+<%= f.input :image, label: "证件照", :hint => "一寸免冠照片" %>
+<%= f.hidden_field :image_cache %>
+<%= f.input :mobile, label: "手机", :hint => "务必输入正确的手机号，以便联系您" %>
+<%= f.input :qq, label: "QQ" %>
+
+<legend>工作信息</legend>
+<%= f.input :company, label: "所属驾校" %>
+<%= f.input :price, label: "学车价格" %>
+<%= f.input :drive_type, as: :select, label: t("site_config.drive_type"), collection: drive_types, prompt: "-- 请选择驾照类型 --" %>
+<%= f.input :service_type, as: :select, label: t("site_config.service_type"), collection: service_types, prompt: "-- 请选择服务类型 --" %>
+
+
+<div class="control-group">
+  <label class="select optional control-label" for="coach_areas">服务区域</label>
+  <div class="controls" id="service_areas">
+    <select class="select optional span2" style="width:120px;" id="user_provinces" name="coach[province]" onchange="App.getCities(this)">
+      <option value="">-- 请选择省份 --</option>
+      <%= options_for_select( Province.order('code asc').map { |p| ["#{p.code}", "#{p.name}"] }, f.object, :province) %>
+    </select>
+    <select class="select optional" style="width:120px;" id="user_cities" name="coach[city]" onchange="getCollegesFor(this)">
+      <option value="">-- 请选择城市 --</option>
+      <%= options_for_select( City.joins(:province).where("provinces.code = ?", f.object.province).order('code asc').map { |p| ["#{p.code}", "#{p.name}"] }, f.object, :city) %>
+    </select>
+    <div id="service_area_checkboxes">
+      <%= college_checkbox(College.joins(:city).where("cities.code = ?", f.object.city).map { |p| ["#{p.id}", "#{p.name}"] }, f.object) %>
+    </div>
+    
+  </div>
+</div>
+
+<%= f.input :star_count, label: t("site_config.default_star"), collection: default_stars,prompt: "-- 请选择初始评分 --", input_html: { style: "width:80px"} %>
+
+<%= f.input :location, label: "报名地址", input_html: { class: "span5", placeholder: "输入您的详细地址" } %>
+<%= f.input :teach_location, label: "场地地址", :input_html => { :class => "span5", :placeholder => "输入详细的接送教员的地址" } %>
+
+<%= f.input :is_authorized, as: :radio_buttons, :label => "教练已认证", :collection => [['是', true], ['否', false]], :item_wrapper_class => 'inline' %>
+<%= f.input :is_check, as: :radio_buttons, :label => "支持吃拿卡担保赔付", :collection => [['是', true], ['否', false]], :item_wrapper_class => 'inline' %>
+
+<%= f.input :intro, as: :text, label: "简介", :input_html => { :style => "width: 400px", :rows => 6 } %>
+
+<% content_for :scripts do %>
+<script>
+function getCollegesFor(el)
+{
+  var code = $(el).val();
+  $.ajax({url: "/colleges/" + code + "?type=coach&college_ids=" + "<%= f.object.service_areas.map(&:id).join(',') %>", type: "GET"});
+}
+</script>
+
+<% end %>

@@ -17,12 +17,21 @@ class Customer < ActiveRecord::Base
   validates :province, :presence => true, :if => :check_is_student?
   validates :city, :presence => true, :if => :check_is_student?
   
+  before_create :check_is_student
+  def check_is_student
+    if is_student == false
+      self.college = nil
+      self.province = nil
+      self.city = nil
+    end
+  end
+  
   def check_is_student?
     is_student == true
   end
   
   def check_mobile_not_blank?
-    self.mobile.present?
+    not mobile.blank? or not new_record?
   end
   
   def check_id_number_not_blank?

@@ -12,7 +12,7 @@ module ApplicationHelper
   end
   
   def render_page_title
-    site_name = Settings.app_name
+    site_name = SiteConfig.app_name
     title = @page_title ? "#{site_name} - #{@page_title}" : site_name rescue "SITE_NAME"
     content_tag("title", title, nil, false)
   end
@@ -100,20 +100,36 @@ module ApplicationHelper
     html.html_safe
   end
   
-  def options_for_select(collection, type)
-    return '' if resource.blank?
-    return '' if resource.profile.blank?
+  def college_checkbox(collection, target)
+    return '' if target.blank?
+    return '' if collection.empty?
     
-    if resource.profile.new_record? and type != :province
-      return ''
+    html = ''
+    
+    collection.each do |item|
+      input = content_tag :input, nil, checked: target.service_areas.map(&:id).include?(item[0].to_i), name: "coach[service_area_ids][]", type: "checkbox", value: item[0]
+      label = content_tag :label, (input + " #{item[1]}"), class: "checkbox inline"
+      html += label
     end
+    
+    html.html_safe
+  end
+  
+  def options_for_select(collection, target, type)
+    return '' if target.blank?
+    
+    # if target.new_record? and type != :province
+    #   return ''
+    # end
     
     return '' if collection.empty?
     
     html = ''
+  
     collection.each do |item|
-      html +=  content_tag :option, item[1], :value => item[0], :selected => item[0] == resource.profile[type]
+      html +=  content_tag :option, item[1], :value => item[0], :selected => item[0] == target[type]
     end
+    
     html.html_safe
   end
   
@@ -236,37 +252,31 @@ module ApplicationHelper
     end
     
     StarsRenderer.new(star_count, self).render_stars
-    
-    # count = star_count.round
-    # if count > star_count
-    #   full_max_index = count - 1
-    #   half_max_index = count
-    #   empty_min_index = count + 1
-    # else
-    #   full_max_index = count
-    #   half_max_index = -1
-    #   empty_min_index = count + 1
-    # end
-    # 
-    # image = ''
-    # for i in 0...5 do
-    #   image_name = if i < full_max_index
-    #     'icon_star_2.gif'
-    #   elsif half_max_index != -1 and i == half_max_index - 1
-    #     'icon_star_3.gif'
-    #   elsif i >= empty_min_index - 1
-    #     'icon_star_1.gif'
-    #   end
-    #   image += image_tag image_name, :alt => 'star'
-    # end
-    # 
-    # image.html_safe
-    
   end
   
+  # 搜索价格范围
   def price_scopes
     # %w(3500-3699 3700-3899 3900-4099 4100元以上)
-    SiteConfig.price_scope.split(',') if SiteConfig.price_scope
+    return SiteConfig.price_scope.split(',') if SiteConfig.price_scope
+    return []
+  end
+  
+  # 驾照类型
+  def drive_types
+    return SiteConfig.drive_type.split(',').map { |c| [c, c] } if SiteConfig.drive_type
+    return []
+  end
+  
+  # 服务类型
+  def service_types
+    return SiteConfig.service_type.split(',').map { |c| [c, c] } if SiteConfig.service_type
+    return []
+  end
+  
+  # 默认星级
+  def default_stars
+    return SiteConfig.default_star.split(',').map { |c| [c, c] } if SiteConfig.default_star
+    return []
   end
   
 end

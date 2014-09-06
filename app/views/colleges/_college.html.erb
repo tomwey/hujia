@@ -1,1 +1,11 @@
+<% if @type %>
+<label class="checkbox inline">
+  <% if @select_colleges && @select_colleges.include?(college.id.to_s) %>
+  <input id="newsblast_app_ids_<%= college.id %>" name="coach[service_area_ids][]" type="checkbox" value="<%= college.id %>" checked="checked" /><%= college.name %>
+  <% else %>
+  <input id="newsblast_app_ids_<%= college.id %>" name="coach[service_area_ids][]" type="checkbox" value="<%= college.id %>" /><%= college.name %>
+  <% end %>
+</label>
+<% else %>
 <option value="<%= college.name %>"><%= college.name %></option>
+<% end %>

@@ -1,1 +1,5 @@
+<% if @type %>
+$("#service_area_checkboxes").html("<%= j render @colleges %>")
+<% else %>
 $("#user_customer_college").append("<%= j render @colleges %>")
+<% end %>

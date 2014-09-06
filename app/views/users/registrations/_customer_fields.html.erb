@@ -7,28 +7,21 @@
             :label => "学生", 
             :collection => [['否', false], ['是', true]], 
             :item_wrapper_class => 'inline' %>
-
-
-<div class="control-group select optional user_customer_college">
-  <label class="select optional control-label" for="user_provinces">城市</label>
-  <div class="controls">
-    <select class="select optional span2" style="width:80px;" id="user_provinces" name="user[customer][province]" onchange="App.getCities(this)">
-      <option value="">-- 请选择省份 --</option>
-      <%= options_for_select( Province.order('code asc').map { |p| ["#{p.code}", "#{p.name}"] }, :province) %>
-    </select>
-    <select class="select optional" style="width:120px;" id="user_cities" name="user[customer][city]" onchange="App.getColleges(this)">
-      <option value="">-- 请选择城市 --</option>
-      <%= options_for_select( City.joins(:province).where("provinces.code = ?", resource.profile.province).order('code asc').map { |p| ["#{p.code}", "#{p.name}"] }, :city) %>
-    </select>
-  </div>
-</div>
             
 <div class="control-group select optional user_customer_college">
   <label class="select optional control-label" for="user_customer_college">大学校区</label>
   <div class="controls">
+    <select class="select optional span2" style="width:80px;" id="user_provinces" name="user[customer][province]" onchange="App.getCities(this)">
+      <option value="">-- 请选择省份 --</option>
+      <%= options_for_select( Province.order('code asc').map { |p| ["#{p.code}", "#{p.name}"] }, resource.profile, :province) %>
+    </select>
+    <select class="select optional" style="width:120px;" id="user_cities" name="user[customer][city]" onchange="App.getColleges(this)">
+      <option value="">-- 请选择城市 --</option>
+      <%= options_for_select( City.joins(:province).where("provinces.code = ?", f.object.province).order('code asc').map { |p| ["#{p.code}", "#{p.name}"] },f.object, :city) %>
+    </select>
     <select class="select optional" id="user_customer_college" name="user[customer][college]">
       <option value="">-- 请选择大学校区 --</option>
-      <%= options_for_select( College.joins(:city).where("cities.code = ?", resource.profile.city).map { |p| ["#{p.name}", "#{p.name}"] }, :college) %>
+      <%= options_for_select( College.joins(:city).where("cities.code = ?", f.object.city).map { |p| ["#{p.name}", "#{p.name}"] }, f.object, :college) %>
     </select>
   </div>
 </div>

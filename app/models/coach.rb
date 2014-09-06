@@ -1,6 +1,6 @@
 # coding: utf-8
 class Coach < ActiveRecord::Base
-  attr_accessible :city, :company, :image, :price, :intro, :star_count, :drive_type,:coupons_attributes, :service_area_ids, :teach_location, :is_check, :location, :mobile, :pickup_location, :qq, :real_name, :service_type, :sex, :image_cache
+  attr_accessible :city,:province, :company, :image, :is_authorized, :price, :intro, :star_count, :drive_type,:coupons_attributes, :service_area_ids, :teach_location, :is_check, :location, :mobile, :pickup_location, :qq, :real_name, :service_type, :sex, :image_cache
   
   has_one :user, as: :profile, dependent: :destroy
   

@@ -8,7 +8,7 @@
     <legend>修改用户信息</legend>
 
     <%= f.input :real_name, label: "真实姓名",placeholder: "真实姓名", :input_html => { :style => "width: 180px;" }, :hint => "务必输入真实的姓名，以便核实" %>
-    <%= f.input :sex, :collection => [["男", 0], ["女", 1]], :as => :radio, label: "性别",:item_wrapper_class => 'inline' %>
+    <%= f.input :sex, :collection => [["男", 0], ["女", 1]], :as => :radio_buttons, label: "性别",:item_wrapper_class => 'inline' %>
 
     <% if @coach.image? -%>
     <div class="controls">

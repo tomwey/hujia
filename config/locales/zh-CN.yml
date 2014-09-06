@@ -1,4 +1,15 @@
 "zh-CN":
+  errors:
+    messages:
+      extension_white_list_error: "文件格式不正确"
+  
+  site_config:
+    admin_emails: "管理员邮箱"
+    price_scope: "价格范围"
+    app_name: "网站名"
+    drive_type: "驾照类型"
+    service_type: "服务类型"
+    default_star: "初始评分"
   activerecord:
     models:
       user: "用户"
@@ -66,6 +77,9 @@
         end_date: "结束日期"
       comment:
         content: "内容"
+      site_config:
+        price_scope: "价格范围"
+        admin_emails: "管理员邮箱"
     errors:
       models:
         user: "用户"

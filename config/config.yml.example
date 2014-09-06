@@ -4,6 +4,7 @@ defaults: &defaults
     domain: ""
     email_sender: ""
     email_password: ""
+    secret_key: ""
     admin_emails:
       - ""
 

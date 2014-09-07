@@ -1,0 +1,22 @@
+<div class="form-fields">
+  
+  <div class="row">
+    <div class="span5">
+      <%= f.input :image, label: "简介图片" %>
+      <%= f.input :sort, label: "图片显示顺序" %>
+    </div>
+    
+      <% if f.object.image? -%>
+      <div class="span2 offset2">
+        <%= image_tag(f.object.image, style:"width: 100px", class: "pull-right") %>
+      </div>
+      <% end -%>
+    </div>
+    <div class="controls">
+      <label class="checkbox inline">
+        <%= f.check_box :_destroy %> 删除简介图片
+      </label>
+    </div>
+</div>
+
+

@@ -8,15 +8,6 @@
     
     <%= render "/cpanel/coaches/common_form_fields", :f => f %>
     
-    <%= f.simple_fields_for :coupons do |b| %>
-    <%= render "/cpanel/coupons/form_fields", :f => b %>
-    <% end %>
-    <div class="control-group">
-      <div class="controls">
-        <%= link_to_add_fields("添加代金券", f, :coupons) %>
-      </div>
-    </div>
-    
     <div class="form-actions">
       <%= f.submit "保存", :disable_with => "正在提交...", :class => "btn btn-success" %>
       <%= link_to "返回", :back, :class => "btn" %>

@@ -1,6 +1,10 @@
 # coding: utf-8
 class Coach < ActiveRecord::Base
-  attr_accessible :city,:province, :company, :image, :is_authorized, :price, :intro, :star_count, :drive_type,:coupons_attributes, :service_area_ids, :teach_location, :is_check, :location, :mobile, :pickup_location, :qq, :real_name, :service_type, :sex, :image_cache
+  attr_accessible :city,:province, :company, :image, :photos_attributes, :is_authorized, :price, :intro, :star_count, :drive_type,:coupons_attributes, :service_area_ids, :teach_location, :is_check, :location, :mobile, :pickup_location, :qq, :real_name, :service_type, :sex, :image_cache
+  
+  validates :mobile, format: { with: /\A1[3|4|5|8][0-9]\d{4,8}\z/, message: "请输入11位正确手机号" }, length: { is: 11 }, 
+            :presence => true, :uniqueness => true
+  validates :qq, :format => { :with => /[1-9][0-9]{4,}/, :message => "请输入正确的QQ号" }, :uniqueness => true
   
   has_one :user, as: :profile, dependent: :destroy
   
@@ -9,14 +13,16 @@ class Coach < ActiveRecord::Base
   
   has_many :comments, as: :commentable
   
-  validates :mobile, :format => { :with => /\A1[3|4|5|8][0-9]\d{4,8}\z/, :message => "请输入11位正确手机号" }, :length => { :is => 11 }, :presence => true, :uniqueness => true
-  validates :qq, :format => { :with => /[1-9][0-9]{4,}/, :message => "请输入正确的QQ号" }, :uniqueness => true
-  
-  mount_uploader :image, AvatarUploader
+  has_many :photos, as: :photoable, dependent: :destroy
+  accepts_nested_attributes_for :photos, :reject_if => :check_image_blank, :allow_destroy => true
   
   has_and_belongs_to_many :service_areas, :class_name => "College"
   
-  SERVICE_TYPES = [['不接送', '不接送'], ['教练接送', '教练接送'],['班车接送', '班车接送']]
+  mount_uploader :image, AvatarUploader
+  
+  def check_image_blank
+    self[:image].blank?
+  end
   
   def self.search(search)
     if search

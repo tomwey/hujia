@@ -23,6 +23,7 @@
       province: "省份"
       city: "城市"
       college: "大学校区"
+      photo: "简介图片"
     attributes:
       user:
         nickname: "用户名"
@@ -90,6 +91,9 @@
       college:
         name: "大学校区"
         city_id: "所属城市"
+        
+      photo:
+        image: "图片"
       
     errors:
       models:

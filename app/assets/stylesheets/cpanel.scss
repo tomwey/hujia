@@ -34,6 +34,22 @@ body {
   }
 }
 
+.form-fields {
+  border-bottom: 1px dashed rgb(230,230,230);
+  width: 700px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+}
+
+.form-fields-container {
+  border-top: 1px solid rgb(230,230,230);
+  background: rgb(245,245,245);
+  padding-top: 20px;
+  padding-bottom: 3px;
+  
+  margin-bottom: 20px;
+}
+
 .suggest {
   text-align:center;
   color: black;

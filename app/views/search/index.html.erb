@@ -7,7 +7,7 @@
 <%= filterable(:dt, c, c) %>
 <% end %>
 </p>
-<p>交通：<%= filterable(:st) %><% Coach::SERVICE_TYPES.each do |c| %>
+<p>交通：<%= filterable(:st) %><% service_types.each do |c| %>
 <%= filterable(:st, c[0], c[0]) %>
 <% end %>
 </p>

@@ -28,9 +28,9 @@ module ApplicationHelper
   def link_to_add_fields(name, f, association)
     new_object  = f.object.class.reflect_on_association(association).klass.new
     fields = f.simple_fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
-      render("/cpanel/coupons/form_fields", :f => builder)
+      render("/cpanel/#{association}/form_fields", :f => builder)
     end
-    link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
+    link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", class: "btn")
   end
   
   # 自定义devise错误

@@ -17,7 +17,6 @@
 <%= f.input :drive_type, as: :select, label: t("site_config.drive_type"), collection: drive_types, prompt: "-- 请选择驾照类型 --" %>
 <%= f.input :service_type, as: :select, label: t("site_config.service_type"), collection: service_types, prompt: "-- 请选择服务类型 --" %>
 
-
 <div class="control-group">
   <label class="select optional control-label" for="coach_areas">服务区域</label>
   <div class="controls" id="service_areas">
@@ -45,6 +44,25 @@
 <%= f.input :is_check, as: :radio_buttons, :label => "支持吃拿卡担保赔付", :collection => [['是', true], ['否', false]], :item_wrapper_class => 'inline' %>
 
 <%= f.input :intro, as: :text, label: "简介", :input_html => { :style => "width: 400px", :rows => 6 } %>
+
+<%= f.simple_fields_for :photos do |b| %>
+<%= render "/cpanel/photos/form_fields", :f => b %>
+<% end %>
+<div class="control-group">
+  <div class="controls">
+    <%= link_to_add_fields("添加简介图片", f, :photos) %>
+  </div>
+</div>
+
+<legend>代金券</legend>
+ <%= f.simple_fields_for :coupons do |b| %>
+ <%= render "/cpanel/coupons/form_fields", :f => b %>
+ <% end %>
+ <div class="control-group">
+   <div class="controls">
+     <%= link_to_add_fields("添加代金券", f, :coupons) %>
+   </div>
+ </div>
 
 <% content_for :scripts do %>
 <script>

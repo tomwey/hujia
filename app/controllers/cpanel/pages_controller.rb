@@ -5,7 +5,7 @@ class Cpanel::PagesController < Cpanel::ApplicationController
   end
   
   def show
-    @page = Page.find(params[:id])
+    @page = Page.find_by_slug(params[:id])
   end
   
   def new
@@ -15,7 +15,7 @@ class Cpanel::PagesController < Cpanel::ApplicationController
   def create
     @page = Page.new(params[:page])
     if @page.save
-      redirect_to cpanle_pages_path, :notice => "Page Created."
+      redirect_to cpanel_pages_path, :notice => "Page Created."
     else
       render :new
     end

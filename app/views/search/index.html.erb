@@ -24,7 +24,10 @@
 
 <% unless @results.blank? %>
 <div id="results">
-  <%= render "results" %>
+  <ul class="list clearfix">
+  <%= render partial: "/coaches/coach", collection: @results %>
+ </ul>
+ <div style="text-align:center"><%= will_paginate @results %></div>
 </div>
 <% else %>
 <div class="no-result">

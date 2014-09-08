@@ -1,4 +1,4 @@
-<% cache colleges do %>
+
 <div class="fl nav-div">
     <div class="nav-caption">
         校区选择
@@ -6,10 +6,9 @@
     <ul class="nav-ul">
       <% colleges.each do |c| %>
       <li>
-          <a href="" class="nav-li inline-block"><%= c.name %></a>
-          <a href="" class="nav-more inline-block"></a>
+          <a href="<%= college_coaches_path(c) %>" class="nav-li inline-block"><%= c.name %></a>
+          <a href="<%= college_coaches_path(c) %>" class="nav-more inline-block"></a>
       </li>
       <% end %>
     </ul>
 </div>
-<% end %>

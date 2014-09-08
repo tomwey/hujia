@@ -1,23 +1,17 @@
+<% if @pages %>
+<% cache @pages do %>
 <div class="fr">
-    <div class="xcxz">
-        <h3>学车须知</h3>
-        <ul>
-            <li>
-                <%= image_tag "xcxz.gif" %><a href="">选择教练/驾校</a>
-            </li>
-            <li>
-                <%= image_tag "xcxz.gif" %><a href="">确认并生成订单</a>
-            </li>
-            <li>
-                <%= image_tag "xcxz.gif" %><a href="">线下支付消费</a>
-            </li>
-            <li>
-                <%= image_tag "xcxz.gif" %><a href="">上传验证码确认消费</a>
-            </li>
-            <li>
-                <%= image_tag "xcxz.gif" %><a href="">上传验证码</a>
-            </li>
-        </ul>
-    </div>
-    <%= raw SiteConfig.text_ads %>
+  <div class="xcxz">
+      <h3>学车须知</h3>
+      <ul>
+        <% @pages.each do |p| %>
+          <li>
+              <%= image_tag "xcxz.gif" %><a href="<%= page_path(p.slug) %>"><%= p.title %></a>
+          </li>
+        <% end %>
+      </ul>
+  </div>
+  <%= raw SiteConfig.text_ads %>
 </div>
+<% end %>
+<% end %>

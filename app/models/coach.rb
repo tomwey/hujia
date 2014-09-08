@@ -22,7 +22,7 @@ class Coach < ActiveRecord::Base
   has_and_belongs_to_many :service_areas, :class_name => "College"
   
   mount_uploader :image, AvatarUploader
-  crop_uploaded  :image
+  # crop_uploaded  :image
   
   def check_image_blank
     self[:image].blank?

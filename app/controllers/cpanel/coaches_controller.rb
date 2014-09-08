@@ -27,11 +27,11 @@ class Cpanel::CoachesController < Cpanel::ApplicationController
     valid = @coach.valid? && valid
     
     if valid && @coach.save
-      # if params[:coach][:image].present?
-      #   render :crop
-      # else
+      if params[:coach][:image].present?
+        render :crop
+      else
         redirect_to cpanel_coaches_path, notice: "Create Successfully."
-      # end
+      end
     else
       render :new
     end
@@ -45,11 +45,11 @@ class Cpanel::CoachesController < Cpanel::ApplicationController
     @coach = Coach.find(params[:id])
     params[:coach][:service_area_ids] ||= []
     if @coach.update_attributes(params[:coach])
-      # if params[:coach][:image].present?
-      #   render :crop
-      # else
+      if params[:coach][:image].present?
+        render :crop
+      else
         redirect_to cpanel_coaches_path, notice: "Updated Successfully."
-      # end
+      end
     else
       render :edit
     end

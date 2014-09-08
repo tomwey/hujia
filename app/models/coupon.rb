@@ -8,7 +8,7 @@ class Coupon < ActiveRecord::Base
   
   has_many :active_codes, :dependent => :destroy
   
-  validates :value, :publish_count, :ownerable_id, :ownerable_type, :start_date, :end_date, :presence => true
+  validates :value, :publish_count, :start_date, :end_date, :presence => true
   
   validates :value, :publish_count, :format => { :with => /\d/ }, :numericality => { :greater_than => 0 }
   

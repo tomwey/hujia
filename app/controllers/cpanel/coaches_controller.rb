@@ -27,7 +27,11 @@ class Cpanel::CoachesController < Cpanel::ApplicationController
     valid = @coach.valid? && valid
     
     if valid && @coach.save
-      redirect_to cpanel_coaches_path, notice: "Create Successfully."
+      if params[:coach][:image].present?
+        render :crop
+      else
+        redirect_to cpanel_coaches_path, notice: "Create Successfully."
+      end
     else
       render :new
     end
@@ -41,7 +45,11 @@ class Cpanel::CoachesController < Cpanel::ApplicationController
     @coach = Coach.find(params[:id])
     params[:coach][:service_area_ids] ||= []
     if @coach.update_attributes(params[:coach])
-      redirect_to cpanel_coaches_path, notice: "Updated Successfully."
+      if params[:coach][:image].present?
+        render :crop
+      else
+        redirect_to cpanel_coaches_path, notice: "Updated Successfully."
+      end
     else
       render :edit
     end
@@ -49,8 +57,12 @@ class Cpanel::CoachesController < Cpanel::ApplicationController
   
   def destroy
     @coach = Coach.find(params[:id])
-    @coach.destroy
-    redirect_to cpanel_coaches_url
+    if @coach.destroy
+      render :text => "1"
+    else
+      render :text => "-1"
+    end
+    # redirect_to cpanel_coaches_url
   end
   
 end

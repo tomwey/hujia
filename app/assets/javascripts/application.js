@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.jcrop
 //= require bootstrap
 //= require app
+//= require coaches
 
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();

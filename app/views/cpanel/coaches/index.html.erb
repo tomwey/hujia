@@ -16,9 +16,9 @@
   </tr>
   
   <% @coaches.each do |coach| %>
-  <tr>
+  <tr id="coach_tr_<%= coach.id %>">
     <td class="first"><%= coach.id %></td>
-    <td><%= render_coach_icon(coach) %></td>
+    <td><%= render_coach_icon(coach, :thumb) %></td>
     <td><%= link_to coach.real_name, [:cpanel, coach] %></td>
     <td><%= coach.company %></td>
     <td><%= coach.location %></td>
@@ -26,7 +26,7 @@
     <td><%= l coach.created_at, :format => :short %></td>
     <td>
       <%= link_to "编辑", edit_cpanel_coach_path(coach), :class => "btn btn-mini" %>
-      <%= link_to "删除", cpanel_coach_path(coach), :confirm => "你确定吗？", :method => :delete, :class => "btn btn-mini btn-danger" %>
+      <a href="#" data-confirm="你确定吗？" data-remote="true" data-id="<%= coach.id %>" onclick="App.deleteCoach(this);" class="btn btn-mini btn-danger">删除</a>
     </td>
   </tr>
   <% end %>

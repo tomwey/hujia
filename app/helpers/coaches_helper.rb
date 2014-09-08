@@ -18,7 +18,7 @@ module CoachesHelper
     width = coach_icon_width_for_size(size)
     height = coach_icon_height_for_size(size)
     
-    img = image_tag(coach.image.url(size), :style => "width:#{width}px;height:#{height}")
+    img = image_tag(coach.image.url(size), :style => "width:#{width}px;height:#{height}px;")
     
     link = opts[:link] || true
     
@@ -36,6 +36,7 @@ module CoachesHelper
     when :small then 24
     when :large then 64
     when :big then 120
+    when :thumb then 150
     else size
     end
   end
@@ -46,6 +47,7 @@ module CoachesHelper
     when :small then 40
     when :large then 96
     when :big then 150
+    when :thumb then 210
     else size
     end
   end

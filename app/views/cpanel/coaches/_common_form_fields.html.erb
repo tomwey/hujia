@@ -3,7 +3,7 @@
 <%= f.input :sex, :collection => [["男", 0], ["女", 1]], :as => :radio_buttons, label: "性别",:item_wrapper_class => 'inline' %>
 <% if @coach.image? -%>
 <div class="controls">
-  <%= image_tag(@coach.image.normal) %>
+  <%= render_coach_icon(@coach, :thumb) %>
 </div>
 <% end -%>
 <%= f.input :image, label: "证件照", :hint => "一寸免冠照片" %>

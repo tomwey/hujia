@@ -6,12 +6,19 @@ class AvatarUploader < BaseUploader
     process :resize_to_fill => [48, 48]
   end
   
-  version :small do
-    process :resize_to_fill => [16,16]
+  version :thumb do
+    process crop: :image
+    resize_to_limit(150,210)
+  end
+  
+  version :small, from_version: :thumb do
+    # process :resize_to_fill => [16,16]
+    resize_to_limit(50, 50)
   end
   
   version :large do
-    process :resize_to_fill => [64,64]
+    resize_to_limit(300, 300)
+    # process :resize_to_fill => [64,64]
   end
   
   version :big do

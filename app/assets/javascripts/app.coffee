@@ -18,6 +18,20 @@ window.App =
           App.alert("抱歉，系统异常，提交失败。")
     false
     
+  # 删除教练
+  deleteCoach: (el) ->
+    id = $(el).data("id")
+    tr = $("#coach_tr_#{id}")
+    $.ajax
+      url: "/cpanel/coaches/#{id}"
+      type: "DELETE"
+      success: (re) -> 
+        if re == "1"
+          tr.remove()
+        else
+          App.alert("抱歉，系统异常，提交失败。")
+    false
+    
   appointable: (el) ->
     appointable_type = $(el).data("type")
     appointable_id = $(el).data("id")

@@ -25,6 +25,7 @@ gem "rails-i18n"
 
 # 上传组件
 gem 'carrierwave'
+gem 'carrierwave-crop'
 
 # 图像处理
 gem  'mini_magick'

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.placeholder
 //= require jquery.jcrop
 //= require bootstrap
 //= require app

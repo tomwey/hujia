@@ -37,7 +37,7 @@ HujiaWebsite::Application.routes.draw do
     end
   end
   
-  resources :coaches, only: [:show] do
+  resources :coaches, only: [:index, :show] do
     member do
       get :comments
     end

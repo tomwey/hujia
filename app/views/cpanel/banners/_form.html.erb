@@ -5,7 +5,7 @@
     <%= f.input :title, :label => "标题", :input_html => { :class => "span6" } %>
     <%= f.input :summary, :label => "简介", :input_html => { :class => "span6" } %>
     <%= f.input :sort, :label => "显示顺序" %>
-    <%= f.input :url, :label => "广告链接", :input_html => { :class => "span9" } %>
+    <%= f.input :url, :label => "广告链接", placeholder: "http://www.baidu.com", :input_html => { :class => "span9" } %>
     <%= f.input :screenshot, :label => "广告图片", :as => :file %>
     <% if @banner.screenshot? -%>
     <div class="controls">

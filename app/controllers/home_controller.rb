@@ -1,13 +1,7 @@
 class HomeController < ApplicationController
   def index
-    @schools = School.order('created_at desc').limit(3)
-    @coaches = Coach.order('created_at desc').limit(3)
-    
-    @pages = Page.recent.limit(6)
-    
-    @sugests = []
-    
-    @sugests << @schools[0]
-    @sugests << @coaches[0]
+    @coaches = Coach.includes(:coupons, :comments).order('created_at desc').limit(5)
+    @colleges = College.order('created_at desc')
+    @banners = Banner.visibled.sorted.limit(4)
   end
 end

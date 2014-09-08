@@ -1,0 +1,16 @@
+<% cache "#{coach.id}/#{coach.comments}" do %>
+<li>
+    <%= render_coach_icon(coach, :thumb) %>
+    <h2><%= render_coach_info(coach) %></h2>
+    <p class="intro"><%= coach.intro %></p>
+    <p class="scj tr">市场价<span class="del">￥<%= coach.price %></span>
+    </p>
+    <%= render_coupon_info(coach) %>
+    <div class="tr sale">
+      <span class="star inline-block">
+          <span class="rate-start inline-block" style="width:<%= render_star_percent(coach) %>%"></span>
+      </span>
+      <%= render_coupon_count(coach) %>
+    </div>
+</li>
+<% end %>

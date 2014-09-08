@@ -1,0 +1,19 @@
+<% cache @banners do %>
+<div class="fl slidesbox">
+    <div id="slides">
+      <% @banners.each do |b| %>
+      <a href="<%= b.url %>" target="_blank">
+          <%= image_tag b.screenshot, style: "width:530px; height:336px;" %>
+      </a>
+      <% end %>
+    </div>
+    <div class="page-wrap">
+      <ul class="slidesjs-pagination clearfix">
+        <% @banners.each_with_index do |b, index| %>
+          <li class="slidesjs-pagination-item"><a href="#" data-slidesjs-item="<%= index %>"><%= (index + 1) %></a>
+          </li>
+        <% end %>
+      </ul>
+    </div> 
+</div>
+<% end %>

@@ -7,4 +7,8 @@ class Banner < ActiveRecord::Base
   validates :sort, :format => { :with => /\d+/, :message => "必须是数字" }
   
   mount_uploader :screenshot, ScreenshotUploader
+  
+  scope :visibled, lambda { where(:visible => true) }
+  scope :sorted, lambda { order('sort DESC') }
+  
 end

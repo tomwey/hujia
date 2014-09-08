@@ -1,160 +1,24 @@
 <% content_for :styles do %>
 <%= stylesheet_link_tag "home" %>
 <% end %>
-<div class="LeftWrap fl">
-    <div class="scrollWrap inBlock">
-       <div class="clearfix">
-           <div class="fl week">
-               <i class="starWeek inBlock"></i>&emsp;本周精选
-           </div>
-           
-       </div>
-       <div class="contentLeft">
-        <div id="slides">
-            <% @sugests.each do |s| %>
-            <a href=""><%= image_tag "noteList.jpg" %></a>
-            <% end %>
-            <i class="slidesjs-previous slidesjs-navigation" href="#" title="Previous">Previous</i>
-            <i class="slidesjs-next slidesjs-navigation" href="#" title="Next">Next</i> 
-       </div> 
-       <ul class="slidesjs-pagination clearfix">
-         <% @sugests.each_with_index do |s, index| %>
-           <li class="slidesjs-pagination-item"><a href="#" data-slidesjs-item="<%= index %>"><%= index + 1 %></a></li>
-         <% end %>
-      </ul>  
-        </div>
-    </div>
-    
-      <div class="coach">
-          <div class="caption clearfix">
-              <%= image_tag "coach.jpg", :alt => "金牌教练", :class => "fl" %>
-              <a href="" class="fr moreAll">查看全部&#62;&#62;</a> 
-          </div>
-          <ul class="listhJ clearfix">
-            <% @coaches.each_with_index do |coach, index| %>
-            <% 
-              className = if index == 0
-                "fl"
-              elsif index == 1
-                "fl lic"
-              elsif index == 2
-                "fr"
-              end
-             %>
-            <li class="inBlock <%= className %>">
-                <p class="pic">
-                    <a href="">
-                        <%= link_to image_tag(coach.image.url, :alt => coach.real_name), coach %>
-                    </a>
-                </p>
-                <p class="coachName"><%= link_to render_coach_info(coach), coach %>
-                </p>
-                <p class="condition"><%= render_coach_service_type(coach) %></p>
-                <p class="priceP">
-                    <a href=""><span class="orange"><i>￥</i>85.9</span></a>
-                    <a href=""><span class="coupon">300元现金券</span></a> 
-                    <span class="cost">门店价<span>￥100</span>
-                    </span>
-                </p>
-                <div class="clearfix sale">
-                    <div class="fl">已售<span>5145</span>
-                    </div>
-                    <div class="fr">
-                        <span class="evaluate clearfix">
-                          <%= render_comment_star(coach) %>
-		                    </span>
-                        1093人评价
-                    </div>
-                </div>
-            </li>
-            <% end %>
-          </ul>
-          <div class="more">
-              <a href="">查看更多教练，请点击查看<%= image_tag "more.gif", :alt => "更多" %></a>
-          </div>
-      </div>
-      <div class="school">
-          <div class="caption clearfix">
-              <%= image_tag "school.jpg", :alt => "王牌驾校", :class => "fl" %>
-              <a href="" class="fr moreAll">查看全部&#62;&#62;</a> 
-          </div>
-          <ul class="listhJ clearfix">
-            <% @schools.each_with_index do |school, index| %>
-            <% 
-              className = if index == 0
-                "fl"
-              elsif index == 1
-                "fl lic"
-              elsif index == 2
-                "fr"
-              end
-             %>
-            <li class="inBlock <%= className %>">
-                <p class="pic">
-                    <a href="">
-                        <%= link_to image_tag(school.image.url, :alt => school.name), school %>
-                    </a>
-                </p>
-                <p class="coachName"><%= link_to "【暑假特惠】#{school.name}", school %>
-                </p>
-                <p class="condition">上课包接送</p>
-                <p class="priceP">
-                    <a href=""><span class="orange"><i>￥</i>66</span></a> 
-                    <span class="cost">门店价<span>￥464</span>
-                    </span>
-                </p>
-                <div class="clearfix sale">
-                    <div class="fl">已售<span>1064</span>
-                    </div>
-                    <div class="fr">
-                        <span class="evaluate clearfix">
-                          <%= render_comment_star(school) %></span>352人评价
-                    </div>
-                </div>
-            </li>
-            <% end %>
-          </ul>
-          <div class="more">
-              <a href="">查看更多驾校，请点击查看<%= image_tag "more.gif", :alt => "更多" %></a>
-          </div>
-      </div>
-  </div>
-  <div class="RightWrap fr">
-    <div class="learn_note">
-      <%= image_tag "learn_note.png", :alt => "注意事项" %>
-    </div>
-    <div class="wikis">
-      <h2>注意事项</h2>
-      <%= render :partial => "pages" %>
-    </div>
-  </div>
+
+<div class="clearfix">
+  <% if @colleges.any? -%>
+  <%= render 'home/colleges', :colleges => @colleges %>
+  <% end -%>
   
+  <%= render "home/slidesbox" %>
+  
+  <%= render "home/sidebar" %>
+</div>
+
+<%= render "home/hot_coaches" %>
+
 <% content_for :scripts do %>
-  <script>
+
+  <script type="text/javascript">
     $(function () {
-        $('.srcInput,.custom').placeholder();
-        /**select fucntion**/
-        $(".select").click(function () {
-            $(".option").fadeIn("slow");
-            $(".selectbox").on("mouseleave", function () {
-                $(".option").fadeOut();
-            });
-            $(".option li").hover(function () {
-                    $(this).addClass("hover");
-                },
-                function () {
-                    $(this).removeClass("hover");
-                });
-            $(".option li").click(function (event) {
-                var opt = $(this).html();
-                $(".srcValue").text(opt);
-                $(".option").fadeOut();
-            });
-        });
-    });
-</script>
-<script type="text/javascript">
-    $(function () {
+        $('.srcIn').placeholder();
         var $slides = $("#slides a");
         var slides_length = $slides.length - 1;
         var slides_flag = 0;
@@ -169,16 +33,7 @@
         $(".slidesjs-pagination li").hover(function () {
             slides_flag = $(".slidesjs-pagination li").index($(this)[0]);
             slides_init(slides_flag);
-        });
-        $(".slidesjs-previous").click(function () {
-            showPre();
-            return false;
-        });
-        $(".slidesjs-next").click(function () {
-            showNext();
-            return false;
-        });
-
+        }); 
         function slides_init(index) {
             $slides.hide().eq(index).show()
                 .parent().next().find("li").removeClass("active")
@@ -209,6 +64,7 @@
                 }
             }
         }
-    })
+    });
 </script>
+
 <% end %>

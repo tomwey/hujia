@@ -1,6 +1,6 @@
 <h2>裁剪用户头像</h2>
 <%= form_for [:cpanel, @coach] do |f| %>
   <%= f.cropbox :image %>
-  <%= f.previewbox :image, width: 150, height: 210 %>
+  <%= f.previewbox :image %>
   <%= f.submit '裁剪', class: "btn btn-primary" %>
 <% end %>

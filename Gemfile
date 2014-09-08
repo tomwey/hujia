@@ -33,6 +33,9 @@ gem  'mini_magick'
 # 分页
 gem 'will_paginate'
 
+# 缓存
+gem 'cache_digests'
+
 # Bootstrap
 gem 'anjlab-bootstrap-rails', '2.0.4.4', :require => 'bootstrap-rails'
 gem 'bootstrap-will_paginate', '0.0.3'

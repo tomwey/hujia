@@ -8,7 +8,7 @@ class AvatarUploader < BaseUploader
   
   version :thumb do
     process crop: :image
-    resize_to_limit(150,210)
+    resize_to_limit(164,164)
   end
   
   version :small, from_version: :thumb do

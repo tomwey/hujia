@@ -18,7 +18,7 @@
   <% @coaches.each do |coach| %>
   <tr id="coach_tr_<%= coach.id %>">
     <td class="first"><%= coach.id %></td>
-    <td><%= render_coach_icon(coach, :thumb) %></td>
+    <td><%= render_coach_icon(coach, :thumb, :url => cpanel_coach_path(coach)) %></td>
     <td><%= link_to coach.real_name, [:cpanel, coach] %></td>
     <td><%= coach.company %></td>
     <td><%= coach.location %></td>

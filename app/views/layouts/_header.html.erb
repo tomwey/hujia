@@ -1,63 +1,12 @@
-<header id="header">
-  <div class="topbar">
-    <div class="topbar-inner">
-      <div class="wrapper">
-        <ul class="top-nav fr">
-          <% if user_signed_in? %>
-          <li>Hi, <%= current_user.nickname %></li>
-          <li><%= link_to '我的护驾', user_path(current_user.nickname) %></li>
-          <% if current_user.admin? %>
-          <li><%= link_to '进入后台', cpanel_root_path %></li>
-          <% end %>
-          <li><%= link_to '退出', destroy_user_session_path, :method => :delete %></li>
-          <% else %>
-          <li>来人护驾</li>
-          <li><%= link_to '用户登录', new_user_session_path %></li>
-          <li class="reg"><%= link_to '用户注册', u_sign_up_path %></li>
-          <% end %>
-        </ul>
-        
-        <%= link_to '收藏护驾网', '#', :class => "favorite" %>
-      </div>
-    </div>
-  </div>
-  
-</header>
-
-<div class="wrapper">
-  <div class="ad">
-    <%= image_tag "ad.jpg", :alt => "广告" %>
-  </div>
-  
-  <div class="mainWrap clearfix">
-      <!-- search warp -->
-      <div class="searchWrap">
-          <div class="searchLeft inBlock">
-              <%= link_to(image_tag("logo.jpg", :alt => "护驾网"), root_path) %>
-              <div class="cityBox">
-                  <span>成都</span>
-                  <a href="" class="city">切换城市</a> 
-              </div>
-          </div>
-          <div class="searchbar inBlock">
-            <%= render "layouts/search_form" %>
-          </div>
-          <ul class="contact inBlock">
-              <li>服务热线：400-8800-737</li>
-              <li class="adults">维权电话：96515</li>
-          </ul>
-      </div>
-      
-      <div class="content">
-          <ul class="nav">
-              <li class="active all"><a href="">全部分类</a>
-              </li>
-              <li><a href="active">首页</a>
-              </li>
-              <li><a href="">找驾校</a>
-              </li>
-              <li><a href="">找教练</a>
-              </li>
-          </ul>
-      </div>
+<!-- header start -->
+<div class="header-wrap">
+    <!--header-top-->
+    <%= render "/layouts/topbar" %>
+    <!--logo-wrap-->
+    <%= render "/layouts/logo_banner" %>
+    
+    <%= render "/layouts/navbar" %>
+    <!--hotBar-->
+    <%= render "/layouts/searchbar" %>
 </div>
+<!-- header end -->

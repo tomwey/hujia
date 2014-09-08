@@ -1,12 +1,120 @@
 @charset "utf-8";
-/*author yong  2014-08-25*/
+
+/*author yong  
+*date 2014-09-06 
+*index css*/
+
+/*校区选择*/ 
+.nav-ul {
+    padding: 20px 15px;
+    height: 266px;
+    border: 1px solid #DFDFDF;
+}
+.nav-li {
+    color: #8d8d8d;
+    font-size: 14px;
+    width: 158px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.nav-more {
+    background: image-url("nav-arrow.gif") no-repeat;
+    width: 9px;
+    height: 8px;
+    margin-top: 5px;
+    vertical-align: top;
+}
+.nav-caption {
+    background: image-url("nav-caption.jpg") no-repeat;
+    padding-left: 15px;
+    line-height: 30px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #Fff;
+} 
+/*mainwarp*/ 
+.main-ul {
+    background-color: #F5F5F5;
+    border: 1px solid #dfdfdf;
+    border-top: 3px solid #e77817;
+    margin: 12px 0 5px;
+}
+.main-ul .qplogo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: image-url("qplogo.jpg") no-repeat;
+    width: 109px;
+    height: 94px;
+    z-index: 1;
+}
+.main-ul .main-caption {
+    padding: 35px 20px 40px 55px;
+    position: relative
+}
+.main-caption .main-h {
+    color: #686868;
+    font-size: 30px;
+    font-family: "微软雅黑";
+}
+.main-caption .en {
+    color: #cecece;
+    font: 27px arial;
+}
+.main-caption .more {
+    color: #0061a5;
+}
+.more-ul li {
+    float: left;
+}
+.more-ul li a {
+    color: #666;
+    margin-right: 20px;
+} 
+.main-h {
+    position: absolute;
+    top: 15px;
+    left: 50px;
+    z-index: 99;
+}
+.list {
+    width: 920px;
+    margin: 0 auto 5px;
+}
+.list img {
+    width: 160px;
+    height: 120px;
+    border: 1px solid #dfdfdf;
+} 
+.list-bottom {
+    position: relative;
+    height: 50px;
+}
+.list-bottom-close {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: image-url("list-bottom-close.jpg") no-repeat;
+    width: 34px;
+    height: 29px;
+}
+/*slide*/
+
 #slides {
     position: relative;
+    border: 1px solid #dfdfdf;
 }
 #slides a {
     display: none;
 }
-
+.slidesjs-play {
+    left: -100px;
+    top: 600px;
+}
+.slidesjs-stop {
+    left: -100px;
+    top: 600px;
+}
 .slidesjs-navigation {
     cursor: pointer;
     height: 80px;
@@ -17,60 +125,58 @@
     z-index: 21;
     opacity: 0.8;
 }
-.slidesjs-navigation :hover{opacity: 1;}
-.slidesjs-previous { 
-    background: image-url("arrow.gif") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-    cursor: pointer;
-    height: 50px;
-    left: 20px;
-    position: absolute;
-    top: 100px;
-    width: 40px;
-    z-index: 2;
-}
-.slidesjs-next {
- background: image-url("arrow.gif") no-repeat scroll -40px 0 rgba(0, 0, 0, 0); 
- cursor: pointer;
- height: 50px;
- right: 20px;
- position: absolute;
- top: 100px;
- width: 40px;
- z-index: 2;
-}
-.slidesjs-play {
-    left: -100px;
-    top: 600px;
-}
-.slidesjs-stop {
-    left: -100px;
-    top: 600px;
-}
 .slidesjs-pagination {
-    top: 0;
     right: 10px;
+    bottom: 3px;
     position: absolute;
     z-index: 22;
-    margin-top: -30px;  
 }
 .slidesjs-pagination-item {
     float: left;
-    margin: 5px; 
+    margin: 5px;
 }
 .slidesjs-pagination li a {
-    background: image-url("dot.gif") no-repeat scroll -13px 0;
+    background: image-url("dot.png") no-repeat;
     display: block;
-    height: 10px;
-    text-indent: -999em;
-    width: 12px;
+    height: 17px;
+    width: 16px;
+    color: #666;
+    font: 13px arial;
+    line-height: 16px;
+    text-align: center;
 }
-.slidesjs-pagination li.active a, .slidesjs-pagination li a.active:hover {
-    background: image-url("dot.gif") no-repeat scroll 0 0;
+.slidesjs-pagination li.active a,
+.slidesjs-pagination li a.active:hover {
+    background: image-url("dotA.png") no-repeat;
+    color: #fff;
 }
 .slidesjs-pagination li a:hover {
-    background: image-url("dot.gif") no-repeat scroll 0 0;
+    background: image-url("dotA.png") no-repeat;
+    color: #fff;
 }
 #slides img {
-    width: 630px;
-    height: 230px;
+    width: 530px;
+    height: 337px;
+}
+.slidesbox {
+    position: relative;
+    margin-left: 12px;
+    height: 337px;
+    width: 530px;
+}
+.slidesbox .page-wrap {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 30px;
+    width: 530px;
+    background-color: #000;
+    filter: alpha(opacity=60);
+    -moz-opacity: 0.6;
+    opacity: 0.6;
+}
+.shoollist img {
+    height: 116px;
+    padding: 3px;
+    width: 155px;
 }

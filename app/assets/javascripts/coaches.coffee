@@ -4,8 +4,8 @@ jQuery ->
 class CarrierWaveCropper
   constructor: ->
     $('#coach_image_cropbox').Jcrop
-      aspectRatio: 5/7
-      setSelect: [0, 0, 150, 210]
+      aspectRatio: 1
+      setSelect: [0, 0, 100, 100]
       onSelect: @update
       onChange: @update
 

@@ -26,9 +26,9 @@ class Coach < ActiveRecord::Base
     self[:image].blank?
   end
   
-  def self.search(search)
-    if search
-      where('real_name LIKE ? or company LIKE ?', "%#{search}%", "%#{search}%")
+  def self.search(keyword)
+    if keyword
+      where('real_name LIKE ? or company LIKE ?', "%#{keyword}%", "%#{keyword}%")
     else
       scoped
     end

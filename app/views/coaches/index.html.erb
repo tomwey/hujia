@@ -1,5 +1,77 @@
- <ul class="list clearfix">
- <%= render partial: "/coaches/coach", collection: @coaches %>
-</ul>
+<div class="leftwrap fl">
+    <dl class="nav-category clearfix">
+        <dt>校区：</dt>
+        <dd>
+            <%= filterable(:c) %>
+            <% College.all.each do |c| %> 
+            <%= filterable(:c, c.name, c.name) %>
+            <% end %>
+        </dd>
+        <dt>驾照：</dt>
+        <dd>
+            <%= filterable(:dt) %>
+            <% drive_types.each do |dt| %>
+            <%= filterable(:dt, dt[0], dt[0]) %>
+            <% end %>
+        </dd>
+        <dt>交通：</dt>
+        <dd>
+            <%= filterable(:st) %>
+            <% service_types.each do |c| %>
+            <%= filterable(:st, c[0], c[0]) %>
+            <% end %>
+        </dd>
+        <dt>价格：</dt>
+        <dd>
+            <%= filterable(:price) %>
+            <% price_scopes.each do |s| %>
+            <%= filterable(:price, s, s) %>
+            <% end %>
+        </dd>
+    </dl>
+    <div class="sort clearfix">
+        <span class="fl">排序</span>
+        <%= sort_link 'price', "价格" %>
+        <a href="">销量<i class="sort-icon"></i></a>
+        <a href="" class="xj">星级<i class="sort-icon"></i></a> 
+    </div>
+    
+    <% if @coaches.any? %>
+    <ul class="list productList clearfix">
+     <%= render partial: "/coaches/coach", collection: @coaches %>
+    </ul>
+    <% else %>
+    没有记录
+    <% end %>
 
-<div style="text-align:center;"><%= will_paginate @coaches %></div>
+    <div style="text-align:center;"><%= will_paginate @coaches %></div>
+</div>
+
+<div class="rightwrap fr">
+  <div class="xcxz">
+      <h3>学车须知</h3>
+      <ul>
+        <% @pages.each do |p| %>
+          <li>
+              <%= image_tag "xcxz.gif" %><a href="<%= page_path(p.slug) %>"><%= p.title %></a>
+          </li>
+        <% end %>
+      </ul>
+  </div>
+  <%= raw SiteConfig.text_ads %>
+</div>
+
+<% content_for :scripts do  %>
+<script>
+
+$(function() {
+  $(".sort a, .sort .pagination a").live("click", function() {
+    alert(123);
+    $.getScript(this.href);
+    return false;
+  });
+});
+
+</script>
+<% end %>
+

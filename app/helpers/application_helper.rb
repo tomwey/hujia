@@ -135,10 +135,10 @@ module ApplicationHelper
   
   def filterable(column, title = nil, value = nil, onclick = nil)
     title ||= '全部'
-    value ||= ''
+    # value ||= ''
     
     css_name = if value == params[column]
-      "current"
+      "select"
     else
       ""
     end
@@ -156,14 +156,21 @@ module ApplicationHelper
   end
   
   def sort_link(column, title = nil)
-    title ||= column.titleize
-    css_class = column == sort_column ? "active" : nil
-    direction = column == sort_column && sort_direction == "desc" ? "asc" : "desc"
+    # title ||= column.titleize
+    # css_class = column == sort_column ? "active" : nil
+    # direction = column == sort_column && sort_direction == "desc" ? "asc" : "desc"
+    # 
+    # css_class2 = direction == "desc" ? "up" : "down"
+    # span = content_tag :span, '',:class => "#{css_class2} arrow"
+    # a = link_to title, params.merge(:sort => column, :direction => direction, :page => nil)
+    # content_tag :li, (a+span), :class => css_class
     
-    css_class2 = direction == "desc" ? "up" : "down"
-    span = content_tag :span, '',:class => "#{css_class2} arrow"
-    a = link_to title, params.merge(:sort => column, :direction => direction, :page => nil)
-    content_tag :li, (a+span), :class => css_class
+    title ||= column.titleize
+    direction = column == sort_column && sort_direction == "desc" ? "asc" : "desc"
+    puts direction
+    i_html = content_tag :i, nil, class: "sort-icon"
+    
+    link_to (title + i_html).html_safe, params.merge(:sort => column, :direction => direction, :page => nil)
     
     # link_to title, params.merge(:sort => column, :direction => direction, :page => nil), :class => css_class
   end

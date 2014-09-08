@@ -62,7 +62,7 @@ module CoachesHelper
     link = opts[:link] || true
     
     url = opts[:url] || coach_path(coach)
-    puts url
+
     if link
       raw %(<a href="#{url}" title="#{coach.real_name}" class="block">#{img}</a>)
     else

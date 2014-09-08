@@ -37,7 +37,7 @@ HujiaWebsite::Application.routes.draw do
     end
   end
   
-  get "coaches/college:id" => "coaches#college", as: :college_coaches
+  get "coaches?c=:name" => "coaches#index", as: :college_coaches
   resources :coaches, only: [:index, :show] do
     member do
       get :comments

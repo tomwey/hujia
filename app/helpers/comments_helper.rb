@@ -8,6 +8,15 @@ module CommentsHelper
     end
   end
   
+  # 显示某个可以评论的对象的所有评论
+  def render_comments_for_owner(ownerable)
+    return '' if ownerable.blank?
+    return '' if ownerable.comments.empty?
+    
+    comments_li = render "/comments/comment", collection: ownerable.comments
+    content_tag :ul, comments_li.html_safe, class: "evaluation"
+  end
+  
   def render_all_ratings(comment)
     overall = "总体评价：".html_safe + render_star_tag(comment, 'overall_rating', false) + "<br>".html_safe
     attitude = '<span style="padding-left: 26px">态度：</span>'.html_safe + render_star_tag(comment, 'attitude_rating', false) + "<br>".html_safe
@@ -15,6 +24,42 @@ module CommentsHelper
     env = '<span style="padding-left: 26px">环境：</span>'.html_safe + render_star_tag(comment, 'env_rating', false)
     
     (overall + attitude + service + env)
+  end
+  
+  # 获取总评价的分数
+  def render_comment_avarge_score(commentable)
+    if commentable.comments_count == 0
+      return (commentable.star_count.to_f)
+    end
+    
+    comments = commentable.comments
+    avg_sum = 0
+    comments.each do |c|
+      avg_sum += c.avarge_rating
+    end
+    
+    (commentable.star_count + (avg_sum / commentable.comments_count.to_f)) / 2.0
+    
+  end
+  
+  # 获取总评价的百分比
+  def render_star_percent(commentable)
+    score = render_comment_avarge_score(commentable)
+    ( score.to_f / 5.0 ) * 100
+  end
+  
+  # 获取某一种评价的分数, 例如: 4.5
+  def render_comment_score_for(commentable, type)
+    return 0 if commentable.blank?
+    return 0 if commentable.comments.empty?
+    
+    sum = 0
+    commentable.comments.each do |comment|
+      sum += comment[type]
+    end
+    
+    sum.to_f / commentable.comments_count
+    
   end
   
   def render_star_tag(comment, type, editable = true)

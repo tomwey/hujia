@@ -11,53 +11,55 @@
   
 </head>
 <body>
-<div class="wrapper">
-	 <div class="titleHj">
-	 	<h1>护驾</h1>
-	 	<a href="/">huajia361.com</a>
+<div class="wrap">
+	 <div class="clearfix login-top">
+				<%= link_to image_tag("index-logo.jpg", alt: "U驾网", class: "fl", style: "width:200px; height:65px"), "/" %>
+        <div class="fr">
+					 <%= image_tag "login-tel.gif", alt: "400-8800-737", style: "width:17px; height:18px" %>
+           <span>400-8800-737</span>
+        </div>
 	 </div>
 	 <div class="clearfix">
 	 	<div class="fl">
-	 		<%= image_tag "loginBg.jpg" %>
+			<%= image_tag "login-bg.jpg", alt: "Login", style: "width:517px; height:372px" %>
 	 	</div>
-    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name) ) do |f| %>
-      <ul class="fr loginT">
-        <%= notice_message %>
-        <li>账号登录</li>
-        <li class="inLi">
-          <i class="user"></i>
-          <%= f.input :login, label: false,placeholder: "用户名或邮箱", :input_html => { :class => "in" } %>
-        </li>
-        
-        <li class="inLi">
-          <i class="psw"></i>
-          <%= f.input :password, label: false, placeholder: "密码", required: false, :input_html => { :class => "in" } %>
-        </li>
-        
-   			<li class="check"> 
-   				<%= f.check_box :remember_me %> 记住账号
-          <%= link_to "忘记密码？", new_password_path(resource_name), :class => "red" %>
-   			</li>
-      
-   			<li><%= f.submit "登录", :class => "next" %></li>
-   			<li>
-   				还没有账号？&nbsp;
-          <%= link_to "免费注册", u_sign_up_path, :class => "red" %>
-   			</li>
-        
-      </ul>
-      
-    <% end %>
-    
+        <form action="">
+	 		<div class="fr loginForm">
+	 		    <div  class="login-form-wrap">  
+                    <label class="block">用户名</label> 
+                    <input type="text" class="loginIn block">
+                    <label class="block">密码</label>
+                    <input type="password" class="loginIn block">
+                    <div class="clearfix checkbox-wrap">
+                        <div  class="fl">
+                            <input type="checkbox" value="">记住账号&emsp;
+                        </div>
+                         <div  class="fl">
+                            <input type="checkbox" value="">下次自动登录
+                        </div> 
+                        <div class="fr">
+                            <a href="" class="lightgray">忘记密码？</a>
+                        </div> 
+                    </div> 
+	 			</div>
+	 			<div class="login-btn-wrap">
+                    <input type="button" value="登&emsp;&emsp;录" class="btn-yellow block">
+                    <div class="tr">
+                        <span class="lightgray">还没有账号？</span>
+                        <a href="" class="red">免费注册</a>
+                    </div> 
+                </div>  
+	 		</div> 
+	 	</form> 
 	 </div>
+	 <p>版权所有 信息技术有限公司 Copyright@2014</p>
 </div>
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>   
-<script type="text/javascript" src="js/jquery.placeholder.js"></script>
-<%= javascript_include_tag :application %>
+<% content_for :scripts do %>
 <script type="text/javascript">	
 $(function(){
 	$('.in').placeholder(); 
 }); 
 </script> 
+<% end %>
 </body>
 </html>

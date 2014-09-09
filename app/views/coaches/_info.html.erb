@@ -1,0 +1,40 @@
+		<div class="scorll-detail clearfix">
+        <div class="fl">
+             <div class="imgBig">
+                 <%= render_coach_intro_image(@coach) %>
+             </div>
+		         <div class="topicBox fl">
+		           <div class="topicList" style="width: 310px; ">
+                 <ul class="topicul clearfix">
+										<% @coach.photos.each do |photo| %>
+					            <li>
+					                <%= image_tag photo.image.small %>
+					            </li>
+										<% end %>
+                    </ul>
+		             </div>
+		              <a href="javascript:;" class="arrow pre" id="prev">Pre</a>
+			    			  <a href="javascript:;" class="arrow next" id="next">Next</a>
+					    </div>
+		    </div>
+       <div class="fl detail">
+           <h1><%= render_coupon_title(@coach) %></h1>
+           <ul>
+               <li>相关：</li>
+               <li>相关：</li>
+               <li>相关：</li>
+               <li>市&nbsp;场&nbsp;价: <span class="del">￥<%= @coach.price %></span></li>
+               <li>售  价: <span class="special">￥<%= render_coupon_price(@coach) %></span> （<span class="orange">您节省了￥<%= render_coupon_value(@coach) %>元</span>）</li>
+               <li>商品评价：
+                 <span class="star-detail inline-block">
+                      <span class="rate-start-detail inline-block" style="width:<%= render_star_percent(@coach) %>%"></span>
+                  </span> 
+                  <span class="blue">(已有<%= @coach.comments_count %>人评价)</span>
+               </li> 
+           </ul>
+           <div class="detailBtn">
+               <input type="button" value="领取代金券报名" class="detail-btn"> 
+               已售<span class="red"><%= render_coupon_actived(@coach) %></span>位 还剩<span class="red"><%= render_coupon_left(@coach) %></span>位
+           </div>
+       </div>
+		</div>

@@ -3,6 +3,8 @@
  *= require_self
  */
 
+@charset "utf-8"; 
+/*author yong   date 2014-09-06  voucher-wrap*/
 .voucher-wrap .title { color: #414141;font-size: 14px;font-weight: bold;margin: 45px 0 30px;} 
 .voucher-wrap .delwrap{ margin-bottom: 10px;} 
 .voucher-wrap .delbtn{color: #9b9b9b;}
@@ -48,28 +50,24 @@ her-wrap tr{height: 70px;line-height: 70px;}
 .essay .paragraph p{text-indent: 2em;font-size: 14px;line-height: 2;}
  
 /*nav-category */
-.nav-category { a { text-decoration: none; } width: 700px;padding: 20px 15px;background-color: #FCFCFC;border: 1px solid #dfdfdf;color: #414141;}
+.nav-category {width: 700px;padding: 20px 15px;background-color: #FCFCFC;border: 1px solid #dfdfdf;color: #414141;}
 .nav-category  dt {float: left;}
 .nav-category dd {margin-bottom: 20px;}
 .nav-category dd a {margin: 0 10px 0 3px;color: #004c88;}
 .nav-category dd a:hover{color: #0063d9;}
 .nav-category .select {color: #fff;background-color: #FCAE03;padding: 3px 5px;}
-.productList { width: 748px;margin: 20px 0 40px;}
-.productList li{ width: 163px;margin: 0 24px 20px 0;}
+.productList { width: 737px;margin: 20px 0 40px;}
+.productList li{width: 163px;margin: 0 27px 0 0;}
 .productList li.nob{margin: 0;}
 .productList img {width: 155px;height: 116px;padding: 3px;border: 1px solid #dfdfdf;}
 /*sort*/
 .sort {
-  a {
-    text-decoration: none;
-  }
-  margin-top: 10px;
     background: image-url("sortB.gif") repeat-x;height: 37px;line-height: 37px;width:700px; border: 1px solid #dfdfdf;color: #393c43;
     padding: 0 15px;
 }
 .sort span{margin-right: 10px;}
 .sort a{display: inline-block; *zoom:1;*display:inline;background: image-url("sortS.gif") repeat-x;width: 50px;height: 19px;line-height: 19px;border: 1px solid #dfdfdf;color: #393c43;text-align: center;float: left;margin-top: 8px;}
-.sort .sort-icon {background: image-url("sortArrow.gif") no-repeat;width: 11px;height: 10px;display: inline-block;*zoom:1;*display:inline;}
+.sort .sort-icon {background: image-url("sortArrow.gif") no-repeat;width: 11px;height: 10px;display: inline-block;*zoom:1;*display:inline;margin-top: 3px;vertical-align: top;}
 .sort .xj { width: 74px;}
 /*scorlls*/
 .scorll-detail .imgBig img{
@@ -189,7 +187,7 @@ her-wrap tr{height: 70px;line-height: 70px;}
     color: #414141;margin: 15px 5px;
 }
 
-.detail .alert{
+.detail .special{
     font: bold 24px Arial,"宋体";color: #fa4d0e;
 }
 
@@ -206,7 +204,7 @@ her-wrap tr{height: 70px;line-height: 70px;}
 }
 
 .detail-btn {
-    background: image-url("detailBtn.gif") no-repeat;width: 154px;height: 41px;line-height: 41px;text-align: center;font-size: 16px;color: #fff;border: 0;font-weight: bold;
+    background: image-url("detailBtn.gif") no-repeat; width: 154px; height: 41px; line-height: 41px; text-align: center; font-size: 16px; color: #fff; border: 0; font-weight: bold;
 }
 
 .detail-tabs h2 {
@@ -258,21 +256,61 @@ her-wrap tr{height: 70px;line-height: 70px;}
     color: #393c43;text-indent: 2em;margin-top: 18px;
 }
 
-.tabs{margin-top: 20px;  border-bottom: 3px solid #1174cb;}
+.tabs{margin-top: 20px;  border-bottom: 3px solid #1174cb;width: 732px;}
 .tabs li {
     float: left;background: image-url("whiteCenter.gif") repeat-x;height: 34px;line-height: 34px;border-radius: 10px 10px 0 0;border: 1px solid #dfdfdf;text-align: center;padding:0 20px;color: #414141;margin-right: 10px;cursor: pointer
 }
 .tabs li.active{background: image-url("blueCenter.gif") repeat-x;font-weight: bold;color: #fff;}
  
 
-label {
-    
+.topicBox {
+    height: 55px;
+    margin-left: 20px;
+    position: relative;
+    width: 310px;
+}
+.topicList {
+    overflow: hidden;
+}
+.topicBox li {
+    float: left;
+    text-align: center;
+    width: 62px;
+    cursor: pointer;
+}
+.topicBox li img {
+    height: 50px;
+    width: 50px;
+    padding: 1px;
+    border: 1px solid #dfdfdf;
+}
+.topicBox .arrow {
+    cursor: pointer;
+    height: 45px;
+    left: -15px; 
+    opacity: 0.7;
+    position: absolute;
+    text-indent: -9000px;
+    top: 5px;
+    width: 10px;
+}
+.topicBox .arrow {
+    opacity: 1;
+}
+.topicBox .pre {
+    background: image-url("pre.gif") no-repeat;
+}
+.topicBox .next {
+    background: image-url("next.gif") no-repeat;
+    left: auto;
+    right: -15px;
 }
 
-.userIn {
-    
+.overlay {
+    padding:30px 50px;
+    border-radius: 10px;
+}
+.overlay p{
+    margin: 10px auto;
 }
 
-.captchaA {
-    
-}

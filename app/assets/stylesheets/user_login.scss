@@ -1,18 +1,62 @@
-.wrapper{margin: 30px auto;width: 900px;}
-.titleHj{ color: #f00;font-family:arial;}
-.titleHj h1{font-size: 48px;font-weight: 700;}
-.titleHj a{color: #f00;}
-.loginBg{width: 342px;height: 296px;}
-/*loginTabel*/
-.loginT{width: 300px;color: #666;}
-.loginT li{margin: 10px 0;}
-.red{font-weight: bold;}
-.red:hover{text-decoration: underline;}
-.loginT .inLi{position: relative;*margin-left:-35px;}
-.in{border: 1px solid #686866;height: 30px;width: 235px;text-indent: 3em;line-height: 30px;}
-.in:hover{background-color: #FAFFBD;border: 1px solid #f00;}
-.user{background:url('/assets/user.gif') no-repeat;width: 18px;height: 17px;position: absolute;left: 12px;top: 7px;*left:48px;}
-.psw{background:url('/assets/psw.gif') no-repeat;width: 18px;height: 18px;position: absolute;left: 12px;top: 7px;*left:48px;}
-.next{width: 235px;}
-.check{color: #333;}
-.check input{vertical-align: middle;}
+body {
+    background-color: #F6F7F9;
+}
+.wrap {
+    width: 910px;
+}
+.login-top {
+    margin: 35px 0 50px 35px;
+}
+.login-top span {
+    font: 20px arial;
+    color: #373737;
+    line-height: 65px;
+}
+.loginForm {
+    width: 350px;
+    ;
+    background-color: #fff;
+    border: 1px solid #D7D7D7;
+    border-radius: 10px;
+}
+.loginForm label {
+    font: 14px"微软雅黑";
+    color: #7d7d7d;
+    margin-bottom: 10px;
+}
+.loginIn {
+    width: 260px;
+    height: 35px;
+    line-height: 35px;
+    text-indent: 5px;
+    border: 1px solid #C1C1C1;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+.loginIn:hover {
+    border: 1px solid #458121;
+}
+input[type="checkbox"] {
+    vertical-align: middle;
+}
+.checkbox-wrap {
+    color: #7d7d7d;
+}
+.btn-yellow {
+    padding: 0 94px;
+    margin-bottom: 30px;
+    *padding:0 55px;
+}
+.login-btn-wrap {
+    background-color: #F9F9F9;
+    border-top: 1px solid #D7D7D7;
+    padding: 20px 40px
+}
+.login-form-wrap {
+    padding: 30px 40px 20px 40px;
+}
+p {
+    color: #666;
+    text-align: center;
+    margin-top: 40px;
+}

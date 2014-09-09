@@ -12,40 +12,16 @@ module CoachesHelper
     link_to "【#{coach.company}】#{coach.real_name}", coach
   end
   
-  def render_star_percent(commentable)
+  def render_coach_intro_image(coach)
+    return '' if coach.blank?
     
-    if commentable.comments_count == 0
-      return (commentable.star_count / 5.0) * 100
-    end
+    photo = coach.photos.first
     
-    comments = commentable.comments
-    avg_sum = 0
-    comments.each do |c|
-      avg_sum += c.avarge_rating
-    end
-    
-    ( (commentable.star_count + (avg_sum / commentable.comments_count.to_f)) / 2.0 ) * 100
-    
-    
-  end
+    return '' if photo.blank?
   
-  def render_coupon_info(coach)
-    coupon = coach.coupons.first
-    if coupon.blank?
-      return ""
-    end
     
-    html = <<-HTML
-    <p class="hyj tr">会员价<span class="special">￥#{(coach.price - coupon.value.to_i)}</span>
-    </p>
-    HTML
+    image_tag photo.image.large
     
-    html.html_safe
-    
-  end
-  
-  def render_coupon_count(coach)
-    "#{coach.coupons.first.claims_count}人购买" if coach.coupons.first
   end
   
   def render_coach_icon(coach, size = :normal, opts = {})

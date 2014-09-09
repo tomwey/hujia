@@ -1,0 +1,105 @@
+<div class="leftwrap fl">		 
+	<%= render '/coaches/info' %>
+    <!-- detail tabs start-->
+  <div class="detail-tabs">
+        <ul class="tabs clearfix">
+            <li class="active">驾校/教练位置</li>
+            <li>购买须知</li>
+            <li>服务内容</li>
+            <li> 驾校/教练介绍</li>
+            <li>消费评价</li>
+        </ul>
+        <h2>驾校位置</h2>
+        <p>&emsp;</p>                
+        <h2>消费评价</h2>
+        <div class="clearfix rateWrap">
+						<%= render "/comments/overall_rating", :commentable => @coach %>
+						<%= render "/comments/detail_rating", :commentable => @coach %>
+						<%= render "/comments/statics", :commentable => @coach %>
+        </div> 
+				
+				<%= render_comments_for_owner(@coach) %>
+        
+    </div>
+    <!-- detail tabs end-->
+    <!--pagewrap start-->
+    <!--pagewrap end-->
+</div>
+
+<div class="rightwrap fr">
+	<%= raw SiteConfig.xcxz_content %>
+  <%= raw SiteConfig.text_ads %>
+</div>
+
+<% content_for :scripts do %>
+    <script type="text/javascript">
+        $(function () {
+            $('.srcIn').placeholder();
+            var firstSrc=$(".topicul").find("img:first").attr("src");
+            $(".imgBig img").attr("src",firstSrc); 
+            $( ".topicul img" ).on( "click", function() { 
+                var minsrc=$(this).attr("src"); 
+                $(".imgBig img").attr("src",minsrc);
+            });
+            $(".talk-btn").click(function(){
+                $(".overlay").show();
+            });
+            $(".cancel").click(function(){
+                 $(".overlay").hide();
+            });
+        });
+    </script>
+    <script type="text/javascript">
+	//图片滚动 top 
+  	 $(function() { 
+		    //配置变量
+		    var config = {
+		        showNum : 5,    //设置滚动的显示个数
+		        autoScroll : false    //是否自动滚动，默认为 false 
+		    } 
+		    var scrollUlWidth = $('ul.topicul li').outerWidth(true),  //单个li 的宽度
+		        scrollUlLeft = 0,    //.scroll_ul 初使化时的 left 值为 0
+		        prevAllow = true,    //为了防止连续点击上一页按钮
+		        nextAllow = true;    //为了防止连续点击下一页按钮 
+				
+		    //计算父容量限宽
+		    $('.topicList').width(config.showNum * scrollUlWidth); 
+		    //点击上一页
+		    $('#prev').click(function() {
+		        if (prevAllow) {
+		            prevAllow = false;
+		            scrollUlLeft = scrollUlLeft - scrollUlWidth;
+		            $('.topicul').css('left', scrollUlLeft);
+		            //复制最后一个 li 并插入到 ul 的最前面
+		            $('.topicul li:last').clone().prependTo('.topicul');
+		            //删除最后一个 li
+		            $('.topicul li:last').remove();
+		            $('.topicul').animate({
+		                left : scrollUlLeft + scrollUlWidth
+		            },10, function() {
+		                scrollUlLeft = parseInt($('.topicul').css('left'), 10);
+		                prevAllow = true;
+		            })
+		        }
+		    }); 
+		    //点击下一页
+		    $('#next').click(function() {
+		        if (nextAllow) {
+		            nextAllow = false;
+		            $('.topicul').animate({
+		                left : scrollUlLeft - scrollUlWidth
+		            }, 10, function() {
+		                scrollUlLeft = parseInt($('.topicul').css('left'), 10);
+		                scrollUlLeft = scrollUlLeft + scrollUlWidth;
+		                $('.topicul').css('left', scrollUlLeft);
+		                //复制第一个 li 并插入到 ul 的最后面
+		                $('.topicul li:first').clone().appendTo('.topicul');
+		                //删除第一个 li
+		                $('.topicul li:first').remove();
+		                nextAllow = true;
+		            })
+		        }
+		    }); 
+		})  
+	</script>
+<% end %>

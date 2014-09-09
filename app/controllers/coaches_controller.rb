@@ -45,12 +45,11 @@ class CoachesController < ApplicationController
     
     @coaches = @coaches.includes(:coupons, :comments)
     @coaches = @coaches.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 3)
-    
-    @pages   = Page.where('slug like ?', "%xyxz%").order('sort asc')
+
   end
   
   def show
-    @coach = Coach.find(params[:id])
+    @coach = Coach.includes(:photos, :comments, :coupons).find(params[:id])
   end
   
   

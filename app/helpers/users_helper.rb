@@ -24,4 +24,18 @@ module UsersHelper
     end
   end
   
+  def render_user_name(user)
+    return '' if user.blank?
+    return '' if user.profile.blank?
+    
+    user.profile.real_name
+  end
+  
+  def render_user_college(user)
+    return '' if user.blank?
+    return '' if user.profile.blank?
+    
+    user.profile.college
+  end
+  
 end

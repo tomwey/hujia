@@ -1,0 +1,11 @@
+<div class="rate-detail total br">
+    <div>
+        <span class="total-score"><%= render_comment_avarge_score(commentable) %></span>分
+    </div>
+    <div>
+        <span class="rate-starMax">
+            <span class="rate-starMaxH " style="width: <%= render_star_percent(commentable) %>%;"></span>
+        </span>
+    </div>
+    <div class="fb">共 <span class="orange"><%= commentable.comments_count %></span> 人评价</div>
+</div>

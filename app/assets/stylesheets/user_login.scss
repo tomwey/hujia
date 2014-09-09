@@ -50,10 +50,20 @@ input[type="checkbox"] {
 .login-btn-wrap {
     background-color: #F9F9F9;
     border-top: 1px solid #D7D7D7;
-    padding: 20px 40px
+    padding: 20px 40px;
+    input[type="submit"] {
+      margin-bottom: 30px;
+    }
 }
 .login-form-wrap {
     padding: 30px 40px 20px 40px;
+    input[type="text"],  input[type="password"]{
+      margin-bottom: 9px;
+    }
+    
+    input[type="checkbox"] {
+      margin-top: -1px;
+    }
 }
 p {
     color: #666;

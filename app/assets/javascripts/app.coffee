@@ -34,6 +34,10 @@ window.App =
   
   # 删除预约
   deleteAppointable: (el) ->
+    result = confirm("你确定吗")
+    if !result 
+      return false
+     
     id = $(el).data("id")
     div = $("#appointment_item_#{id}")
     $.ajax
@@ -44,6 +48,25 @@ window.App =
           div.remove()
         else
           App.alert("抱歉，系统异常，提交失败。")
+    false
+  
+  bindUserProfile: ->
+    name = $("#user_customer_real_name").val()
+    mobile = $("#user_customer_mobile").val()
+    if mobile.length == 0
+      alert("手机内容为空")
+      return false
+    $.ajax
+      url: "/users/bind"
+      type: "put"
+      data:
+        name: "#{name}"
+        mobile: "#{mobile}"
+      # success: (re) ->
+      #   if re == "1"
+      #     $("#login").remove()
+      #   else
+      #     $("#bind-result").html(re)
     false
     
   appointable: (el) ->

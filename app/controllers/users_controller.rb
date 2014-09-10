@@ -1,7 +1,7 @@
 # coding: utf-8
 class UsersController < ApplicationController
   before_filter :require_user
-  before_filter :find_user, :except => [:update_private_token]
+  before_filter :find_user, :except => [:update_private_token, :bind]
   
   layout 'user_layout', :except => [:update_private_token]
   
@@ -38,12 +38,12 @@ class UsersController < ApplicationController
     @coupons = Coupon.where(:id => @codes.collect { |c| c.coupon_id })
   end
   
-  def update
+  def bind
     @profile = current_user.profile
     
-    @profile.real_name = params[:user][:customer][:real_name]
-    @profile.mobile = params[:user][:customer][:mobile]
-    @profile.save
+    @profile.real_name = params[:name]
+    @profile.mobile = params[:mobile]
+    @success = @profile.save
     
   end
   

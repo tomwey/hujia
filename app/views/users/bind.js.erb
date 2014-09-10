@@ -1,0 +1,6 @@
+<% if @success %>
+$("#login").modal("hide");
+$(".voucher-btn").attr("href", "#");
+<% else %>
+$("#bind-result").html("<%= j render "/shared/error_messages", :target => @profile %>");
+<% end %>

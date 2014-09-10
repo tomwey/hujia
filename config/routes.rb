@@ -76,7 +76,7 @@ HujiaWebsite::Application.routes.draw do
     resources :colleges, except: [:show, :destroy]
   end
   
-  match '/users/bind' => 'users#update', as: :bind_users, via: :put
+  match '/users/bind' => 'users#bind', as: :bind_users, via: :put
   
   resources :users, :path => "" do
     member do

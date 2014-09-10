@@ -27,34 +27,43 @@
   </div>
   <p class="tips">温馨提示：绑定手机号和真实姓名可领取代金券</p>
   
+  <% if current_user.blank? or current_user.profile.blank? or current_user.profile.mobile.blank? %>
   <div class="modal hide fade" id="login">
         <div class="modal-header">
-          <a href="#" class="close" data-dismiss="modal">x</a>
+          <a href="#" class="close" data-dismiss="modal">×</a>
           <h4>请输入手机号和真实姓名</h4>
         </div>
-        <%= simple_form_for(current_user, url: bind_users_path, html: { method: :put, class: "form-horizontal" }) do |f| %>
+        <%= simple_form_for(current_user, url: bind_users_path, html: { id: "user_bind_form", method: :put, class: "form-horizontal" }) do |f| %>
         <div class="modal-body">
+          
+          <div id="bind-result"></div>
           
           <%= f.fields_for current_user.profile do |b| %>
             
+            <% if current_user.profile.real_name.blank? %>
           <div class="control-group">
             <label class="control-label">真实姓名</label>
             <div class="controls">
               <%= b.text_field :real_name %>
             </div>
           </div>
+          <% else %>
+          <%= b.hidden_field :real_name %>
+          <% end %>
     
           <div class="control-group">
-            <label class="control-label">手机</label>
+            <label class="control-label">*手机</label>
             <div class="controls">
               <%= b.text_field :mobile %>
+              <span class="help-block">手机号必填</span>
             </div>
           </div>
             
           <% end %>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">确定</button>
+          <button type="button" class="btn btn-primary" onclick="App.bindUserProfile();">确定</button>
         </div>
         <% end %>
       </div>
+      <% end %>

@@ -33,6 +33,9 @@ module CouponsHelper
       return ""
     end
     
+    return '' if ownerable.price.blank?
+    return '' if coupon.value.blank?
+    
     html = <<-HTML
     <p class="hyj tr">会员价<span class="special">￥#{(ownerable.price - coupon.value.to_i)}</span>
     </p>

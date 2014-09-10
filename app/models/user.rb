@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   # 领取
   has_many :vouchings
   # 领取的代金券
-  has_many :voucher_coupons, through: :vouchings, class_name: "Coupon"
+  has_many :voucher_coupons, through: :vouchings, class_name: "Coupon", :source_type => :coupon
   
   belongs_to :profile, polymorphic: true
   

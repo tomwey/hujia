@@ -4,9 +4,8 @@ class Coupon < ActiveRecord::Base
 
   belongs_to :ownerable, :polymorphic => true
   
-  belongs_to :user
-  
   has_many :active_codes, :dependent => :destroy
+  has_many :vouchings
   
   validates :value, :publish_count, :start_date, :end_date, :presence => true
   
@@ -25,6 +24,10 @@ class Coupon < ActiveRecord::Base
   
   def add_visit
     self.class.increment_counter(:claims_count, self.id)
+  end
+  
+  def vouched_by_user?(user)
+    Vouching.where(:coupon_id => self.id, :user_id => user.id ).count > 0
   end
   
 end

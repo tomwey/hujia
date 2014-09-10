@@ -5,6 +5,10 @@ module CouponsHelper
     return '' if current_user.blank?
     return '' if coupon.blank?
     
+    if coupon.vouched_by_user?(current_user)
+      return "已领取"
+    end
+    
     if current_user.profile.blank? or current_user.profile.mobile.blank?
       link_to "领取", "#login", 'data-toggle' => "modal", class: "voucher-btn", 'data-url' => coupon_vouchings_path(coupon)
     else

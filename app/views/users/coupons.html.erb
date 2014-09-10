@@ -9,14 +9,14 @@
     <td style="width:140px"></td>
   </tr>
   
-  <% @coupons.each do |coupon| %>
+  <% @vouchings.each do |vouch| %>
   <tr>
-    <td class="first"><%= coupon.id %></td>
-    <td><%= coupon.value %></td>
-    <td><%= "#{coupon.start_date}至#{coupon.end_date}" %></td>
-    <td><%= coupon.publish_count - coupon.actives_count %></td>
-    <td><%= render_coupon_status(coupon) %></td>
-    <td><%= l coupon.claimed_at, :format => :short %></td>
+    <td class="first"><%= vouch.coupon.id %></td>
+    <td><%= vouch.coupon.value %></td>
+    <td><%= "#{vouch.coupon.start_date}至#{vouch.coupon.end_date}" %></td>
+    <td><%= vouch.coupon.publish_count - vouch.coupon.actives_count %></td>
+    <td></td>
+    <td><%= l vouch.created_at, :format => :short %></td>
   </tr>
   <% end %>
 </table>

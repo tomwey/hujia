@@ -11,8 +11,8 @@ class UsersController < ApplicationController
   end
   
   def show
-    self.appointments
-    render :appointments
+    self.coupons
+    render :coupons
   end
   
   def appointments
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
   
   def coupons
-    @coupons = @user.coupons.order('claimed_at desc').paginate(:page => params[:page], :per_page => 30)
+    @vouchings = Vouching.where(:user_id => @user.id).includes(:coupon).order('created_at desc').paginate(page: params[:page], per_page: 30)
   end
   
   def actived_coupons

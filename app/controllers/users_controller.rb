@@ -38,6 +38,15 @@ class UsersController < ApplicationController
     @coupons = Coupon.where(:id => @codes.collect { |c| c.coupon_id })
   end
   
+  def update
+    @profile = current_user.profile
+    
+    @profile.real_name = params[:user][:customer][:real_name]
+    @profile.mobile = params[:user][:customer][:mobile]
+    @profile.save
+    
+  end
+  
   def active_code
     @code = ActiveCode.new
   end

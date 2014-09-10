@@ -28,6 +28,8 @@ module UsersHelper
     return '' if user.blank?
     return '' if user.profile.blank?
     
+    return user.nickname if user.profile.real_name.blank?
+    
     user.profile.real_name
   end
   

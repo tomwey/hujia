@@ -1,0 +1,60 @@
+<div class="voucher-wrap">
+     <h1 class="title">领取代金券</h1>
+     <% @appointments.each do |appoint| %>
+     <div id="appointment_item_<%= appoint.id %>">
+     <div class="tr delwrap"><span class="delbtn pointer"><i class="del-icon"></i>
+       <%= link_to "删除", 'javascript:;', remote: true, 'data-id' => appoint.id, onclick: 'App.deleteAppointable(this);'  %></span></div>
+      <table>
+         <tr class="th">
+          <th>项目</th>
+          <th>单价</th>
+          <th>代金券自减</th>
+          <th>实际支付价</th>
+          <th></th>
+        </tr>
+        <tr>
+            <td><%= appoint.coupon.title if appoint.coupon %></td>
+            <td class="fb">￥<%= appoint.coupon.ownerable.try(:price) if appoint.coupon %></td>
+            <td class="fb">-￥<%= appoint.coupon.value if appoint.coupon %></td>
+            <td class="orange fb">￥<%= (appoint.coupon.ownerable.try(:price) - appoint.coupon.value) if appoint.coupon %></td>
+            <td>
+              <%= get_coupon_tag(appoint.coupon) %>
+            </td>
+        </tr>
+      </table> 
+      </div>
+      <% end %>
+  </div>
+  <p class="tips">温馨提示：绑定手机号和真实姓名可领取代金券</p>
+  
+  <div class="modal hide fade" id="login">
+        <div class="modal-header">
+          <a href="#" class="close" data-dismiss="modal">x</a>
+          <h4>请输入手机号和真实姓名</h4>
+        </div>
+        <%= simple_form_for(current_user, url: bind_users_path, html: { method: :put, class: "form-horizontal" }) do |f| %>
+        <div class="modal-body">
+          
+          <%= f.fields_for current_user.profile do |b| %>
+            
+          <div class="control-group">
+            <label class="control-label">真实姓名</label>
+            <div class="controls">
+              <%= b.text_field :real_name %>
+            </div>
+          </div>
+    
+          <div class="control-group">
+            <label class="control-label">手机</label>
+            <div class="controls">
+              <%= b.text_field :mobile %>
+            </div>
+          </div>
+            
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">确定</button>
+        </div>
+        <% end %>
+      </div>

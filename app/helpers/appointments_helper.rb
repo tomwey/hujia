@@ -52,25 +52,34 @@ module AppointmentsHelper
   def appointable_tag(appointable)
     return "" if appointable.blank?
     
-    appointed = false
     
-    if current_user
-      if Appointment.where(:appointable_type => appointable.class, :appointable_id => appointable.id, :user_id => current_user.id ).count > 0
-        appointed = true
-      end
+    link = if current_user.blank?
+      link_to "领取代金券报名", new_user_session_path, :class => "detail-btn"
     else
-      return link_to "立即报名", new_user_session_path, :class => "btn btn-primary"
+      link_to "领取代金券报名", appointments_path(:item => "#{appointable.class},#{appointable.id}"), method: :post,  class: "detail-btn", 'data-type' => appointable.class, 'data-id' => appointable.id, onclick:"App.appointable(this);" 
     end
     
-    if appointed
-      link_to("取消报名", '#', :title => "取消报名",
-              'data-state' => 'appointed', 'data-type' => appointable.class, 'data-id' => appointable.id, 
-              :class => "btn btn-danger", :onclick => "return App.appointable(this);")
-    else
-      link_to("立即报名", '#', :title => "立即报名",
-              'data-state' => '', 'data-type' => appointable.class, 'data-id' => appointable.id, 
-              :class => "btn btn-primary", :onclick => "return App.appointable(this);")
-    end
+    "#{link} &emsp;".html_safe
+    
+    # appointed = false
+    # 
+    # if current_user
+    #   if Appointment.where(:appointable_type => appointable.class, :appointable_id => appointable.id, :user_id => current_user.id ).count > 0
+    #     appointed = true
+    #   end
+    # else
+    #   return link_to "立即报名", new_user_session_path, :class => "btn btn-primary"
+    # end
+    # 
+    # if appointed
+    #   link_to("取消报名", '#', :title => "取消报名",
+    #           'data-state' => 'appointed', 'data-type' => appointable.class, 'data-id' => appointable.id, 
+    #           :class => "btn btn-danger", :onclick => "return App.appointable(this);")
+    # else
+    #   link_to("立即报名", '#', :title => "立即报名",
+    #           'data-state' => '', 'data-type' => appointable.class, 'data-id' => appointable.id, 
+    #           :class => "btn btn-primary", :onclick => "return App.appointable(this);")
+    # end
     
   end
   

@@ -3,14 +3,12 @@
 <% end %>
 
 <% content_for :content do %>
-<div class="selfWrap clearfix"> 
-  <div class="selfL fl">
+<div class="userLeft">
     <%= render "users/info" %>
     <%= render "users/menu" %>
-  </div>
-  <div class="selfR fl">
-    <%= yield %>
-  </div>
+</div>
+<div class="userRight">
+  <%= yield %>
 </div>
 <% end %>
 

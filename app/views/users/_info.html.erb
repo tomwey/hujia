@@ -1,10 +1,5 @@
-<div class="clearfix imgDIV">
-	<div class="fl">
-    <%= image_tag "photo.jpg", :alt => "photo" %>
-	</div>
-	<div class="fl usrTop">
-		<p><%= current_user.nickname %></p> 
-		<p class="red">积分：<%= current_user.profile.try(:score) %></p> 
-	</div>
-</div>
-<div class="userId">用户ID：<%= current_user.id %></div> 
+<div class="user-top"> 
+    <h1><%= render_user_name(current_user) %></h1> 
+    <p>用户ID:<%= current_user.id %></p>
+    <p>积分：<span class="red"><%= current_user.profile.try(:score) %></span></p>
+</div> 

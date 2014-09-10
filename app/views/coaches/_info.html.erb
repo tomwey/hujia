@@ -32,8 +32,8 @@
                   <span class="blue">(已有<%= @coach.comments_count %>人评价)</span>
                </li> 
            </ul>
-           <div class="detailBtn">
-               <input type="button" value="领取代金券报名" class="detail-btn"> 
+           <div class="detailBtn"> 
+               <%= appointable_tag(@coach) %>
                已售<span class="red"><%= render_coupon_actived(@coach) %></span>位 还剩<span class="red"><%= render_coupon_left(@coach) %></span>位
            </div>
        </div>

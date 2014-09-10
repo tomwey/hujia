@@ -1,5 +1,17 @@
 # coding: utf-8
 module CouponsHelper
+  
+  def get_coupon_tag(coupon)
+    return '' if current_user.blank?
+    return '' if coupon.blank?
+    
+    if current_user.profile.blank? or current_user.profile.mobile.blank?
+      link_to "领取", "#login", 'data-toggle' => "modal", class: "voucher-btn"
+    else
+      link_to "领取", "#", class: "voucher-btn"
+    end
+  end
+  
   def render_owner(coupon)
     if coupon.ownerable_type == 'School'
       return "[驾校] #{coupon.ownerable.name}"
@@ -9,6 +21,9 @@ module CouponsHelper
   end
   
   def render_coupon_info(ownerable)
+    
+    return '' if ownerable.blank?
+    
     coupon = ownerable.coupons.first
     if coupon.blank?
       return ""

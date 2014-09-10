@@ -18,7 +18,8 @@ HujiaWebsite::Application.routes.draw do
   
   # mount Sidekiq::Web, at: "/sidekiq"
   
-  resources :appointments, only: [:index, :create, :destroy]
+  resources :appointments, only: [:index, :create, :destroy] do
+  end
   resources :schools, only: [:show] do
     member do
       get :comments
@@ -74,6 +75,8 @@ HujiaWebsite::Application.routes.draw do
     resources :cities, except: [:show, :destroy]
     resources :colleges, except: [:show, :destroy]
   end
+  
+  match '/users/bind' => 'users#update', as: :bind_users, via: :put
   
   resources :users, :path => "" do
     member do

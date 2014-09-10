@@ -31,34 +31,53 @@ window.App =
         else
           App.alert("抱歉，系统异常，提交失败。")
     false
+  
+  # 删除预约
+  deleteAppointable: (el) ->
+    id = $(el).data("id")
+    div = $("#appointment_item_#{id}")
+    $.ajax
+      url: "/appointments/#{id}"
+      type: "DELETE"
+      success: (re) ->
+        if re == "1"
+          div.remove()
+        else
+          App.alert("抱歉，系统异常，提交失败。")
+    false
     
   appointable: (el) ->
     appointable_type = $(el).data("type")
     appointable_id = $(el).data("id")
-    if $(el).data("state") != "appointed"
-      $.ajax
-        url: "/appointments"
-        type: "POST"
-        data:
-          type: appointable_type
-          id: appointable_id 
-        success: (re) ->
-          if re == "1"
-            $(el).data("state", "appointed").attr("class", "btn btn-danger").attr("title", "取消报名").text("取消报名")
-          else
-            App.alert("抱歉，系统异常，提交失败。")
-    else
-      $.ajax
-        url: "/appointments/#{appointable_id}"
-        type: "DELETE"
-        data:
-          type: appointable_type
-        success: (re) ->
-          if re == "1"
-            $(el).data("state", "").attr("class", "btn btn-primary").attr("title", "立即报名").text("立即报名")
-          else
-            App.alert("抱歉，系统异常，提交失败。")
-    false
+    # if $(el).data("state") != "appointed"
+    $.ajax
+      url: "/appointments"
+      type: "POST"
+      data:
+        type: appointable_type
+        id: appointable_id 
+      success: (re) ->
+        if re == "-1"
+          App.alert("抱歉，系统异常，提交失败。")
+        else
+          $.getScript("/appointments", "GET")
+            # body...
+          # if re == "1"
+          #   $(el).data("state", "appointed").attr("class", "btn btn-danger").attr("title", "取消报名").text("取消报名")
+          # else
+          #   App.alert("抱歉，系统异常，提交失败。")
+    # else
+    #   $.ajax
+    #     url: "/appointments/#{appointable_id}"
+    #     type: "DELETE"
+    #     data:
+    #       type: appointable_type
+    #     success: (re) ->
+    #       if re == "1"
+    #         $(el).data("state", "").attr("class", "btn btn-primary").attr("title", "立即报名").text("立即报名")
+    #       else
+    #         App.alert("抱歉，系统异常，提交失败。")
+    # false
     
   getCoupon: (el) ->
       # alert("123")

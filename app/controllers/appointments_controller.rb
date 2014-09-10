@@ -1,35 +1,42 @@
 # coding: utf-8
 class AppointmentsController < ApplicationController
   before_filter :require_user
-  before_filter :find_appointable, except: [:index]
+  before_filter :find_appointable, only: [:create]
   
   def index
+    @appointments = current_user.appointments.includes(:appointable).order('created_at desc')
+    
+    # @coupons = @appointments.map(&:coupon)
     
   end
   
   def create
-    current_user.appoint(@item)
-    render :text => "1"
+    if current_user.appoint(@item)
+      redirect_to appointments_path, notice: "报名成功。"
+    else
+      return
+    end
   end
   
   def destroy
-    current_user.unappoint(@item)
-    render :text => "1"
+    @appoint = current_user.appointments.where( :id => params[:id] ).first
+    if @appoint.destroy
+      render :text => "1"
+    else
+      render :text => "-1"
+    end
   end
   
   private
   def find_appointable
-    @success = false
-    @element_id = "appointable_#{params[:type]}_#{params[:id]}"
-    if not params[:type].in?(['School', 'Coach'])
-      render :text => "-1"
-      return false
-    end
     
-    klass = eval(params[:type])
-    @item = klass.find_by_id(params[:id])
+    return false if params[:item].blank?
+    
+    type,id = params[:item].split(",")
+    
+    klass = eval(type)
+    @item = klass.find_by_id(id)
     if @item.blank?
-      render :text => "-2"
       return false
     end
     

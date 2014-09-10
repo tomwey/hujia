@@ -6,6 +6,8 @@ class Appointment < ActiveRecord::Base
   scope :recent, order('created_at desc')
   
   def coupon
+    return false if appointable.blank?
     @coupon ||= Coupon.where(:ownerable_type => self.appointable.class, :ownerable_id => self.appointable.id).first
   end
+  
 end

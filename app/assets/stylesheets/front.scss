@@ -15,7 +15,7 @@
 her-wrap tr{height: 70px;line-height: 70px;}
 .voucher-wrap td{color: #414141;height: 70px;line-height: 70px;} 
 .voucher-wrap .orange {color: #fa4d0e;} 
-.voucher-wrap .voucher-btn {border: 0;background: image-url("voucher-btn.gif") no-repeat;width: 67px;height: 20px;line-height: 20px;color: #414141;
+.voucher-wrap .voucher-btn { text-decoration:none; display: inline-block; border: 0;background: image-url("voucher-btn.gif") no-repeat;width: 67px;height: 20px;line-height: 20px;color: #414141;
 } 
 .tips {color: #8d8d8d;margin-top: 30px;}
 
@@ -204,7 +204,13 @@ her-wrap tr{height: 70px;line-height: 70px;}
 }
 
 .detail-btn {
-    background: image-url("detailBtn.gif") no-repeat; width: 154px; height: 41px; line-height: 41px; text-align: center; font-size: 16px; color: #fff; border: 0; font-weight: bold;
+  display: inline-block;
+  background: image-url("detailBtn.gif") no-repeat; width: 154px; height: 41px; line-height: 41px; text-align: center; font-size: 16px; color: #fff; border: 0; font-weight: bold;
+  
+  &:hover {
+    text-decoration: none;
+    color: white;
+  };
 }
 
 .detail-tabs h2 {

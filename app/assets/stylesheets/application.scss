@@ -142,6 +142,11 @@ li {
     text-align: right
 }
 
+.voucher-wrap {
+  table {
+    margin-bottom: 15px;
+  }
+}
 .voucher-wrap .delwrap a {
     color: #8d8d8d;
 }
@@ -554,13 +559,13 @@ li {
     vertical-align: top;
     margin-top: 3px;
 }
-.btn {
-    background: image-url("btn.jpg") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-    border: 0 none;
-    height: 26px;
-    width: 66px;
-    cursor: pointer;
-}
+//.btn {
+//    background: image-url("btn.jpg") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+//    border: 0 none;
+//    height: 26px;
+//    width: 66px;
+//    cursor: pointer;
+//}
 .btn-yellow {
     background: image-url("btn-yellow.gif") repeat-x;
     height: 41px;

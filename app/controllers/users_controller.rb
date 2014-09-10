@@ -44,7 +44,6 @@ class UsersController < ApplicationController
     @profile.real_name = params[:name]
     @profile.mobile = params[:mobile]
     @success = @profile.save
-    
   end
   
   def active_code

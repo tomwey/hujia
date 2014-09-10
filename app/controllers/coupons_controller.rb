@@ -1,14 +1,20 @@
+# coding: utf-8
 class CouponsController < ApplicationController
-  before_filter :authorize_user, only: [:user_index]
-   
-  def user_index
+  before_filter :authorize_user, only: [:getted]
+  
+  # 领取
+  def getted
     @coupon = Coupon.find(params[:id])
     @coupon.user_id = params[:user_id].to_i
-    @coupon.claimed_at = Time.now
+    # @coupon.claimed_at = Time.now
     if @coupon.save
       @coupon.add_visit
       ActiveCode.create!( :coupon_id => @coupon.id )
-      render :text => "1"
+      @appointment = Appointment.where(:user_id => current_user.id, 
+                                       :appointable_id => @coupon.ownerable.id, 
+                                       :appointable_type => @coupon.ownerable.class).first
+      @appointment.destroy
+      render :active
     else
       render :text => "-1"
     end

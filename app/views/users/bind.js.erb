@@ -1,6 +1,10 @@
 <% if @success %>
 $("#login").modal("hide");
-$(".voucher-btn").attr("href", "#");
+$(".voucher-btn").each(function() {
+  $(this).attr("href", $(this).data("url"));
+  $(this).data("method", "post");
+});
+
 <% else %>
 $("#bind-result").html("<%= j render "/shared/error_messages", :target => @profile %>");
 <% end %>

@@ -6,9 +6,9 @@ module CouponsHelper
     return '' if coupon.blank?
     
     if current_user.profile.blank? or current_user.profile.mobile.blank?
-      link_to "领取", "#login", 'data-toggle' => "modal", class: "voucher-btn"
+      link_to "领取", "#login", 'data-toggle' => "modal", class: "voucher-btn", 'data-url' => coupon_vouchings_path(coupon)
     else
-      link_to "领取", "#", class: "voucher-btn"
+      link_to "领取", coupon_vouchings_path(coupon), class: "voucher-btn", method: :post
     end
   end
   

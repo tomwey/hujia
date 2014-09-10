@@ -15,12 +15,17 @@ class User < ActiveRecord::Base
   attr_accessible :login
   
   has_many :appointments, :dependent => :destroy
-  has_many :coupons, :dependent => :destroy
+  # has_many :coupons, :dependent => :destroy
   
   has_many :coupon_schools, :class_name => "School", :uniq => true,
   :through => :coupons, :source => :ownerable, :source_type => :school
   
   has_many :comments
+  
+  # 领取
+  has_many :vouchings
+  # 领取的代金券
+  has_many :voucher_coupons, through: :vouchings, class_name: "Coupon"
   
   belongs_to :profile, polymorphic: true
   

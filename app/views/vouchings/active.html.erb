@@ -1,0 +1,43 @@
+<div class="voucher-wrap">
+     <h1 class="title">代金券信息</h1> 
+      <table>
+         <tr class="th">
+          <th>购买商品名称</th>
+          <th>状态</th>
+          <th>单价</th>
+          <th>优惠</th>
+          <th>商品总价</th>
+        </tr>
+        <tr>
+            <td><%= render_ownerable_title(@coupon.ownerable) %></td>
+            <td>未激活</td>
+            <td class="fb">￥<%= @coupon.ownerable.price %></td>
+            <td class="fb">-￥<%= @coupon.value %></td>  
+            <td class="fb orange">￥<%= render_coupon_price(@coupon.ownerable) %></td>
+        </tr>
+      </table> 
+      <p class="tr total">实付款：<strong>￥<%= render_coupon_price(@coupon.ownerable) %></strong></p>
+    <!--voucher-order-->
+    <ul class="voucher-order tl">
+        <li>
+            <span class="tr">教练/驾校联系电话：</span>
+            <span class="tl"><%= @coupon.ownerable.mobile %></span>
+        </li>
+        <li>
+            <span class="tr">成交时间：</span>
+            <span class="tl">2014-08-10 13:50:25</span>
+        </li>
+        <li>
+            <span class="tr">教练/驾校验证码：</span>
+            <span class="tl"><input type="text" class="voucherIn"></span>
+        </li>
+        <li>
+            <span class="tr"></span>
+            <span class="tl"><input type="button" class="voucherBtn" value="确&emsp;认"></span>
+        </li>
+        <li>
+            <span class="tr"></span>
+            <span class="tl gray">温馨提示：<span class="red">请在线下支付费用以后第一时间上传验证码，否则护驾无法为你维权</span></span>
+        </li>
+    </ul>
+  </div> 

@@ -49,11 +49,14 @@ HujiaWebsite::Application.routes.draw do
   
   # resources :active_codes, only: [:update]
   
-  resources :coupons, only: [:user_index] do
+  resources :coupons do
     member do
-      match "user/:user_id" => "coupons#user_index", :via => :put, :as => :getted
+      # match "user/:user_id" => "coupons#user_index", :via => :put, :as => :getted
+      post :getted
     end
   end
+  
+  match 'vouchings/coupon:coupon_id' => "vouchings#create", via: :post, as: :coupon_vouchings
   
   resources :comments
   

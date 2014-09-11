@@ -4,7 +4,9 @@
         <div class="fl">
             <span class="blue"><%= render_user_name(comment.user) %></span><span class="gray"> &frasl; <%= render_user_college(comment.user) %></span></div> 
         <div class="fr">
+          <% if comment.is_show_user_info %>
            <input type="button" value="和她聊聊" class="btn talk-btn">
+           <% end %>
             <span class="rate-starMax ">
                 <span style="width: <%= render_star_percent(comment.ownerable) %>%;" class="rate-starMaxH ">
                 </span>

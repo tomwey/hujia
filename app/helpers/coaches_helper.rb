@@ -12,6 +12,12 @@ module CoachesHelper
     link_to "【#{coach.company}】#{coach.real_name}", coach
   end
   
+  def render_service_colleges(ownerable)
+    return '' if ownerable.blank?
+    return '' if ownerable.service_areas.empty?
+    ownerable.service_areas.map(&:name).join(",")
+  end
+  
   def render_coach_intro_image(coach)
     return '' if coach.blank?
     

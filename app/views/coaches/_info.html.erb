@@ -8,7 +8,7 @@
                  <ul class="topicul clearfix">
 										<% @coach.photos.each do |photo| %>
 					            <li>
-					                <%= image_tag photo.image.small %>
+					                <%= image_tag photo.image.small, 'data-large-image-src' => photo.image.large %>
 					            </li>
 										<% end %>
                     </ul>
@@ -19,22 +19,45 @@
 		    </div>
        <div class="fl detail">
            <h1><%= render_coupon_title(@coach) %></h1>
+           <h3><%= render_coupon_subtitle(@coach) %></h3>
+           
            <ul>
-               <li>相关：</li>
-               <li>相关：</li>
-               <li>相关：</li>
-               <li>市&nbsp;场&nbsp;价: <span class="del">￥<%= @coach.price %></span></li>
-               <li>售  价: <span class="special">￥<%= render_coupon_price(@coach) %></span> （<span class="orange">您节省了￥<%= render_coupon_value(@coach) %>元</span>）</li>
-               <li>商品评价：
+               <li><span class="leftL inline-block">售&emsp;&emsp;价: </span>  <span class="special">￥<%= render_coupon_price(@coach) %></span> （<span class="orange">您节省了￥<%= render_coupon_value(@coach) %>元</span>）</li>
+               <li><span class="leftL inline-block">市&nbsp;场&nbsp;价:</span>  <span class="del">￥<%= @coach.price %></span>
+               </li>
+               <li><span class="leftL inline-block">商品评价:</span>
                  <span class="star-detail inline-block">
                       <span class="rate-start-detail inline-block" style="width:<%= render_star_percent(@coach) %>%"></span>
                   </span> 
                   <span class="blue">(已有<%= @coach.comments_count %>人评价)</span>
+               </li>
+               <li>
+                   <span class="leftL inline-block">已&emsp;&emsp;售:</span>
+                   <span class="orange"><%= render_coupon_actived(@coach) %></span> 
+               </li>
+               <li>
+                   <span class="leftL inline-block">商&emsp;&emsp;家:</span>
+                   <span><%= @coach.company %></span> |
+                   <span><a href="">查看地址/电话</a></span>
                </li> 
+               <li>
+                   <span class="leftL inline-block">有&nbsp;效&nbsp;期:</span>
+                   <span>截止到 <%= render_coupon_end_date(@coach) %></span> 
+               </li>
            </ul>
-           <div class="detailBtn"> 
+           <p class="rightP">
+               <% if @coach.is_check %>
+               <span><img src="<%= asset_path("right1.gif") %>" alt="right">支持吃拿卡要担保赔付</span>
+               <% end %>
+               <% if @coach.is_authorized %>
+               <span><img src="<%= asset_path("right2.gif") %>" alt="right">教练资质已验证</span>
+               <% end %>
+           </p>
+           
+           <div class="detailBtn">
                <%= appointable_tag(@coach) %>
-               已售<span class="red"><%= render_coupon_actived(@coach) %></span>位 还剩<span class="red"><%= render_coupon_left(@coach) %></span>位
+               <div class="tc"><span class="orange">限制条件：需绑定姓名、手机号</span>
+               </div>
            </div>
        </div>
 		</div>

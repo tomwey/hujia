@@ -65,8 +65,27 @@ module CouponsHelper
     end
   end
   
+  def render_coupon_end_date(ownerable)
+    return '' if ownerable.blank?
+    return '' if ownerable.coupons.first.blank?
+    
+    return ownerable.coupons.first.end_date
+  end
+  
+  def render_coupon_expired_duration(ownerable)
+    return '' if ownerable.blank?
+    return '' if ownerable.coupons.first.blank?
+    
+    "#{ownerable.coupons.first.start_date}至#{ownerable.coupons.first.end_date}"
+  end
+  
   def render_coupon_title(ownerable)
     return ownerable.coupons.first.title if ownerable.coupons.first
+    return ''
+  end
+  
+  def render_coupon_subtitle(ownerable)
+    return ownerable.coupons.first.subtitle if ownerable.coupons.first
     return ''
   end
   

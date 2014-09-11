@@ -2,10 +2,7 @@
      <h1 class="title">领取代金券</h1>
      <% @appointments.each do |appoint| %>
      <div id="appointment_item_<%= appoint.id %>">
-       <% unless appoint.coupon.vouched_by_user?(current_user) %>
-     <div class="tr delwrap"><span class="delbtn pointer"><i class="del-icon"></i>
-       <%= link_to "删除", 'javascript:;', remote: true, 'data-id' => appoint.id, onclick: 'App.deleteAppointable(this);'  %></span></div>
-       <% end %>
+     <div class="tr delwrap"><a href="javascript:;" data-remote="true", data-id="<%= appoint.id %>" onclick="App.deleteAppointable(this);"><span class="delbtn pointer"><i class="del-icon"></i>删除</span></a></div>
       <table>
          <tr class="th">
           <th>项目</th>

@@ -20,12 +20,22 @@ class VouchingsController < ApplicationController
     @coupon = Coupon.find(params[:coupon_id])
     if Vouching.create(:user_id => current_user.id, :coupon_id => @coupon.id)
       @coupon.add_visit
-      ActiveCode.create!( :coupon_id => @coupon.id )
-      render :active
+      ActiveCode.where( :coupon_id => @coupon.id, :user_id => current_user.id ).first_or_create
+      redirect_to active_coupon_path(@coupon), :success => "领取成功!"
     else
       redirect_to appointments_url, :alert => "领取失败!"
     end
     
+  end
+  
+  def destroy
+    @vouching = Vouching.find(params[:id])
+    
+    if @vouching.destroy
+      render :text => "1"
+    else
+      render :text => "-1"
+    end
   end
   
 end

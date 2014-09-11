@@ -8,6 +8,20 @@ module CommentsHelper
     end
   end
   
+  def render_commentable_avatar(commentable, opts = {})
+    return '' if commentable.blank?
+    
+    link = opts[:link] || true
+    img = image_tag commentable.image.thumb, style: "width:87px; height:50px"
+    
+    if link
+      link_to img, commentable
+    else
+      img
+    end
+    
+  end
+  
   # 显示某个可以评论的对象的所有评论
   def render_comments_for_owner(ownerable)
     return '' if ownerable.blank?
@@ -62,6 +76,23 @@ module CommentsHelper
     
   end
   
+  def render_comment_status(comment)
+    return '' if comment.blank?
+    avarge = (comment.overall_rating + comment.attitude_rating + comment.service_rating + comment.env_rating) / 4.0
+    
+    status = if avarge >= 4.0
+      "很满意"
+    elsif avarge >= 3.5
+      "满意"
+    elsif avarge >= 3.0
+      "合格"
+    else
+      "很差"
+    end
+    
+    status
+  end
+  
   def render_star_tag(comment, type, editable = true)
     star_count = comment[type.to_sym].to_f
     count = star_count.round
@@ -80,11 +111,11 @@ module CommentsHelper
     html = ''
     for i in 0...5 do
       image_name = if i < full_max_index
-        'icon_star_2.gif'
+        'full_star.gif'
       elsif half_max_index != -1 and i == half_max_index - 1
-        'icon_star_3.gif'
+        'empty_star.gif'
       elsif i >= empty_min_index - 1
-        'icon_star_1.gif'
+        'empty_star.gif'
       end
       image = image_tag image_name, :alt => 'star'
       if editable

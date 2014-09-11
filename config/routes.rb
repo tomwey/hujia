@@ -56,7 +56,12 @@ HujiaWebsite::Application.routes.draw do
     end
   end
   
+  resources :active_codes, only: [:create, :destroy, :new]
+  
+  match '/active/coupon:coupon_id'   => "active_codes#new", via: :get,  as: :active_coupon
   match 'vouchings/coupon:coupon_id' => "vouchings#create", via: :post, as: :coupon_vouchings
+  
+  resources :vouchings, only: [:new, :create, :destroy]
   
   resources :comments
   
@@ -80,6 +85,8 @@ HujiaWebsite::Application.routes.draw do
   end
   
   match '/users/bind' => 'users#bind', as: :bind_users, via: :put
+  
+  match '*path', via: :all, to: 'home#error_404'
   
   resources :users, :path => "" do
     member do

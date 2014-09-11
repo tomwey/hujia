@@ -1,0 +1,149 @@
+<%= simple_form_for @comment do |f| %>
+
+<%= render "shared/error_messages", :target => @comment %>
+<%= f.hidden_field :coupon_id, value: @coupon.id if @coupon %>
+<%= f.hidden_field :commentable_type %>
+<%= f.hidden_field :commentable_id %>
+<%= f.hidden_field :overall_rating, :id => "overall_rating" %>
+<%= f.hidden_field :service_rating, :id => "service_rating" %>
+<%= f.hidden_field :env_rating, :id => "env_rating" %>
+<%= f.hidden_field :attitude_rating, :id => "attitude_rating" %>
+
+<div class="rate clearfix">
+    <div class="fl">
+        <%= render_commentable_avatar(@comment.commentable) %>
+    </div>
+    <div class="rate-section">
+        <h3><%= @coupon.try(:title) %></h3>
+        <p>你为团购打几分?</p>
+        <div class="rateItem">
+            <div>
+                <label class="text">总体评价：</label>
+                <span class="widget-rating">
+                <%= render_star_tag(@comment, :overall_rating) %>
+                </span>&emsp;&emsp;<span>请点击星星打分</span>
+            </div>
+            <div>
+                <label class="text">态度：</label>
+                <span class="widget-rating">
+                  <%= render_star_tag(@comment, :attitude_rating) %>
+                </span>
+            </div>
+            <div>
+                <label class="text">服务：</label>
+                <span class="widget-rating">
+                  <%= render_star_tag(@comment, :service_rating) %>
+                </span>
+            </div>
+            <div>
+                <label class="text">环境：</label>
+                <span class="widget-rating">
+                  <%= render_star_tag(@comment, :env_rating) %>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="rateArea">
+    <div class="area-text">
+       <div class="clearfix">
+            <h2 class="fl">我来说总体感觉</h2>
+       </div>
+        <div class="areawrap">
+            <textarea rows="5" name="comment[content]" class="block" ><%= @comment.content %></textarea>
+        </div>
+        <p>请上传原创、真实、合法的图片，如果发现用户上传的图片有侵权内容，护驾有权先行删除</p>
+        <p>成为推荐人，其他用户可以通过QQ和您联系</p>
+    </div>
+    <div class="area-btn">
+      <input type="submit" class="btn-red" value="发表评价">
+        <%= f.check_box :is_show_user_info %> <span class="vb"> 成为推荐人&nbsp;+10分</span>  
+    </div>
+</div>
+<% end %>
+
+<% content_for :scripts do %>
+<script>
+
+var hash = {
+  "overall_rating": false,
+  "service_rating": false,
+  "attitude_rating": false,
+  "env_rating": false,
+};
+
+var positions = {
+  "overall_rating": <%= @comment.overall_rating %>,
+  "service_rating": <%= @comment.service_rating %>,
+  "attitude_rating": <%= @comment.attitude_rating %>,
+  "env_rating": <%= @comment.env_rating %>,
+};
+
+$(".rateItem a").bind({
+  click: function() {
+    var id = $(this).data("id");
+    var type = $(this).data("type");
+    
+    var position = parseInt(id);
+    
+    hash[type] = true;
+    positions[type] = position;
+    
+    $("#" + type).val(parseInt(position)+1);
+    
+    // 重置状态
+    for (var i = 0; i <= 4; i++) {
+      var obj = $(eval(type + "_star_" + i));
+      var img = $(obj).children("img")[0];
+      $(img).attr("src", "/assets/empty_star.gif");
+    }
+    
+    for (var i = 0; i <= position; i++) {
+      var obj = $(eval(type + "_star_" + i));
+      var img = $(obj).children("img")[0];
+      $(img).attr("src", "/assets/full_star.gif");
+    }
+    
+  },
+  mouseover: function() {
+    
+    var id = $(this).data("id");
+    var type = $(this).data("type");
+    
+    var pos = positions[type];
+    if ( hash[type]) {
+      pos += 1;
+    }
+    
+    for (var i = pos; i <= parseInt(id); i++) {
+      var obj = $(eval(type + "_star_" + i));
+      var img = $(obj).children("img")[0];
+      $(img).attr("src", "/assets/full_star.gif");
+    }
+  },
+  mouseout: function() {
+    var id = $(this).data("id");
+    var type = $(this).data("type");
+    
+    var rated = hash[type];
+    
+    var pos = positions[type];
+    if (rated) {
+      pos += 1;
+    }
+    
+    for (var i = pos; i <= parseInt(id); i++) {
+      var obj = $(eval(type + "_star_" + i));
+      var img = $(obj).children("img")[0];
+      $(img).attr("src", "/assets/empty_star.gif");
+    }
+  }
+  
+});
+
+function submitForm(){
+  $("#new_comment").submit();
+}
+
+</script>
+<% end %>

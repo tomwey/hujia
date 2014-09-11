@@ -2,9 +2,7 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, :counter_cache => true, :polymorphic => true
   belongs_to :user
   
-  has_many :star_items, :dependent => :destroy
-  
-  attr_accessible :content, :user_id, :commentable_id, :commentable_type, :overall_rating, :attitude_rating, :service_rating, :env_rating
+  attr_accessible :content, :user_id, :commentable_id, :commentable_type, :is_show_user_info, :overall_rating, :attitude_rating, :service_rating, :env_rating
 
   default_scope order('created_at DESC')
   scope :visibled, lambda { where( :visible => true ) }

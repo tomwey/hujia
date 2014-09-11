@@ -1,26 +1,29 @@
 <% @comments.each do |comment| %>
-<div class="user-comment">
-  <%= image_tag comment.commentable.image.url, :size => "100x60" %>
-  <%= render_ownerable_title(comment.commentable) %>
-  <%= comment.content %>
-  
-  <% if comment.user == @user %>
-    <%= link_to '修改', '#' %>
-    <%= link_to '删除', '#' %>
-  <% end %>
-  
-	<div>
-		<label class="text">我的总体评价：<%= render_star_tag(comment, 'overall_rating', false) %></label>
-	</div>
-	<div>
-		<label class="text">态度：<%= render_star_tag(comment, 'attitude_rating', false) %></label>
-	</div>
-	<div>
-		<label class="text">服务：<%= render_star_tag(comment, 'service_rating', false) %></label>
-	</div>
-	<div>
-		<label class="text">环境：<%= render_star_tag(comment, 'env_rating', false) %></label>
-	</div>
-  
+
+<div class="rated-wrap">
+  <div class="rate clearfix rated">
+    <div class="fl">
+      <%= render_commentable_avatar(comment.commentable) %>
+    </div>
+    <div class="rate-section">
+        <h3><%= render_ownerable_title(comment.commentable) %></h3> 
+        <div class="rateItem">
+            <div>
+                <%= render_all_ratings(comment) %>
+                <span class="red"><%= render_comment_status(comment) %></span>
+            </div> 
+        </div> 
+    </div>
+     <div class="fr edit">
+       <% if comment.user == current_user %>
+            <a href="<%= edit_comment_path(comment) %>"><i class="edit-icon"></i>修改</a>
+            <!--a href=""><i class="del-icon"></i>删除</a-->	
+        <% end %>
+     </div>
+  </div>
+  <div class="evaluate">
+      <p><%= comment.content %></p>
+  </div>
 </div>
+
 <% end %>

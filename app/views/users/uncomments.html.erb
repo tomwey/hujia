@@ -1,10 +1,24 @@
-<% @coupons.each do |coupon| %>
+<% if @vouchings.any? %>
 
+<% if @vouchings.count == 1 %>
+
+<%= render "/comments/form" %>
+
+<% else %>
+
+<% @vouchings.each do |vouching| %>
 <div class="rate clearfix">
   <div class="fl">
-    <%= image_tag coupon.ownerable.image.url, :size => "100x60" %>
+    <%= image_tag vouching.coupon.ownerable.image.url, :size => "100x60" %>
+  </div>
+  <div class="rate-section">
+      <h3><%= render_ownerable_title(vouching.coupon.ownerable) %></h3>
+      <%= render_vouching_link_tag(vouching) %> 
   </div>
   
 </div>
+<% end %>
+
+<% end %>
 
 <% end %>

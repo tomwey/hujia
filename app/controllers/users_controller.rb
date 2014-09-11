@@ -20,7 +20,8 @@ class UsersController < ApplicationController
   end
   
   def coupons
-    @vouchings = Vouching.where(:user_id => @user.id).includes(:coupon).order('created_at desc').paginate(page: params[:page], per_page: 30)
+    # @vouchings = Vouching.where("user_id = ?", current_user.id).includes(:coupon).order('created_at desc').paginate(page: params[:page], per_page: 30)
+    @vouchings = current_user.vouchings.includes(:coupon).order('created_at desc').paginate(page: params[:page], per_page: 30)
   end
   
   def actived_coupons
@@ -34,8 +35,13 @@ class UsersController < ApplicationController
   end
   
   def uncomments    
-    @codes = ActiveCode.where('user_id = ? and actived_at is not null', @user.id)
-    @coupons = Coupon.where(:id => @codes.collect { |c| c.coupon_id })
+    # @codes = ActiveCode.where('user_id = ? and actived_at is not null', @user.id)
+    @vouchings = current_user.vouchings.includes(:coupon).where('status = ?', 1)
+    if @vouchings.count == 1
+      @comment = Comment.new
+      @coupon = @vouchings.first.coupon
+      @comment.commentable = @coupon.ownerable
+    end
   end
   
   def bind

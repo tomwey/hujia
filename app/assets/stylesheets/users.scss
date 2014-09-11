@@ -278,7 +278,9 @@
 .voucherT .date {
     color: #999;
 }
-.voucherT .vonBtn {
+.vonBtn {
+  text-align:center;
+	display: inline-block;
     background: image-url("voucherbg.gif") repeat-x;
     border: 0 none;
     color: #ffe4a0;

@@ -45,6 +45,13 @@ module CouponsHelper
     
   end
   
+  def render_coupon_ownerable_avatar(coupon)
+    return '' if coupon.blank?
+    return '' if coupon.ownerable.blank?
+    
+    image_tag  coupon.ownerable.image.thumb
+  end
+  
   def render_coupon_count(ownerable)
     "#{ownerable.coupons.first.claims_count}人购买" if ownerable.coupons.first
   end

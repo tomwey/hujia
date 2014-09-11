@@ -21,6 +21,10 @@ class AppointmentsController < ApplicationController
   def destroy
     @appoint = current_user.appointments.where( :id => params[:id] ).first
     if @appoint.destroy
+      vouching = Vouching.where(:user_id => current_user.id, :coupon_id => @appoint.coupon.id ).first
+      if vouching
+        vouching.destroy
+      end
       render :text => "1"
     else
       render :text => "-1"

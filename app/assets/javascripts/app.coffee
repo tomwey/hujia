@@ -31,7 +31,26 @@ window.App =
         else
           App.alert("抱歉，系统异常，提交失败。")
     false
-  
+    
+  # 删除领取的代金券
+  deleteVouching: (el) ->
+    result = confirm("你确定吗")
+    if !result 
+      return false
+    id = $(el).data("id")
+    tr_header = $("#tr_header_#{id}")
+    tr_item   = $("#tr_item_#{id}")
+    $.ajax
+      url: "/vouchings/#{id}"
+      type: "DELETE"
+      success: (re) ->
+        if re == "1"
+          tr_header.remove()
+          tr_item.remove()
+        else
+          App.alert("抱歉，系统异常，提交失败。", $(el))
+    false
+    
   # 删除预约
   deleteAppointable: (el) ->
     result = confirm("你确定吗")
@@ -49,7 +68,7 @@ window.App =
         else
           App.alert("抱歉，系统异常，提交失败。")
     false
-  
+
   bindUserProfile: ->
     name = $("#user_customer_real_name").val()
     mobile = $("#user_customer_mobile").val()

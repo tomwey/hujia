@@ -1,3 +1,7 @@
+<% content_for :styles do %>
+<%= stylesheet_link_tag "users" %>
+<% end %>
+
 <div class="row">
   <div class="span9">
     
@@ -18,14 +22,12 @@
     
     # customized code end
      %>
-         
-    <div class="box"> 
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :class => "form-horizontal",:enctype => "multipart/form-data" }) do |f| %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { class:"form-horizontal reg-form",:enctype => "multipart/form-data" }) do |f| %>
         <fieldset>
           <%= my_devise_error_messages! %>
-          <legend><%= render_signup_legend(utype) %></legend>
-          <%= f.input :nickname, label: "用户名",placeholder: "用户名", :input_html => { :style => "width: 180px;" } %>
-          <%= f.input :email, label: "邮箱",placeholder: "邮箱", :input_html => { :class => "span5", :placeholder => "foo@bar.com" } %>          
+          <%= f.input :email, label: "邮箱",placeholder: "邮箱", hint: "请您一定要输入有效的邮箱，忘记密码会通过此邮箱找回", input_html: {  placeholder: "foo@bar.com" } %>
+          <%= f.input :nickname, label: "用户名",placeholder: "用户名", hint: "3-20位字符，只允许数字、大小写字母和下划线" %>
+                    
           <%= f.input :password, label: "密码" %>
           <%= f.input :password, label: "确认密码" %>
           
@@ -38,17 +40,16 @@
           
           <% # customized code end %>
           
-          <div class="form-actions">
-            <%= f.button :submit, "提交注册信息", :class => "btn btn-primary", disable_with: "正在提交..." %>
+         <input class="submit-btn btn-yellow" data-disable-with="正在提交..." name="commit" type="submit" value="同意以下协议，提交注册!" />
+          
+          <div class="law">
+              <h2 class="fb">一、本站服务条款的确认和接纳</h2>
+              <p>
+                  本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项本站的各项
+              </p>
           </div>
+          
         </fieldset>
       <% end %>
     </div>
   </div>
-  <div class="span3">
-    <div class="box">
-      <h2>已经有账号了？</h2>
-      <%= render "users/shared/links" %>
-    </div>
-  </div>
-</div>

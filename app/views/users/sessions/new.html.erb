@@ -42,7 +42,7 @@
                    <input type="checkbox" value="">下次自动登录
                 </div> 
                 <div class="fr">
-                    <a href="" class="lightgray">忘记密码？</a>
+                    <a href="<%= new_password_path(resource_name) %>" class="lightgray">忘记密码？</a>
                 </div> 
               </div> 
               
@@ -51,7 +51,7 @@
             <input type="submit" value="登&emsp;&emsp;录" class="btn-yellow block">
             <div class="tr">
                 <span class="lightgray">还没有账号？</span>
-                <a href="" class="red">免费注册</a>
+                <a href="<%= u_sign_up_path %>" class="red">免费注册</a>
                 </div> 
             </div>  
 	 		  </div> 

@@ -1,0 +1,61 @@
+<% content_for :styles do %>
+<%= stylesheet_link_tag "users" %>
+<% end %>
+
+<div class="row">
+  <div class="span9">
+    
+    <% 
+    # customized code begin
+    
+    utype = params[:user][:user_type] || @user_type || "customer"
+    
+    if ["customer", "coach", "school"].include? utype.downcase
+      child_class_name = utype.downcase.camelize
+      user_type = utype.downcase
+    else
+      child_class_name = "Customer"
+      user_type = "customer"
+    end
+    
+    resource.profile = child_class_name.constantize.new if resource.profile.nil?
+    
+    # customized code end
+     %>
+         
+      <ul class="psw-nav clearfix">  
+          <li>2 注册完成</li>
+          <li class="active">1 填写信息</li>
+      </ul> 
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :class => "form-horizontal",:enctype => "multipart/form-data" }) do |f| %>
+        <fieldset>
+          <%= my_devise_error_messages! %>
+          <legend><%= render_signup_legend(utype) %></legend>
+          <%= f.input :email, label: "邮箱",placeholder: "邮箱", :input_html => { :class => "span5", :placeholder => "foo@bar.com" } %>
+          <%= f.input :nickname, label: "用户名",placeholder: "用户名", :input_html => { :style => "width: 180px;" } %>
+                    
+          <%= f.input :password, label: "密码" %>
+          <%= f.input :password, label: "确认密码" %>
+          
+          <% # customized code begin %>
+          <%= f.fields_for resource.profile do |pf| %>
+          <% render :partial => "#{child_class_name.underscore}_fields", :locals => { :f => pf } %>
+          <% end %>
+          
+          <%= hidden_field :user, :user_type, :value => user_type %>
+          
+          <% # customized code end %>
+          
+          <div class="form-actions">
+            <%= f.button :submit, "提交注册信息", :class => "btn btn-primary", disable_with: "正在提交..." %>
+          </div>
+        </fieldset>
+      <% end %>
+    </div>
+  </div>
+  <div class="span3">
+    <div class="box">
+      <h2>已经有账号了？</h2>
+      <%= render "users/shared/links" %>
+    </div>
+  </div>

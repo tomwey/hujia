@@ -1,0 +1,7 @@
+<% if @query_string.present? %>
+
+<div class="fail">
+  <%= image_tag "fail.gif" %>未找到与"<span class="orange"><%= @query_string %></span>"相关的结果
+</div>
+
+<% end %>

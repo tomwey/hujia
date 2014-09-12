@@ -45,7 +45,8 @@ class CoachesController < ApplicationController
     
     @coaches = @coaches.includes(:coupons, :comments)
     @coaches = @coaches.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 3)
-
+    
+    @total = @coaches.total_entries
   end
   
   def show

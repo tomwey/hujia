@@ -430,17 +430,16 @@ li {
 /*foot-img */
 
 .foot-img {
-    width: 475px;
+    width: 610px;
     margin: 20px auto 10px;
 }
 .foot-img li {
     float: left;
-    margin-right: 15px;
     text-align: left;
-    width: 110px;
+    width: 160px;
 }
 .foot-img .ICP {
-    width: 100px;
+    width: 130px;
     margin: 0;
     vertical-align: middle;
     margin-top: 5px;
@@ -689,4 +688,48 @@ li {
 }
 .list .sale {
     color: #9a9a9a;
+}
+
+
+.QR {
+    position: fixed;
+    top: 30%;
+    right: 20px;
+    width: 160px;
+    *width: 180px;
+}
+.QR img {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+.QR div {
+    width: 160px;
+    *width: 180px;
+    border: 1px solid #dfdfdf;
+    margin: 20px auto 0;
+    background-color: #fff;
+}
+.QR li {
+    margin: 10px auto;
+    color: #333; 
+    width: 160px;
+    *width: 180px;
+    padding-left: 15px;
+}
+.QR .icon-alert {
+    background: image-url("icon-alert.gif") no-repeat;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    *zoom: 1;
+    *display: inline;
+    vertical-align: top;
+}
+.QR h3 {
+    font: bold 13px"微软雅黑";
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #dfdfdf;
+    color: #f00;
 }

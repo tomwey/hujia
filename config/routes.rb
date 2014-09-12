@@ -45,7 +45,7 @@ HujiaWebsite::Application.routes.draw do
     end
   end
   
-  resources :pages, path: "wiki", only: [:index, :show]
+  resources :pages, path: "", only: [:index, :show]
   
   # resources :active_codes, only: [:update]
   

@@ -22,6 +22,9 @@ class Coach < ActiveRecord::Base
   mount_uploader :image, AvatarUploader
   crop_uploaded  :image
   
+  scope :needed_fields, lambda { select('real_name, company, image') }
+  scope :hot, lambda { order("coaches.sort ASC, coupons.claims_count DESC, comments_count DESC, coaches.price ASC, coaches.created_at DESC") }
+  
   def check_image_blank
     self[:image].blank?
   end

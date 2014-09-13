@@ -3,7 +3,7 @@
         <dt>校区：</dt>
         <dd>
             <%= filterable(:c) %>
-            <% College.all.each do |c| %> 
+            <% @colleges.each do |c| %> 
             <%= filterable(:c, c.name, c.name) %>
             <% end %>
         </dd>
@@ -31,9 +31,9 @@
     </dl>
     <div class="sort clearfix">
         <span class="fl">排序</span>
+        <%= sort_link 'c_ccount', "销量" %>
+        <%= sort_link 'comments_count', "星级" %>
         <%= sort_link 'price', "价格" %>
-        <a href="">销量<i class="sort-icon"></i></a>
-        <a href="" class="xj">星级<i class="sort-icon"></i></a> 
     </div>
     
     <% if @coaches.any? %>

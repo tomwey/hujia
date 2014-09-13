@@ -2,14 +2,28 @@
 class CommentsController < ApplicationController
   before_filter :require_user
   
+  # TODO: before_filter :check_allow_comment, 
+  
   layout "user_layout"
   
   def new
-    @coupon = Coupon.find(params[:coupon_id])
+    @coupon = Coupon.find_by_id(params[:coupon_id])
     if @coupon.blank?
       render_404
       return
     end
+    
+    vouching = Vouching.select('status').where(:user_id => current_user.id, :coupon_id => @coupon.id).first
+    if vouching.blank?
+      redirect_to current_user, alert: "您还未领取该代金券。"
+      return
+    end
+    
+    if vouching.status != 1
+      redirect_to coupons_user_path(current_user.nickname), alert: "您还未验证该代金券。"
+      return
+    end
+    
     @comment = Comment.new
     @comment.commentable = @coupon.ownerable
   end

@@ -2,8 +2,8 @@
 	<li class="fb">我的代金券</li>
 	<li class="dd <%= (action_name == "coupons" or action_name == "show" or controller_name == "active_codes") ? "active" : "" %> "><%= link_to '已领取的代金券', coupons_user_path(current_user.nickname) %></li>
 	<li class="fb">我的评价</li>
-	<li class="dd <%= (action_name == "comments" or controller_name == "comments") ? "active" : "" %>"><%= link_to "已评价", comments_user_path(current_user.nickname) %></li>
-	<li class="dd <%= action_name == "uncomments" ? "active" : "" %>"><%= link_to "未评价", uncomments_user_path(current_user.nickname) %></li>
+	<li class="dd <%= (action_name == "comments" or (controller_name == "comments" and action_name != "new" )) ? "active" : "" %>"><%= link_to "已评价", comments_user_path(current_user.nickname) %></li>
+	<li class="dd <%= (action_name == "uncomments" or action_name == "new") ? "active" : "" %>"><%= link_to "未评价", uncomments_user_path(current_user.nickname) %></li>
 	<li class="fb">我的账户</li>
 	<li class="dd <%= (action_name == "edit" and controller_name == "account") ? "active" : "" %>"><%= link_to "账户设置", edit_user_registration_path %></li>
 </ul>

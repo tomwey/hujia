@@ -7,7 +7,9 @@ class CoachesController < ApplicationController
   
   
   def index
-        
+    
+    @colleges = College.joins(:city).where("cities.code = ?", "511300").sorted
+    
     @coaches = Coach.search(@query_string)
     
     # 驾照
@@ -42,9 +44,9 @@ class CoachesController < ApplicationController
     if params[:c].present?
       @coaches = @coaches.joins(:service_areas).where('colleges.name = ?', params[:c])
     end
-    
+        
     @coaches = @coaches.includes(:coupons, :comments)
-    @coaches = @coaches.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 3)
+    @coaches = @coaches.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 20)
     
     @total = @coaches.total_entries
   end
@@ -63,7 +65,7 @@ class CoachesController < ApplicationController
     type = params[:type] || "coach"
     type_class = type.camelize.constantize
     
-    type_class.column_names.include?(params[:sort]) ? params[:sort] : "sort"
+    type_class.column_names.include?(params[:sort]) ? params[:sort] : "coupons.claims_count"
   end
   
   def sort_direction

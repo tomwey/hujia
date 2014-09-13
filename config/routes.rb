@@ -59,7 +59,7 @@ HujiaWebsite::Application.routes.draw do
   resources :active_codes, only: [:create, :destroy, :new]
   
   match '/active/coupon:coupon_id'   => "active_codes#new", via: :get,  as: :active_coupon
-  match 'vouchings/coupon:coupon_id' => "vouchings#create", via: :post, as: :coupon_vouchings
+  match '/vouchings/coupon:coupon_id' => "vouchings#create", via: :post, as: :coupon_vouchings
   
   resources :vouchings, only: [:new, :create, :destroy]
   

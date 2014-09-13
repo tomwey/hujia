@@ -4,6 +4,10 @@ window.App =
   alert: (msg, to) ->
     $(to).before("<div data-alert class='alert-message'><a class='close' href='#'>X</a>#{msg}</div>")
   
+  # 收藏本站
+  addToFavorite: (el, url) ->
+    
+
   # 删除评论
   deleteComment: (el) ->
     id = $(el).data("id")

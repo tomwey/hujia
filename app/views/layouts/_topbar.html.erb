@@ -1,8 +1,8 @@
-<% cache current_user do %>
+
 <div class="header-top">
   <div class="wrap clearfix">
     <div class="fl">
-        <%= link_to '收藏护驾网', '#', :class => "favorite" %>
+        <%= link_to "收藏#{SiteConfig.app_name}", 'javascript:;', title: "收藏#{SiteConfig.app_name}", class:"favorite", onclick: "App.addToFavorite(this,'http://hujia361.com')" %>
     </div>
     <div class="fr">
       <% if user_signed_in? %>
@@ -21,4 +21,3 @@
     </div>
   </div>
 </div>
-<% end %>

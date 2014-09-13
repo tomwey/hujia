@@ -23,6 +23,8 @@ gem 'sidekiq'
 # Rails I18n
 gem "rails-i18n"
 
+gem 'rest-client'
+
 # 上传组件
 gem 'carrierwave'
 gem 'carrierwave-crop'

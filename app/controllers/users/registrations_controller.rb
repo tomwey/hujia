@@ -62,6 +62,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def edit
     @user = current_user
     @user.update_private_token unless @user.private_token
+    
+    set_seo_meta("个人资料修改")
   end
   
   def update

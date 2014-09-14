@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   belongs_to :profile, polymorphic: true
   
   # validates :nickname, :email, :presence => true
-  validates :email, :password, :password_confirmation, :presence => true
+  validates :email, :presence => true
   validates :nickname, :format => { :with => /\A\w+\z/, :message => '只允许数字、大小写字母和下划线'}, 
             :length => { :in => 3..20 }, :presence => true, :uniqueness => { :case_sensitive => false }
             
@@ -40,9 +40,9 @@ class User < ActiveRecord::Base
       false
   end
     
-  def password_required?
-      false
-  end
+  # def password_required?
+  #     false
+  # end
    
   # 重写devise认证
   def self.find_for_database_authentication(warden_conditions)

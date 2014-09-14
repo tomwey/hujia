@@ -12,7 +12,11 @@ class UsersController < ApplicationController
   
   def show
     self.coupons
+    
+    set_seo_meta("我的U驾")
+    
     render :coupons
+    
   end
   
   def appointments
@@ -27,11 +31,15 @@ class UsersController < ApplicationController
       end
     end
     
+    set_seo_meta("我的预约报名")
+    
   end
   
   def coupons
     # @vouchings = Vouching.where("user_id = ?", current_user.id).includes(:coupon).order('created_at desc').paginate(page: params[:page], per_page: 30)
     @vouchings = current_user.vouchings.includes(:coupon).order('created_at desc').paginate(page: params[:page], per_page: 30)
+    
+    set_seo_meta("我的代金券")
   end
   
   def actived_coupons
@@ -42,6 +50,8 @@ class UsersController < ApplicationController
   def comments
     @comments = @user.comments.visibled.order('created_at desc')
     @commentables = @comments.collect { |comment| comment.commentable }
+    
+    set_seo_meta("我的评价")
   end
   
   def uncomments    
@@ -52,6 +62,8 @@ class UsersController < ApplicationController
       @coupon = @vouchings.first.coupon
       @comment.commentable = @coupon.ownerable
     end
+    
+    set_seo_meta("去评价")
   end
   
   def bind

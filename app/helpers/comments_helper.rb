@@ -52,7 +52,9 @@ module CommentsHelper
       avg_sum += c.avarge_rating
     end
     
-    (commentable.star_count + (avg_sum / commentable.comments_count.to_f)) / 2.0
+    score = (commentable.star_count + (avg_sum / commentable.comments_count.to_f)) / 2.0
+    
+    score.round(1)
     
   end
   

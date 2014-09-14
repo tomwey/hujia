@@ -55,9 +55,30 @@ class Cpanel::CoachesController < Cpanel::ApplicationController
     end
   end
   
+  def block
+    @coach = Coach.find(params[:id])
+    @coach.visible = false
+    if @coach.save(:validate => false)
+      render :text => "1"
+    else
+      render :text => "-1"
+    end
+  end
+  
+  def unblock
+    @coach = Coach.find(params[:id])
+    @coach.visible = true
+    if @coach.save(:validate => false)
+      render :text => "1"
+    else
+      render :text => "-1"
+    end
+  end
+  
   def destroy
     @coach = Coach.find(params[:id])
-    if @coach.destroy
+    @coach.visible = false
+    if @coach.save(:validate => false)
       render :text => "1"
     else
       render :text => "-1"

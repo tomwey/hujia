@@ -9,7 +9,7 @@ module CoachesHelper
     if coach.blank?
       return ''
     end
-    link_to "【#{coach.company}】#{coach.real_name}", coach
+    link_to "【#{coach.company}】#{coach.real_name}", coach, target: "_blank"
   end
   
   def render_service_colleges(ownerable)
@@ -46,7 +46,7 @@ module CoachesHelper
     url = opts[:url] || coach_path(coach)
 
     if link
-      raw %(<a href="#{url}" title="#{coach.real_name}" class="block">#{img}</a>)
+      raw %(<a href="#{url}" target="_blank" title="#{coach.real_name}" class="block">#{img}</a>)
     else
       raw img
     end

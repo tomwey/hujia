@@ -8,7 +8,7 @@ class CoachesController < ApplicationController
   
   def index
     
-    @colleges = College.joins(:city).where("cities.code = ?", "511300").sorted
+    @colleges = College.joins(:city).where("cities.code = ?", "511300").visibled.sorted
     
     @coaches = Coach.search(@query_string)
     
@@ -49,10 +49,14 @@ class CoachesController < ApplicationController
     @coaches = @coaches.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 20)
     
     @total = @coaches.total_entries
+    
+    set_seo_meta("可以找到真正属于你的教练")
   end
   
   def show
     @coach = Coach.includes(:photos, :comments, :coupons).find(params[:id])
+    
+    set_seo_meta("【#{@coach.company}】#{@coach.real_name}", "", @coach.intro)
   end
   
   

@@ -23,17 +23,29 @@ window.App =
     false
     
   # 删除教练
-  deleteCoach: (el) ->
+  updateStatus: (el) ->
+    result = confirm("你确定吗？")
+    if !result
+      return false
+    
     id = $(el).data("id")
-    tr = $("#coach_tr_#{id}")
+    # tr = $("#coach_tr_#{id}")
+    status = $(el).data("status")
+    if status == true
+      url = "/cpanel/coaches/#{id}/block"
+    else
+      url = "/cpanel/coaches/#{id}/unblock"
     $.ajax
-      url: "/cpanel/coaches/#{id}"
-      type: "DELETE"
+      url: url
+      type: "PUT"
       success: (re) -> 
         if re == "1"
-          tr.remove()
+          if status == true
+            $(el).text("启用")
+          else
+            $(el).text("禁用")
         else
-          App.alert("抱歉，系统异常，提交失败。")
+          App.alert("抱歉，系统异常，提交失败。", $(el))
     false
     
   # 删除领取的代金券

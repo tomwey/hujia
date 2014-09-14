@@ -73,7 +73,12 @@ HujiaWebsite::Application.routes.draw do
     resources :site_configs
     resources :customers, only: [:index, :destroy, :show] # 普通用户
     resources :schools
-    resources :coaches
+    resources :coaches do
+      member do
+        put :block
+        put :unblock
+      end
+    end
     resources :appointments, only: [:index, :show, :destroy] # 预约
     resources :coupons, except: [:new, :show, :create]
     resources :comments

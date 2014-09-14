@@ -3,4 +3,7 @@ class Photo < ActiveRecord::Base
   attr_accessible :image, :sort, :image_cache
   
   mount_uploader :image, PhotoUploader
+  
+  validates :image, :presence => true
+  
 end

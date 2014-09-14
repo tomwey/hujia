@@ -1,11 +1,16 @@
 # coding: utf-8
 class Coach < ActiveRecord::Base
-  attr_accessible :city,:province, :company, :image, :image_crop_x,:image_crop_y,:image_crop_w,:image_crop_h,
+  attr_accessible :city,:province, :company, :image, :image_crop_x,:image_crop_y,:image_crop_w,:image_crop_h,:fee_intro, :note,
   :photos_attributes, :is_authorized, :price, :intro, :star_count, :drive_type, :coupons_attributes, :service_area_ids, :teach_location, :is_check, :location, :mobile, :pickup_location, :qq, :real_name, :service_type, :sex, :image_cache
+  
+  attr_protected :visible
   
   validates :mobile, format: { with: /\A1[3|4|5|8][0-9]\d{4,8}\z/, message: "请输入11位正确手机号" }, length: { is: 11 }, 
             :presence => true, :uniqueness => true
   validates :qq, :format => { :with => /[1-9][0-9]{4,}/, :message => "请输入正确的QQ号" }, :uniqueness => true
+  
+  validates :city, :province, :company, :image, :fee_intro, :price, :intro, :is_authorized, :star_count, :drive_type, 
+  :teach_location, :is_check, :location, :real_name, :service_type, :service_area_ids, :coupons, :photos, presence: true
   
   has_one :user, as: :profile, dependent: :destroy
   
@@ -22,6 +27,7 @@ class Coach < ActiveRecord::Base
   mount_uploader :image, AvatarUploader
   crop_uploaded  :image
   
+  scope :visibled, lambda { where(:visible => true) }
   scope :needed_fields, lambda { select('real_name, company, image') }
   scope :hot, lambda { order("coaches.sort ASC, coupons.claims_count DESC, comments_count DESC, coaches.price ASC, coaches.created_at DESC") }
   

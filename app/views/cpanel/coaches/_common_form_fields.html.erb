@@ -14,8 +14,12 @@
 <legend>工作信息</legend>
 <%= f.input :company, label: "所属驾校" %>
 <%= f.input :price, label: "学车价格" %>
+
 <%= f.input :drive_type, as: :select, label: t("site_config.drive_type"), collection: drive_types, prompt: "-- 请选择驾照类型 --" %>
 <%= f.input :service_type, as: :select, label: t("site_config.service_type"), collection: service_types, prompt: "-- 请选择服务类型 --" %>
+
+<%= f.input :fee_intro, label: "费用包括" %>
+<%= f.input :note, label: "特别说明" %>
 
 <div class="control-group">
   <label class="select optional control-label" for="coach_areas">服务区域</label>
@@ -51,6 +55,7 @@
 <div class="control-group">
   <div class="controls">
     <%= link_to_add_fields("添加简介图片", f, :photos) %>
+    <span class="help">至少上传4张图片</span>
   </div>
 </div>
 
@@ -61,6 +66,7 @@
  <div class="control-group">
    <div class="controls">
      <%= link_to_add_fields("添加代金券", f, :coupons) %>
+     <span class="help">添加一套代金券资料就行了</span>
    </div>
  </div>
 

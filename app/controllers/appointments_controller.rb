@@ -12,7 +12,7 @@ class AppointmentsController < ApplicationController
   
   def create
     if current_user.appoint(@item)
-      redirect_to appointments_path, notice: "报名成功。"
+      redirect_to appointments_user_path(current_user.nickname), notice: "预约报名成功。"
     else
       return
     end
@@ -20,6 +20,14 @@ class AppointmentsController < ApplicationController
   
   def destroy
     @appoint = current_user.appointments.where( :id => params[:id] ).first
+    
+    return false if @appoint.coupon.blank?
+    
+    if @appoint.coupon.vouched_by_user?(current_user)
+      redirect_to appoints_user_path(current_user.nickname), alert: "领取了的代金券不能被删除。"
+      return
+    end
+    
     if @appoint.destroy
       vouching = Vouching.where(:user_id => current_user.id, :coupon_id => @appoint.coupon.id ).first
       if vouching

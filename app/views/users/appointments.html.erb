@@ -1,23 +1,71 @@
-<table class="table table-hover">
-  <tr class="head">
-    <td class="first">ID</td>
-    <td>教练或驾校</td>
-    <td>代金券面额</td>
-    <td>代金券有效期</td>
-    <td>代金券剩余数量</td>
-    <td>at</td>
-    <td style="width:140px"></td>
-  </tr>
+<div class="voucher-wrap">
+     <h1 class="title">领取代金券</h1>
+       <p class="tips">温馨提示：(1)&nbsp;绑定手机号和真实姓名可领取代金券 &emsp; (2)&nbsp;一个人最多支持领两张代金券 &emsp; (3)&nbsp;代金券仅限本人使用</p>
+     <% @appointments.each do |appoint| %>
+     <div id="appointment_item_<%= appoint.id %>">
+      
+      <% if not appoint.coupon.vouched_by_user?(current_user) %> 
+     <div class="tr delwrap"><a href="javascript:;" data-remote="true", data-id="<%= appoint.id %>" onclick="App.deleteAppointable(this);"><span class="delbtn pointer"><i class="del-icon"></i>删除</span></a></div>
+      <% end %>
+      <table>
+         <tr class="th">
+          <th>教练信息</th>
+          <th>市场价</th>
+          <th>代金券自减</th>
+          <th>实际支付价</th>
+          <th></th>
+        </tr>
+        <tr>
+            <td width="35%"><%= render_coach_info(appoint.coupon.ownerable) if appoint.coupon %></td>
+            <td class="fb" width="15%">￥<%= appoint.coupon.ownerable.try(:price) if appoint.coupon %></td>
+            <td class="fb" width="15%">-￥<%= appoint.coupon.value if appoint.coupon %></td>
+            <td class="orange fb" width="15%">￥<%= (appoint.coupon.ownerable.try(:price) - appoint.coupon.value) if appoint.coupon %></td>
+            <td width="10%">
+              <%= get_coupon_tag(appoint.coupon) %>
+            </td>
+        </tr>
+      </table> 
+      </div>
+      <% end %>
+  </div>
   
-  <% @appointments.each do |appointment| %>
-  <tr>
-    <td class="first"><%= appointment.id %></td>
-    <td><%= render_appointable_name(appointment) %></td>
-    <td><%= render_appointment_coupon_value(appointment) %></td>
-    <td><%= render_appointment_coupon_duration(appointment) %></td>
-    <td><%= render_appointment_coupon_left_count(appointment) %></td>
-    <td><%= l appointment.created_at, :format => :short %></td>
-    <td><%= render_appointment_coupon_status(appointment) %></td>
-  </tr>
-  <% end %>
-</table>
+  <% if current_user.blank? or current_user.profile.blank? or current_user.profile.mobile.blank? %>
+  <div class="modal hide fade" id="login">
+        <div class="modal-header">
+          <a href="#" class="close" data-dismiss="modal">×</a>
+          <h4>请输入手机号和真实姓名</h4>
+        </div>
+        <%= simple_form_for(current_user, url: bind_users_path, html: { id: "user_bind_form", method: :put, class: "form-horizontal" }) do |f| %>
+        <div class="modal-body">
+          
+          <div id="bind-result"></div>
+          
+          <%= f.fields_for current_user.profile do |b| %>
+            
+            <% if current_user.profile.real_name.blank? %>
+          <div class="control-group">
+            <label class="control-label">真实姓名</label>
+            <div class="controls">
+              <%= b.text_field :real_name %>
+            </div>
+          </div>
+          <% else %>
+          <%= b.hidden_field :real_name %>
+          <% end %>
+    
+          <div class="control-group">
+            <label class="control-label"><span class="red">*</span>手机</label>
+            <div class="controls">
+              <%= b.text_field :mobile %>
+              <span class="help-block">手机号必填</span>
+            </div>
+          </div>
+            
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="App.bindUserProfile();">确定</button>
+        </div>
+        <% end %>
+      </div>
+      <% end %>

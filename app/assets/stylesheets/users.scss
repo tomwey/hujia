@@ -158,9 +158,26 @@
     background: image-url("psw-nav-active.gif") repeat-x;
     color: #fff;
 }
+
 //.psw-nav li.active a {
 //    color: #fff;
 //}
+
+
+.law {
+    width: 680px;height: 100px; overflow-x: auto;border: 1px solid #bababa;padding: 5px 10px;color: #666;line-height: 1.5;
+    > h2 {
+      font-size: 13px;
+      font-weight: bold;
+      color: black;
+      margin-bottom: 10px;
+    }
+    
+    p {
+      text-indent: 2em;
+      margin-bottom: 10px;
+    }
+}
 
 .reg-form {
   width: 675px;
@@ -172,9 +189,7 @@
     margin: 30px 0 20px 160px;
   }
   
-  .law {
-      width: 605px;height: 100px; overflow-x: auto;border: 1px solid #bababa;padding: 5px 10px;color: #666;line-height: 1.5;
-  }
+
   
   label {
     font-size: 14px;
@@ -323,6 +338,13 @@
 }
 /*voucherBox*/
 
+.voucherBox {
+//  background: red;
+  h1 {
+    color: #414141;font-size: 14px;font-weight: bold;margin: 0 0 30px; 
+  }
+} //title { color: #414141;font-size: 14px;font-weight: bold;margin: 45px 0 30px; background: red;} 
+
 .voucherBox .filWrap {
     color: #999;
     margin: 10px 0 20px;
@@ -334,6 +356,7 @@
 .voucherT {
     border-collapse: collapse;
     text-align: center;
+    margin-bottom: 40px;
 }
 .voucherT .th {
     background: image-url("voucher-bg.gif") repeat-x;

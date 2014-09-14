@@ -1,26 +1,20 @@
 <div class="voucherBox">
-    <h1>我的代金券</h1>
+    <h1 class="title">我的代金券</h1>
+    
 		<% if @vouchings.empty? %>
 		还没有领取代金券!!!
 		<% else %>
+    
+    <% @vouchings.each do |v| %>
     <table class="voucherT">
         <tr class="th">
-            <th class="msg">团购信息</th>
+            <th class="msg">代金券信息</th>
             <th class="num">数量</th>
-            <th class="price">总价</th>
-            <th class="statu">订单状态</th>
+            <th class="price">优惠后的价</th>
+            <th class="statu">代金券状态</th>
             <th class="opt">操作</th>
         </tr>
-				
-				<% @vouchings.each do |v| %>
-        <tr id="tr_header_<%= v.id %>">
-            <td colspan="5">
-                <div class="clearfix voumsg">
-                    <span class="voucher fl">代金券号：<%= v.coupon.try(:id) %></span>
-                    <a href="javascript;" data-remote="true" data-id="<%= v.id %>" onclick="App.deleteVouching(this);"><span class="fr"><i class="del-icon"></i>删除</span></a>
-                </div>
-            </td>
-        </tr>
+
         <tr id="tr_item_<%= v.id %>" class="td">
             <td>
                 <div class="clearfix picW">
@@ -28,22 +22,23 @@
                         <%= render_commentable_avatar(v.coupon.try(:ownerable), :link => false) %>
                     </div>
                     <div class="fl vouchList">
-                        <p class="fb"><%= v.coupon.title %></p>
-                        <p class="date">团购结束：<%= v.coupon.end_date %></p>
-                        <p><%= link_to "商家信息", v.coupon.ownerable, class: "red" %></p>
+                        <p class="fb"><%= v.coupon.try(:title) %></p>
+                        <p class="date">有效期至：<%= v.coupon.try(:end_date) %></p>
+                        <p><%= link_to "教练信息", v.coupon.try(:ownerable), class: "red", target: "_blank" %></p>
                     </div>
                 </div>
             </td>
             <td>1</td>
-            <td>￥<%= render_coupon_price(v.coupon.ownerable) %></td>
+            <td>￥<%= render_coupon_price(v.coupon.try(:ownerable)) %></td>
             <td><%= render_vouching_coupon_status(v) %></td>
             <td>
                 <%= render_vouching_link_tag(v) %>
             </td>
         </tr>
-				<% end %>
+				
          
     </table>
+    <% end %>
 		<div style="text-align:center"><%= will_paginate @vouchings %></div>
 		<% end %>
 </div>

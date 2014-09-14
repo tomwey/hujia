@@ -14,6 +14,8 @@ module VouchingsHelper
   def render_vouching_link_tag(vouching)
     return '' if vouching.blank?
     
+    return '' if vouching.coupon.blank?
+    
     case vouching.status
     when 0 then link_to "验&emsp;证".html_safe, active_coupon_path(vouching.coupon), class: "vonBtn"
     when 1 then link_to "评&emsp;价".html_safe, new_comment_path(:coupon_id => vouching.coupon.id), class: "vonBtn"

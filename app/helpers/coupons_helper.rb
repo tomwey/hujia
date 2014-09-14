@@ -104,6 +104,7 @@ module CouponsHelper
   end
   
   def render_coupon_price(ownerable)
+    return '' if ownerable.blank?
     return (ownerable.price - ownerable.coupons.first.value) if ownerable.coupons.first
     return ownerable.price
   end

@@ -21,7 +21,7 @@
           <% end %>
           
           <div class="form-actions">
-            <%= f.button :submit, "更新资料", :class => "btn btn-primary", :disable_with => "保存中..." %>
+            <input class="btn-yellow block" data-disable-with="保存中..." name="commit" type="submit" value="更新资料" />
           </div>
           
         </fieldset>
@@ -37,7 +37,7 @@
           <%= f.input :password, autocomplete: "off", hint: "如果不想修改，请留空!", required: false, label: "新密码" %>
           <%= f.input :password_confirmation, required: false ,  label: "确认新密码"%>
           <div class="form-actions">
-            <%= f.button :submit, "修改密码", :class => "btn btn-success", :disable_with => "更新中..." %>
+            <input class="btn-yellow block" data-disable-with="更新中..." name="commit" type="submit" value="修改密码" />
           </div>
         </fieldset>
       <% end %>

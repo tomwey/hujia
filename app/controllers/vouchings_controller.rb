@@ -7,7 +7,7 @@ class VouchingsController < ApplicationController
     count = Vouching.where(:user_id => current_user.id).count
     limit_count = SiteConfig.vouch_limit_count.blank? ? 2 : SiteConfig.vouch_limit_count.to_i
     if count >= limit_count
-      redirect_to appointments_url, :alert => "一个用户最多只能领取2个代金券"
+      redirect_to appointments_user_path(current_user.nickname), :alert => "一个用户最多只能领取2个代金券"
       return
     end
     
@@ -21,7 +21,7 @@ class VouchingsController < ApplicationController
     if Vouching.create(:user_id => current_user.id, :coupon_id => @coupon.id)
       @coupon.add_visit
       ActiveCode.where( :coupon_id => @coupon.id, :user_id => current_user.id ).first_or_create
-      redirect_to active_coupon_path(@coupon), :success => "领取成功!"
+      redirect_to active_coupon_path(@coupon), :notice => "代金券已领取成功"
     else
       redirect_to appointments_url, :alert => "领取失败!"
     end

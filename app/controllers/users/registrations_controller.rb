@@ -2,6 +2,12 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   layout "user_layout", only: [:edit, :update]
     
+  
+  # protected
+  def after_update_path_for(resource)
+    edit_user_registration_path
+  end
+  
   def new
     super
   end

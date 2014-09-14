@@ -5,7 +5,7 @@
 
 @charset "utf-8"; 
 /*author yong   date 2014-09-06  voucher-wrap*/
-.voucher-wrap .title { color: #414141;font-size: 14px;font-weight: bold;margin: 45px 0 30px;} 
+.voucher-wrap .title{ color: #414141;font-size: 14px;font-weight: bold;margin: 0 0 30px;} 
 .voucher-wrap .delwrap{ margin-bottom: 10px;} 
 .voucher-wrap .delbtn{color: #9b9b9b;}
 .voucher-wrap table { width: 100%;  border-collapse: collapse;text-align: center;border: 1px solid #ffc9a0; } 
@@ -82,6 +82,12 @@ her-wrap tr{height: 70px;line-height: 70px;}
     font-size: 14px;color: #1e1e1e;padding-bottom: 5px;border-bottom: 2px dashed #dfdfdf;font-weight: bold;width: 365px;
   }
 } 
+
+.form-actions {
+  .block {
+    padding: 0 25px;
+  }
+}
 
 .scorll-detail .detail {
     margin-left: 15px;

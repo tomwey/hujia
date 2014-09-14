@@ -5,7 +5,6 @@
 		还没有领取代金券!!!
 		<% else %>
     
-    <% @vouchings.each do |v| %>
     <table class="voucherT">
         <tr class="th">
             <th class="msg">代金券信息</th>
@@ -15,7 +14,17 @@
             <th class="opt">操作</th>
         </tr>
 
+    <% @vouchings.each do |v| %>
+        <tr>
+            <td colspan="5">
+                <div class="clearfix voumsg">
+                    <span class="voucher fl">代金券号：<%= v.coupon.id %></span>
+                </div>
+            </td>
+        </tr>
+        
         <tr id="tr_item_<%= v.id %>" class="td">
+          
             <td>
                 <div class="clearfix picW">
                     <div class="fl">
@@ -36,9 +45,9 @@
             </td>
         </tr>
 				
-         
+             <% end %>
     </table>
-    <% end %>
+
 		<div style="text-align:center"><%= will_paginate @vouchings %></div>
 		<% end %>
 </div>

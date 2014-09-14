@@ -62,6 +62,7 @@
         service_area_ids: "服务区域"
         photos: "简介图片"
         coupons: "代金券"
+        payment_type: "支付方式"
       school:
         name: "驾校名称"
         linkman: "联系人"

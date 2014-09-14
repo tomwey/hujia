@@ -1,6 +1,6 @@
 # coding: utf-8
 class Coach < ActiveRecord::Base
-  attr_accessible :city,:province, :company, :image, :image_crop_x,:image_crop_y,:image_crop_w,:image_crop_h,:fee_intro, :note,
+  attr_accessible :city,:province, :company, :image, :image_crop_x,:image_crop_y,:image_crop_w,:image_crop_h,:fee_intro, :note,:payment_type,
   :photos_attributes, :is_authorized, :price, :intro, :star_count, :drive_type, :coupons_attributes, :service_area_ids, :teach_location, :is_check, :location, :mobile, :pickup_location, :qq, :real_name, :service_type, :sex, :image_cache
   
   attr_protected :visible
@@ -10,7 +10,7 @@ class Coach < ActiveRecord::Base
   validates :qq, :format => { :with => /[1-9][0-9]{4,}/, :message => "请输入正确的QQ号" }, :uniqueness => true
   
   validates :city, :province, :company, :image, :fee_intro, :price, :intro, :is_authorized, :star_count, :drive_type, 
-  :teach_location, :is_check, :location, :real_name, :service_type, :service_area_ids, :coupons, :photos, presence: true
+  :teach_location, :is_check, :location, :real_name, :service_type, :service_area_ids, :payment_type, :coupons, :photos, presence: true
   
   has_one :user, as: :profile, dependent: :destroy
   

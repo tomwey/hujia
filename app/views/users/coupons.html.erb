@@ -16,7 +16,7 @@
         <tr id="tr_header_<%= v.id %>">
             <td colspan="5">
                 <div class="clearfix voumsg">
-                    <span class="voucher fl">代金券号：<%= v.coupon.id %></span>
+                    <span class="voucher fl">代金券号：<%= v.coupon.try(:id) %></span>
                     <a href="javascript;" data-remote="true" data-id="<%= v.id %>" onclick="App.deleteVouching(this);"><span class="fr"><i class="del-icon"></i>删除</span></a>
                 </div>
             </td>
@@ -25,7 +25,7 @@
             <td>
                 <div class="clearfix picW">
                     <div class="fl">
-                        <%= render_commentable_avatar(v.coupon.ownerable, :link => false) %>
+                        <%= render_commentable_avatar(v.coupon.try(:ownerable), :link => false) %>
                     </div>
                     <div class="fl vouchList">
                         <p class="fb"><%= v.coupon.title %></p>

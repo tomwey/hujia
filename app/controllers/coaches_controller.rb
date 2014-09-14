@@ -22,6 +22,11 @@ class CoachesController < ApplicationController
       @coaches = @coaches.where(:service_type => params[:st])
     end
     
+    # 支付方式
+    if params[:pt].present?
+      @coaches = @coaches.where(:payment_type => params[:pt])
+    end
+    
     # 价格
     if params[:price].present?
       values = params[:price].split('-')

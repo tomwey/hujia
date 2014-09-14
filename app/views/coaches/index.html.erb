@@ -21,6 +21,13 @@
             <%= filterable(:st, c[0], c[0]) %>
             <% end %>
         </dd>
+        <dt>支付方式：</dt>
+        <dd>
+            <%= filterable(:pt) %>
+            <% payment_types.each do |c| %>
+            <%= filterable(:pt, c[0], c[0]) %>
+            <% end %>
+        </dd>
         <dt>价格：</dt>
         <dd>
             <%= filterable(:price) %>
@@ -53,7 +60,6 @@
 
 <div class="rightwrap fr">
 	<%= raw SiteConfig.xcxz_content %>
-  <%= raw SiteConfig.text_ads %>
 </div>
 
 <%= raw SiteConfig.qr_and_use_intro %>

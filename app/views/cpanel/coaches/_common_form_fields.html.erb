@@ -14,6 +14,7 @@
 <legend>工作信息</legend>
 <%= f.input :company, label: "所属驾校" %>
 <%= f.input :price, label: "学车价格" %>
+<%= f.input :payment_type, as: :select, label: "支付方式", collection: payment_types, prompt: "-- 请选择支付方式 --" %>
 
 <%= f.input :drive_type, as: :select, label: t("site_config.drive_type"), collection: drive_types, prompt: "-- 请选择驾照类型 --" %>
 <%= f.input :service_type, as: :select, label: t("site_config.service_type"), collection: service_types, prompt: "-- 请选择服务类型 --" %>

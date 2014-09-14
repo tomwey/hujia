@@ -286,4 +286,10 @@ module ApplicationHelper
     return []
   end
   
+  # 支付方式
+  def payment_types
+    return SiteConfig.payment_type.split(',').map { |c| [c, c] } if SiteConfig.payment_type
+    return []
+  end
+  
 end

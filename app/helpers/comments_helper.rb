@@ -28,6 +28,7 @@ module CommentsHelper
     return '' if ownerable.comments.empty?
     
     comments_li = render "/comments/comment", collection: ownerable.comments
+    puts comments_li
     content_tag :ul, comments_li.html_safe, class: "evaluation"
   end
   
@@ -64,6 +65,15 @@ module CommentsHelper
     ( score.to_f / 5.0 ) * 100
   end
   
+  def render_star_percent_for(comment)
+    return '' if comment.blank?
+    
+    score = (comment.overall_rating + comment.service_rating + comment.env_rating + comment.attitude_rating) / 4
+    
+    (score * 20)
+    
+  end
+  
   # 获取某一种评价的分数, 例如: 4.5
   def render_comment_score_for(commentable, type)
     return 0 if commentable.blank?
@@ -74,7 +84,7 @@ module CommentsHelper
       sum += comment[type]
     end
     
-    sum.to_f / commentable.comments_count
+    (sum.to_f / commentable.comments_count).round(1)
     
   end
   

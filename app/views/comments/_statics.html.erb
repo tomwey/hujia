@@ -1,17 +1,18 @@
 <div class="rate-detail countgroup"> 
     <div class="count-group">
-        <span class="score">5分</span><span class="percent-box inline-block"><em style="width:65.789473684211%" class="percent inline-block"></em></span>175人
+        <span class="score">5分</span>
+        <span class="percent-box inline-block"><em style="width:<%= @coach.total_user_count_for(5) * 100 / @coach.comments_count %>%" class="percent inline-block"></em></span><%= @coach.total_user_count_for(5) %>人
     </div>
     <div class="count-group">
-        <span class="score">4分</span><span class="percent-box inline-block"><em style="width:25.187969924812%" class="percent inline-block"></em></span>67人
+        <span class="score">4分</span><span class="percent-box inline-block"><em style="width:<%= @coach.total_user_count_for(4) * 100 / @coach.comments_count %>%" class="percent inline-block"></em></span><%= @coach.total_user_count_for(4) %>人
     </div>
     <div class="count-group">
-        <span class="score">3分</span><span class="percent-box inline-block"><em style="width:5.2631578947368%" class="percent inline-block"></em></span>14人
+        <span class="score">3分</span><span class="percent-box inline-block"><em style="width:<%= @coach.total_user_count_for(3) * 100 / @coach.comments_count %>%" class="percent inline-block"></em></span><%= @coach.total_user_count_for(3) %>人
     </div>
     <div class="count-group">
-        <span class="score">2分</span><span class="percent-box inline-block"><em style="width:1.1278195488722%" class="percent inline-block"></em></span>3人
+        <span class="score">2分</span><span class="percent-box inline-block"><em style="width:<%= @coach.total_user_count_for(2) * 100 / @coach.comments_count %>%" class="percent inline-block"></em></span><%= @coach.total_user_count_for(2) %>人
     </div>
     <div class="count-group">
-        <span class="score">1分</span><span class="percent-box inline-block"><em style="width:2.6315789473684%" class="percent inline-block"></em></span>7人
+        <span class="score">1分</span><span class="percent-box inline-block"><em style="width:<%= @coach.total_user_count_for(1) * 100 / @coach.comments_count %>%" class="percent inline-block"></em></span><%= @coach.total_user_count_for(1) %>人
     </div>
 </div>

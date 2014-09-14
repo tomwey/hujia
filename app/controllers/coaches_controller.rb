@@ -60,7 +60,7 @@ class CoachesController < ApplicationController
   
   def show
     @coach = Coach.includes(:photos, :comments, :coupons).find(params[:id])
-    
+    @comments = @coach.comments.order('created_at desc').paginate page: params[:page], per_page: 15
     set_seo_meta("【#{@coach.company}】#{@coach.real_name}", "", @coach.intro)
   end
   

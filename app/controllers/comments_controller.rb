@@ -45,6 +45,10 @@ class CommentsController < ApplicationController
         vouching.save
       end
       
+      # 更新平均分的记录
+      score = (@comment.overall_rating + @comment.service_rating + @comment.env_rating + @comment.attitude_rating) / 4
+      RatingScore.where(:user_id => current_user.id, :comment_id => @comment.commentable_id, :score => score ).first_or_create
+      
       # 更新积分
       profile = current_user.profile
       if @comment.is_show_user_info

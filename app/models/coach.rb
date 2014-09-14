@@ -35,6 +35,17 @@ class Coach < ActiveRecord::Base
     self[:image].blank?
   end
   
+  def total_user_count_for(level)
+    case level
+    when 5 then RatingScore.where('comment_id = ? and score = 5.0',  self.id).count
+    when 4 then RatingScore.where('comment_id = ? and score >= 4.0 and score < 5.0',  self.id).count
+    when 3 then RatingScore.where('comment_id = ? and score >= 3.0 and score < 4.0',  self.id).count
+    when 2 then RatingScore.where('comment_id = ? and score >= 2.0 and score < 3.0',  self.id).count
+    when 1 then RatingScore.where('comment_id = ? and score >= 1.0 and score < 2.0',  self.id).count
+    else 0
+    end
+  end
+  
   def self.search(keyword)
     if keyword
       where('real_name LIKE ? or company LIKE ?', "%#{keyword}%", "%#{keyword}%")

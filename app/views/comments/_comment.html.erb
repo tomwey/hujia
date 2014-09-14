@@ -8,10 +8,10 @@
            <input type="button" value="和她聊聊" class="btn talk-btn">
            <% end %>
             <span class="rate-starMax ">
-                <span style="width: <%= render_star_percent(comment.ownerable) %>%;" class="rate-starMaxH ">
+                <span style="width: <%= render_star_percent_for(comment) %>%;" class="rate-starMaxH ">
                 </span>
             </span>
-            <span class="date"><%= l comment.updated_at %></span>
+            <span class="date"><%= l comment.updated_at, :format => :long %></span>
         </div>
     </div>
     <p><%= comment.content %></p>

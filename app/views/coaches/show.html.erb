@@ -53,8 +53,13 @@
   						<%= render "/comments/detail_rating", :commentable => @coach %>
   						<%= render "/comments/statics", :commentable => @coach %>
           </div> 
-				
-  				<%= render_comments_for_owner(@coach) %>
+				  
+          <ul class="evaluation">
+            <%= render @comments %>
+          </ul>
+  				
+          <div style="text-align:center"><%= will_paginate @comments %></div>
+          
         </div>
       
     </div>

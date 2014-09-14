@@ -34,7 +34,7 @@ class ActiveCodesController < ApplicationController
         vouching.save
       end
       @code.coupon.active
-      redirect_to coupons_user_path(current_user.nickname), notice: "验证成功"
+      redirect_to new_comment_path(:coupon_id => @coupon.id), notice: "验证成功"#coupons_user_path(current_user.nickname), notice: "验证成功"
     else
       redirect_to active_coupon_path(@coupon), alert: "验证失败"
     end

@@ -1,3 +1,6 @@
+<% if @comments.empty? %>
+没有找到相关的评价哦
+<% else %>
 <% @comments.each do |comment| %>
 
 <div class="rated-wrap">
@@ -26,4 +29,5 @@
   </div>
 </div>
 
+<% end %>
 <% end %>

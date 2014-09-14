@@ -28,8 +28,8 @@
             <span class="tl"><%= @coupon.ownerable.location %></span>
         </li>
         <li>
-            <span class="tr">领取时间：</span>
-            <span class="tl">2014-08-10 13:50:25</span>
+            <span class="tr">代金券领取时间：</span>
+            <span class="tl"><%= render_claim_coupon_time(@coupon) %></span>
         </li>
 				<%= simple_form_for @active_code do |f| %>
 				<%= f.hidden_field :coupon_id %>

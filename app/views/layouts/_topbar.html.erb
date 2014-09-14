@@ -7,7 +7,7 @@
     <div class="fr">
       <% if user_signed_in? %>
       Hi, <%= current_user.nickname %>
-      <span class="line">|</span><%= link_to '我的U驾', user_path(current_user.nickname) %>
+      <span class="line">|</span><%= render_user_profile_link %>
       <% if current_user.admin? %>
       <span class="line">|</span><%= link_to '进入后台', cpanel_root_path %>
       <% end %>

@@ -11,6 +11,17 @@ module VouchingsHelper
     end
   end
   
+  def render_claim_coupon_time(coupon)
+    return '' if coupon.blank?
+    
+    v = Vouching.where(:user_id => current_user.id, :coupon_id => coupon.id).first
+    
+    return '' if v.blank?
+    
+    l v.created_at, format: :long
+    
+  end
+  
   def render_vouching_link_tag(vouching)
     return '' if vouching.blank?
     

@@ -12,6 +12,10 @@ module UsersHelper
     end
   end
   
+  def render_user_profile_link
+    link_to '我的U驾', user_path(current_user.nickname)
+  end
+  
   def render_user_role(user)
     if user.profile_type == 'Customer'
       "用户"

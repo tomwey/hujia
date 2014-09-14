@@ -15,7 +15,7 @@ module CommentsHelper
     img = image_tag commentable.image.thumb, style: "width:87px; height:50px"
     
     if link
-      link_to img, commentable
+      link_to img, commentable, target: "_blank"
     else
       img
     end

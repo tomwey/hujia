@@ -21,15 +21,15 @@ class UsersController < ApplicationController
   
   def appointments
     # @appointments ||= @user.appointments.recent.paginate(:page => params[:page], :per_page => 30)
-    appointments = current_user.appointments.includes(:appointable).order('created_at desc')
+    @appointments = current_user.appointments.includes(:appointable).order('created_at desc')
     # @appointables = @appointments.collect { |appoint| appoint.appointable }
     
-    @appointments = []
-    appointments.each do |appoint|
-      if appoint.coupon and (not appoint.coupon.vouched_by_user?(current_user))
-        @appointments << appoint
-      end
-    end
+    # @appointments = []
+    # appointments.each do |appoint|
+    #   if appoint.coupon and (not appoint.coupon.vouched_by_user?(current_user))
+    #     @appointments << appoint
+    #   end
+    # end
     
     set_seo_meta("我的预约报名")
     

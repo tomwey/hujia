@@ -1,8 +1,7 @@
 <% if @coach.comments_count > 0 %>
 <div class="rate-detail countgroup"> 
     <div class="count-group">
-        <span class="score">5分</span>
-        <span class="percent-box inline-block"><em style="width:<%= @coach.total_user_count_for(5) * 100 / @coach.comments_count %>%" class="percent inline-block"></em></span><%= @coach.total_user_count_for(5) %>人
+        <span class="score">5分</span><span class="percent-box inline-block"><em style="width:<%= @coach.total_user_count_for(5) * 100 / @coach.comments_count %>%" class="percent inline-block"></em></span><%= @coach.total_user_count_for(5) %>人
     </div>
     <div class="count-group">
         <span class="score">4分</span><span class="percent-box inline-block"><em style="width:<%= @coach.total_user_count_for(4) * 100 / @coach.comments_count %>%" class="percent inline-block"></em></span><%= @coach.total_user_count_for(4) %>人

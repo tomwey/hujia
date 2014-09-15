@@ -104,8 +104,9 @@ her-wrap tr{height: 70px;line-height: 70px;}
     padding: 0 15px;
 }
 .sort span{margin-right: 10px;}
-.sort a{display: inline-block; *zoom:1;*display:inline;background: image-url("sortS.gif") repeat-x;width: 50px;height: 19px;line-height: 19px;border: 1px solid #dfdfdf;color: #393c43;text-align: center;float: left;margin-top: 8px;}
-.sort .sort-icon {background: image-url("sortArrow.gif") no-repeat;width: 11px;height: 10px;display: inline-block;*zoom:1;*display:inline;margin-top: 3px;vertical-align: top;}
+.sort a{display: inline-block; *zoom:1;*display:inline;background: image-url("sortS.gif") repeat-x;width: 60px;height: 19px;line-height: 19px;border: 1px solid #dfdfdf;color: #393c43;text-align: center;float: left;margin-top: 8px;}
+.sort .sort-icon-up {background: image-url("sortUp.gif") no-repeat;width: 11px;height: 10px;display: inline-block;*zoom:1;*display:inline;margin-top: 3px;vertical-align: top;}
+.sort .sort-icon-down {background: image-url("sortDown.gif") no-repeat;width: 11px;height: 10px;display: inline-block;*zoom:1;*display:inline;margin-top: 4px;vertical-align: top;}
 .sort .xj { width: 74px;}
 /*scorlls*/
 .scorll-detail .imgBig img{

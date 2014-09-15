@@ -9,7 +9,7 @@
     <div class="tr sale">
       <span class="star inline-block">
           <span class="rate-start inline-block" style="width:<%= render_star_percent(coach) %>%"></span>
-      </span>
-      <%= render_coupon_count(coach) %>
+      </span> 
+      <%= render_coupon_count(coach) %>&nbsp;<span style="font-size:12px;"><%= coach.comments_count %>人评价</span>
     </div>
 </li>

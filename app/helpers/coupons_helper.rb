@@ -53,7 +53,7 @@ module CouponsHelper
   end
   
   def render_coupon_count(ownerable)
-    "#{ownerable.coupons.first.claims_count}人购买" if ownerable.coupons.first
+    "#{ownerable.coupons.first.claims_count}人报名" if ownerable.coupons.first
   end
   
   def render_coupon_status(coupon)

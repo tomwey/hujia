@@ -1,4 +1,10 @@
 <div class="rate-detail scoreGroup br">
+  <div>
+       <span class="score-title">总评</span>
+       <span class="rate-starMax ">
+          <span class="rate-starMaxH " style="width: <%= render_comment_score_for(commentable, :attitude_rating) * 20 %>%;"></span>
+      </span><%= render_comment_score_for(commentable, :overall_rating) %>分
+  </div>
     <div>
          <span class="score-title">态度</span>
          <span class="rate-starMax ">

@@ -11,6 +11,13 @@ class AppointmentsController < ApplicationController
   end
   
   def create
+    
+    appoint = Appointment.where(:appointable_id => @item.id, :appointable_type => @item.class,:user_id => current_user.id).first
+    if appoint
+      redirect_to appointments_user_path(current_user.nickname), alert: "您之前已经预约报名了该教练。"
+      return
+    end
+    
     if current_user.appoint(@item)
       redirect_to appointments_user_path(current_user.nickname), notice: "预约报名成功。"
     else

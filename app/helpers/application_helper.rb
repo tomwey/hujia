@@ -156,19 +156,18 @@ module ApplicationHelper
   end
   
   def sort_link(column, title = nil)
-    # title ||= column.titleize
-    # css_class = column == sort_column ? "active" : nil
-    # direction = column == sort_column && sort_direction == "desc" ? "asc" : "desc"
-    # 
-    # css_class2 = direction == "desc" ? "up" : "down"
-    # span = content_tag :span, '',:class => "#{css_class2} arrow"
-    # a = link_to title, params.merge(:sort => column, :direction => direction, :page => nil)
-    # content_tag :li, (a+span), :class => css_class
     
     title ||= column.titleize
-    direction = column == sort_column && sort_direction == "desc" ? "asc" : "desc"
-    puts direction
-    i_html = content_tag :i, nil, class: "sort-icon"
+
+    if column == "c_ccount" or column == "comments_count"
+      direction = "desc"
+      css_class2 = "down"
+    else
+      direction = column == sort_column && sort_direction == "desc" ? "asc" : "desc"
+      css_class2 = direction == "desc" ? "up" : "down"
+    end
+    
+    i_html = content_tag :i, nil, class: "sort-icon-#{css_class2}"
     
     link_to (title + i_html).html_safe, params.merge(:sort => column, :direction => direction, :page => nil)
     

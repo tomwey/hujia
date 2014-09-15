@@ -18,6 +18,7 @@ class Coach < ActiveRecord::Base
   accepts_nested_attributes_for :coupons
   
   has_many :comments, as: :commentable
+  has_many :rating_scores, :foreign_key => "comment_id"
   
   has_many :photos, as: :photoable, dependent: :destroy
   accepts_nested_attributes_for :photos, reject_if: Proc.new { |attr| attr['image'].blank? }, :allow_destroy => true
@@ -37,11 +38,11 @@ class Coach < ActiveRecord::Base
   
   def total_user_count_for(level)
     case level
-    when 5 then RatingScore.where('comment_id = ? and score = 5.0',  self.id).count
-    when 4 then RatingScore.where('comment_id = ? and score >= 4.0 and score < 5.0',  self.id).count
-    when 3 then RatingScore.where('comment_id = ? and score >= 3.0 and score < 4.0',  self.id).count
-    when 2 then RatingScore.where('comment_id = ? and score >= 2.0 and score < 3.0',  self.id).count
-    when 1 then RatingScore.where('comment_id = ? and score >= 1.0 and score < 2.0',  self.id).count
+    when 5 then @total5 ||= self.rating_scores.where(:score => 5.0).count
+    when 4 then @total4 ||= self.rating_scores.where('score >= 4.0 and score < 5.0').count
+    when 3 then @total3 ||= self.rating_scores.where('score >= 3.0 and score < 4.0').count
+    when 2 then @total2 ||= self.rating_scores.where('score >= 2.0 and score < 3.0').count
+    when 1 then @total1 ||= self.rating_scores.where('score >= 1.0 and score < 2.0').count
     else 0
     end
   end

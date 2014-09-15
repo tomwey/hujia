@@ -3,7 +3,7 @@
     <!-- detail tabs start-->
   <div class="detail-tabs">
         <ul class="tabs clearfix">
-            <li class="active"><a href="#map">驾校/教练位置</a></li>
+            <li class="current"><a href="#map">驾校/教练位置</a></li>
             <li><a href="#fee-intro">费用说明</a></li>
             <li><a href="#purchase-notice">购买须知</a></li>
             <li><a href="#intro">驾校/教练介绍</a></li>
@@ -64,11 +64,11 @@
   						<%= render "/comments/statics", :commentable => @coach %>
           </div> 
 				  
-          <ul class="evaluation">
+          <ul class="evaluation" id="comments">
             <%= render @comments %>
           </ul>
   				
-          <div style="text-align:center"><%= will_paginate @comments %></div>
+          <div style="text-align:center"><%= will_paginate @comments, :inner_window => 2, :params => { :anchor => 'comments' } %></div>
           
         </div>
       
@@ -94,6 +94,12 @@
 
 <% content_for :scripts do %>
     <script type="text/javascript">
+    // $(function() {
+    //   $('.pagination a').click(function() {
+    //     $.getScript(this.href);
+    //     // return false;
+    //   });
+    // });
         $(function () {
             $('.srcIn').placeholder();
             var firstSrc=$(".topicul").find("img:first").data("large-image-src");//attr("src");
@@ -119,7 +125,7 @@
             eles.each (function () {
               $(this).attr("class", "");
             });
-            $(this).attr("class", "active");
+            $(this).attr("class", "current");
           });
         });
     </script>

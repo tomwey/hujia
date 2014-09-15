@@ -43,10 +43,10 @@
         <%= sort_link 'price', "价格" %>
     </div>
     
-    <div style="text-align:right;"><%= will_paginate @coaches %></div>
+    <div style="text-align:right;"><%= will_paginate @coaches ,:inner_window => 2, :params => { anchor: "coaches"}%></div>
     
     <% if @coaches.any? %>
-    <ul class="list productList clearfix">
+    <ul class="list productList clearfix" id="coaches">
       <% if @query_string.present? %>
       <div class="result">找到<span class="red fb">“<%= @query_string %>”</span>的相关结果 <span class="red fb"><%= @total %>个</span></div>
       <% end %>
@@ -57,7 +57,7 @@
     <%= render "/search/no_result" %>
     <% end %>
 
-    <div style="text-align:right;"><%= will_paginate @coaches %></div>
+    <div style="text-align:right;"><%= will_paginate @coaches, :inner_window => 2, :params => { anchor: "coaches"} %></div>
 </div>
 
 <div class="rightwrap fr">

@@ -306,7 +306,7 @@ her-wrap tr{height: 70px;line-height: 70px;}
       };
     }
   }
-  .active {
+  .current {
     a {
       color: white;
       &:hover {
@@ -363,9 +363,16 @@ her-wrap tr{height: 70px;line-height: 70px;}
 
 .tabs{margin-top: 20px;  border-bottom: 3px solid #1174cb;width: 732px;}
 .tabs li {
-    float: left;background: image-url("whiteCenter.gif") repeat-x;height: 34px;line-height: 34px;border-radius: 10px 10px 0 0;border: 1px solid #dfdfdf;text-align: center;padding:0 20px;color: #414141;margin-right: 10px;cursor: pointer
+    float: left;background: image-url("whiteCenter.gif") repeat-x;height: 34px;line-height: 34px;border-radius: 10px 10px 0 0;border: 1px solid #dfdfdf;text-align: center;color: #414141;margin-right: 10px;cursor: pointer
 }
-.tabs li.active{background: image-url("blueCenter.gif") repeat-x;font-weight: bold;color: #fff;}
+
+.tabs li a {
+  display: block;
+  padding:0 20px;
+  text-align:center;
+}
+
+.tabs li.current{background: image-url("blueCenter.gif") repeat-x;font-weight: bold;color: #fff;}
 
 .topicBox {
     height: 55px;

@@ -25,7 +25,7 @@ class Coach < ActiveRecord::Base
   has_and_belongs_to_many :service_areas, :class_name => "College"
   
   mount_uploader :image, AvatarUploader
-  crop_uploaded  :image
+  # crop_uploaded  :image
   
   scope :visibled, lambda { where(:visible => true) }
   scope :needed_fields, lambda { select('real_name, company, image') }

@@ -59,7 +59,7 @@ module CoachesHelper
     when :small then 24
     when :large then 300
     when :big then 120
-    when :thumb then 160
+    when :thumb then 168
     else size
     end
   end
@@ -70,7 +70,7 @@ module CoachesHelper
     when :small then 40
     when :large then 96
     when :big then 150
-    when :thumb then 160
+    when :thumb then 120
     else size
     end
   end

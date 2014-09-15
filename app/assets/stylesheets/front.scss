@@ -71,7 +71,7 @@ her-wrap tr{height: 70px;line-height: 70px;}
   width: 6px;
   height: 6px;
   
-  background: red;
+  background: rgb(180,0,0);
   border-radius: 3px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -505,6 +505,36 @@ her-wrap tr{height: 70px;line-height: 70px;}
   padding-left: 20px;
 }
 
+.lightgray {
+  color: #b9b8b8;
+}
+
+.QR {
+    position: fixed;
+    top: 10%;
+    right: 20px;
+    width: 163px;
+    height: 510px;
+    background: image-url("sidebar-intro.jpg") no-repeat;
+}
+.QR img {
+    width: 150px;
+    height: 150px;
+    margin: 12px auto;
+}
+.QR ul {
+  margin-top: 100px;
+}
+.QR li {
+    margin: 30px 20px;
+//    color: #333; 
+//    width: 160px;
+//    *width: 180px;
+//    padding-left: 15px;
+}
+
+.QR a{ font-size: 14px; font-family: "黑体"; color: #262626; &:hover { text-decoration: none; }; }
+.QR a.min { font-size: 12px;}
 
 /*page*/
 .pageWrap{font:16px  "微软雅黑"；}

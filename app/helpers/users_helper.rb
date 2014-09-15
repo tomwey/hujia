@@ -13,7 +13,19 @@ module UsersHelper
   end
   
   def render_user_profile_link
-    link_to '我的U驾', user_path(current_user.nickname)
+    
+    css_name = if Vouching.where('user_id = ? and status < 1', current_user.id).count > 0
+      "notification"
+    else
+      ""
+    end
+    
+    span = content_tag :span, "", id: "notification", class: css_name
+    html = <<-HTML
+    <a href="#{user_path(current_user.nickname)}">我的U驾#{span}</a>
+    HTML
+    
+    html.html_safe
   end
   
   def render_user_role(user)

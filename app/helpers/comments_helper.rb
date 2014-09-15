@@ -34,9 +34,9 @@ module CommentsHelper
   
   def render_all_ratings(comment)
     overall = "总体评价：".html_safe + render_star_tag(comment, 'overall_rating', false) + "<br>".html_safe
-    attitude = '<span style="padding-left: 26px">态度：</span>'.html_safe + render_star_tag(comment, 'attitude_rating', false) + "<br>".html_safe
-    service = '<span style="padding-left: 26px">服务：</span>'.html_safe + render_star_tag(comment, 'service_rating', false) + "<br>".html_safe
-    env = '<span style="padding-left: 26px">环境：</span>'.html_safe + render_star_tag(comment, 'env_rating', false)
+    attitude = '<span style="padding-left: 24px">态度：</span>'.html_safe + render_star_tag(comment, 'attitude_rating', false) + "<br>".html_safe
+    service = '<span style="padding-left: 24px">服务：</span>'.html_safe + render_star_tag(comment, 'service_rating', false) + "<br>".html_safe
+    env = '<span style="padding-left: 24px">环境：</span>'.html_safe + render_star_tag(comment, 'env_rating', false)
     
     (overall + attitude + service + env)
   end

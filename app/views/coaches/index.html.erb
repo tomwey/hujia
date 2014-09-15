@@ -43,6 +43,8 @@
         <%= sort_link 'price', "价格" %>
     </div>
     
+    <div style="text-align:right;"><%= will_paginate @coaches %></div>
+    
     <% if @coaches.any? %>
     <ul class="list productList clearfix">
       <% if @query_string.present? %>
@@ -55,7 +57,7 @@
     <%= render "/search/no_result" %>
     <% end %>
 
-    <div style="text-align:center;"><%= will_paginate @coaches %></div>
+    <div style="text-align:right;"><%= will_paginate @coaches %></div>
 </div>
 
 <div class="rightwrap fr">

@@ -51,7 +51,7 @@ class CoachesController < ApplicationController
     end
         
     @coaches = @coaches.visibled.includes(:coupons, :comments)
-    @coaches = @coaches.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @coaches = @coaches.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 21)
     
     @total = @coaches.total_entries
     

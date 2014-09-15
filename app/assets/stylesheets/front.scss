@@ -60,10 +60,44 @@ her-wrap tr{height: 70px;line-height: 70px;}
 .nav-category dd a {margin: 0 10px 0 3px;color: #004c88;}
 .nav-category dd a:hover{color: #0063d9;}
 .nav-category .select {color: #fff;background-color: #FCAE03;padding: 3px 5px;}
-.productList { width: 737px;margin: 20px 0 40px;}
-.productList li{width: 163px;margin: 0 27px 30px 0;}
-.productList li.nob{margin: 0;}
-.productList img {width: 155px;height: 116px;padding: 3px;border: 1px solid #dfdfdf;}
+//.productList { width: 676px;margin: 20px 0 40px;padding-left: 60px;}
+//.productList li{width: 168px;margin: 0 50px 30px 0;}
+//
+//.productList li.nob{margin: 0;}
+//.productList img {width: 168px;height: 120px;padding: 3px;border:1px solid #dfdfdf;}
+
+.coach-item {
+  float: left;
+  width: 168px;
+  margin: 0 50px 30px 0;
+//  img {
+//    border:1px solid #dfdfdf;
+//  }
+  
+  p.intro {
+    color: #006ab5;
+    width: 168px;
+  }
+  
+  p.scj {
+    color: #9b9a9a;
+    margin-top: 15px;
+  }
+  
+  .hyj {
+    color: #ce0000;
+    font-family: "黑体";
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .sale {
+      color: #9a9a9a;
+  }
+}
+
+.productList { width: 676px;margin: 20px 0 40px;padding-left: 60px;}
+
 /*sort*/
 .sort {
     background: image-url("sortB.gif") repeat-x;height: 37px;line-height: 37px;width:700px; border: 1px solid #dfdfdf;color: #393c43;
@@ -172,6 +206,12 @@ her-wrap tr{height: 70px;line-height: 70px;}
 
 .scoreGroup div {
     margin: 10px 0;
+}
+
+.coach-item {
+  img {
+    border: 0;
+  }
 }
 
 .count-group {

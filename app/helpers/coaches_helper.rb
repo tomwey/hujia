@@ -39,7 +39,7 @@ module CoachesHelper
     width = coach_icon_width_for_size(size)
     height = coach_icon_height_for_size(size)
     
-    img = image_tag(coach.image.url(size), alt: coach.real_name , :style => "width:#{width}px;height:#{height}px;")
+    img = image_tag(coach.image.url(size), alt: coach.real_name , :style => "border:1px solid #dfdfdf;width:#{width}px;height:#{height}px;")
     
     link = opts[:link] || true
     

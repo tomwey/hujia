@@ -77,15 +77,26 @@
     left: 50px;
     z-index: 99;
 }
-.list {
-    width: 920px;
-    margin: 0 auto 5px;
+//.list {
+//    width: 920px;
+//    margin: 0 auto 5px;
+//}
+//.list img {
+//    width: 160px;
+//    height: 120px;
+//    border: 1px solid #dfdfdf;
+//} 
+
+.hot-coaches {
+  width: 885px;
+  margin: 0 auto 5px;
+  padding-left: 40px;
+  
+//  .coach-item {
+//    float: left;
+//  }
 }
-.list img {
-    width: 160px;
-    height: 120px;
-    border: 1px solid #dfdfdf;
-} 
+
 .list-bottom {
     position: relative;
     height: 50px;

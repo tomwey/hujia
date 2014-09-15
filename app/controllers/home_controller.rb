@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   # cache_pages [:coupon_use_intro, :deposit_guarantee, :compensate_apply, :interest_protect, :user_agreement,  :help_center]
   
   def index
-    @coaches = Coach.needed_fields.includes(:coupons, :comments).visibled.hot.limit(5)
+    @coaches = Coach.needed_fields.includes(:coupons, :comments).visibled.hot.limit(16)
     @colleges = College.joins(:city).where("cities.code = ?", "511300").sorted
     @banners = Banner.visibled.sorted.limit(4)
     

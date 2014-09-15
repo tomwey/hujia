@@ -59,6 +59,28 @@ module CommentsHelper
     
   end
   
+  def render_comment_user_info(comment)
+    return '' if comment.blank?
+    return '' if comment.user.blank?
+    
+    user_name = comment.user.nickname
+    college = comment.user.profile.try(:college) if comment.user.profile
+    
+    html = <<-HTML
+    <span class="blue">#{user_name}</span>
+    HTML
+    
+    user_span = content_tag :span, user_name, class: "blue"
+    college_span = content_tag :span, ( " &frasl; ".html_safe + college), class: "gray" if college.present?
+    
+    if college_span
+      user_span + college_span
+    else
+      user_span
+    end
+    
+  end
+  
   # 获取总评价的百分比
   def render_star_percent(commentable)
     score = render_comment_avarge_score(commentable)

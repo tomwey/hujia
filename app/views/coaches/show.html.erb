@@ -84,6 +84,14 @@
 
 <%= raw SiteConfig.qr_and_use_intro %>
 
+<div class="overlay">
+    <p>评论者QQ：<span id="qq_num"></span>
+        <p>
+            <p>请告知是在U驾网上看到的</p>
+            <a target="_blank" href="" class="btn">与她联系</a>&emsp;&emsp;
+            <input type="button" value="取消" class="btn cancel">
+</div>
+
 <% content_for :scripts do %>
     <script type="text/javascript">
         $(function () {
@@ -95,7 +103,10 @@
                 $(".imgBig img").attr("src",minsrc);
             });
             $(".talk-btn").click(function(){
-                $(".overlay").show();
+              var qq = $(this).data("qq");
+              $(".overlay #qq_num").text(qq);
+              $(".overlay a").attr("href", "http://wpa.qq.com/msgrd?v=3&uin=" + qq +  "&site=qq&menu=yes");
+              $(".overlay").show();
             });
             $(".cancel").click(function(){
                  $(".overlay").hide();

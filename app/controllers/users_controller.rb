@@ -56,7 +56,14 @@ class UsersController < ApplicationController
   
   def uncomments    
     # @codes = ActiveCode.where('user_id = ? and actived_at is not null', @user.id)
-    @vouchings = current_user.vouchings.includes(:coupon).where('status = ?', 1)
+    
+    status = 1
+    if not can_send_sms
+      status = 0
+    end
+    
+    @vouchings = current_user.vouchings.includes(:coupon).where('status = ?', status)
+    puts @vouchings.count
     if @vouchings.count == 1
       @comment = Comment.new
       @coupon = @vouchings.first.coupon

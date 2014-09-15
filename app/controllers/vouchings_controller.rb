@@ -20,6 +20,12 @@ class VouchingsController < ApplicationController
     @coupon = Coupon.find(params[:coupon_id])
     if Vouching.create(:user_id => current_user.id, :coupon_id => @coupon.id)
       @coupon.add_visit
+      
+      unless can_send_sms
+        redirect_to uncomments_user_path(current_user.nickname), :notice => "代金券领取成功。"
+        return
+      end
+      
       ActiveCode.where( :coupon_id => @coupon.id, :user_id => current_user.id ).first_or_create
       redirect_to active_coupon_path(@coupon), :notice => "代金券已领取成功"
     else

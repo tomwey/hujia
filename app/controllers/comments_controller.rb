@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
       return
     end
     
-    if vouching.status != 1
+    if vouching.status != 1 and can_send_sms
       redirect_to coupons_user_path(current_user.nickname), alert: "您还未验证该代金券。"
       return
     end

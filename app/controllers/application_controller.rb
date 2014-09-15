@@ -38,6 +38,14 @@ class ApplicationController < ActionController::Base
     @meta_keywords = meta_keyword
     @meta_description = meta_description
   end
+  
+  # 是否可以发短信
+  protected
+  def can_send_sms
+    is_send = SiteConfig.send_sms.split(',')[0]
+    (is_send.to_i != 0)
+  end
+  helper_method :can_send_sms
     
   # def after_sign_in_path_for(resource)
   #   

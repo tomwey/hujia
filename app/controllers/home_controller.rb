@@ -1,7 +1,7 @@
 # coding: utf-8
 class HomeController < ApplicationController
   
-  # cache_pages [:coupon_use_intro, :deposit_guarantee, :compensate_apply, :interest_protect, :user_agreement,  :help_center]
+  # caches_page :coupon_use_intro, :deposit_guarantee, :compensate_apply, :interest_protect, :user_agreement,  :help_center
   
   def index
     @coaches = Coach.needed_fields.includes(:coupons, :comments).visibled.hot.limit(16)

@@ -22,10 +22,11 @@
            <h3><%= render_coupon_subtitle(@coach) %></h3>
            
            <ul>
-               <li><span class="leftL inline-block">售&emsp;&emsp;价: </span>  <span class="special">￥<%= render_coupon_price(@coach) %></span> （<span class="orange">您节省了￥<%= render_coupon_value(@coach) %>元</span>）</li>
+               <li><span class="leftL inline-block">U&nbsp;驾&nbsp;价: </span>  <span class="special">￥<%= render_coupon_price(@coach) %></span></li>
                <li><span class="leftL inline-block">市&nbsp;场&nbsp;价:</span>  <span class="del">￥<%= @coach.price %></span>
+                 <span class="bgorg inline-block">代金券直减<%= render_coupon_value(@coach) %>元</span>
                </li>
-               <li><span class="leftL inline-block">商品评价:</span>
+               <li><span class="leftL inline-block">教练评价:</span>
                  <span class="star-detail inline-block">
                       <span class="rate-start-detail inline-block" style="width:<%= render_star_percent(@coach) %>%"></span>
                   </span> 
@@ -36,9 +37,9 @@
                    <span class="orange"><%= render_coupon_actived(@coach) %></span> 
                </li>
                <li>
-                   <span class="leftL inline-block">商&emsp;&emsp;家:</span>
+                   <span class="leftL inline-block">所属驾校:</span>
                    <span><%= @coach.company %></span> |
-                   <span><a href="#map">查看地址/电话</a></span>
+                   <span><a href="#map">查看地址</a></span>
                </li> 
                <li>
                    <span class="leftL inline-block">有&nbsp;效&nbsp;期:</span>

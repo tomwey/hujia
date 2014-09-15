@@ -32,6 +32,10 @@ her-wrap tr{height: 70px;line-height: 70px;}
      color: #fff; font:bold 18px "微软雅黑"; text-align: center;background:image-url("voucherBtn.gif") no-repeat;width: 141px;height: 41px;line-height: 41px;border: 0;
 }
 
+.bgorg {
+  background-color: #fa4d0e; color: #fff; padding: 5px 10px;
+}
+
 /*zswrap*/
 .zswrap{width: 710px;}
 .bread-nav{margin-bottom: 40px;}
@@ -436,3 +440,30 @@ her-wrap tr{height: 70px;line-height: 70px;}
   margin: 8px 0;
   padding-left: 20px;
 }
+
+
+/*page*/
+.pageWrap{font:16px  "微软雅黑"；}
+.pageWrap h2{font-size: 30px;font-weight: bold;}
+.pageWrap h4{font-weight: bold;line-height: 4;font-size: 16px}
+.pageWrap p{line-height: 1.5;}
+.text-in{text-indent: 2em;}
+/*right warp*/
+/*网站使用说明*/
+.zffs p{margin: 5px 0 20px;} 
+/*速记*/
+.shortPage h2{font-family: "宋体";margin-bottom: 40px;}
+.shortPage p{line-height: 2;margin: 10px 0;}
+/*路考*/
+.road h2{font-family: "宋体";margin-bottom: 20px;}
+/*报名*/
+.rollMsg h2{margin-bottom: 20px;;}
+.rollMsg h3{margin: 20px 0;font-weight: bold;font-size: 16px;}
+.rollMsg h5{margin: 10px 0;font-weight: bold;font-size: 14px;}
+.mainwrap .rollMsg h4{line-height: 2;}
+.rollMsg p{font-size: 14px;line-height: 2;}
+
+/*footpage*/
+/*代金券使用*/
+.vonPage h2{font-family: "宋体";margin-bottom: 20px;}
+.vonPage p{line-height: 2.5;}

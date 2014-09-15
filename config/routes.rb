@@ -2,6 +2,13 @@ HujiaWebsite::Application.routes.draw do
 
   root to: 'home#index'
   
+  match '/coupon_use_intro' => 'home#coupon_use_intro', via: :get
+  match '/deposit_guarantee' => 'home#deposit_guarantee', via: :get
+  match '/compensate_apply' => 'home#compensate_apply', via: :get
+  match '/interest_protect' => 'home#interest_protect', via: :get
+  match '/user_agreement' => 'home#user_agreement', via: :get
+  match '/help_center' => 'home#help_center', via: :get
+  
   devise_for :users, :path => "account", :controllers => { 
     :registrations => "users/registrations",
     :sessions => "users/sessions"

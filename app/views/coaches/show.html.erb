@@ -4,38 +4,48 @@
   <div class="detail-tabs">
         <ul class="tabs clearfix">
             <li class="active"><a href="#map">驾校/教练位置</a></li>
+            <li><a href="#fee-intro">费用包括</a></li>
             <li><a href="#purchase-notice">购买须知</a></li>
             <li><a href="#intro">驾校/教练介绍</a></li>
             <li><a href="#ratings">消费评价</a></li>
         </ul>
-        
+                
         <div id="map">
           <h2>驾校位置</h2>
-          <div class="map">
-              <p><a href="" class="red"><%= render_service_colleges(@coach) %></a>
-              </p> 
+          <div class="map"> 
               <ul>
-                  <li><span class="fb">商家累积评分： </span><span class="ratemap inline-block"><span class="rate-stars" style="width:<%= render_star_percent(@coach) %>%"></span></span><span class="orange fb"><%= render_comment_avarge_score(@coach) %></span>分&emsp;<span class="orange"><%= @coach.comments_count %>人评价</span>
+                  <li><span class="fb">教练累积评分： </span><span class="ratemap inline-block"><span class="rate-stars" style="width:<%= render_star_percent(@coach) %>%"></span></span><span class="orange fb"><%= render_comment_avarge_score(@coach) %></span>分&emsp;<span class="orange"><%= @coach.comments_count %>人评价</span>
                   </li>
-                  <li><span class="fb">地址： </span><%= @coach.location %></li>
-                  <li><span class="fb">电话： </span><%= @coach.mobile %></li>
+                  <li><span class="fb">报名地址： </span><%= @coach.location %></li>
+                  <li><span class="fb">场地地址： </span><%= @coach.teach_location %></li>
               </ul>
+          </div>
+        </div>
+        
+        <div id="fee-intro">
+          <h2>费用说明</h2>
+          <div class="map"> 
+            <%= @coach.fee_intro %>
           </div>
         </div>
         
         <div class="notice" id="purchase-notice">
           <h2>购买须知</h2> 
           <dl class="clearfix">
-              <dt>有效期</dt>
-              <dd><%= render_coupon_expired_duration(@coach) %></dd>
+              <!--dt>有效期</dt>
+              <dd><%= render_coupon_expired_duration(@coach) %></dd-->
               <dt>服务校区</dt>
               <dd><%= render_service_colleges(@coach) %></dd>
               <dt>驾照类型</dt>
               <dd class="fb"><%= @coach.drive_type %></dd>
+              <dt>支付方式</dt>
+              <dd class="fb"><%= @coach.payment_type %></dd>
               <dt>交通接送</dt>
               <dd class="fb"><%= @coach.service_type %></dd>
+              <% if @coach.note.present? %>
               <dt>特别说明</dt>
-              <dd class="fb">体检，暂住证，补考费需另行缴纳。按国家规定收取</dd>
+              <dd class="fb"><%= @coach.note %></dd>
+              <% end %>
           </dl> 
         </div>
         

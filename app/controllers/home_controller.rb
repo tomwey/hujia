@@ -1,5 +1,8 @@
 # coding: utf-8
 class HomeController < ApplicationController
+  
+  # cache_pages [:coupon_use_intro, :deposit_guarantee, :compensate_apply, :interest_protect, :user_agreement,  :help_center]
+  
   def index
     @coaches = Coach.needed_fields.includes(:coupons, :comments).visibled.hot.limit(5)
     @colleges = College.joins(:city).where("cities.code = ?", "511300").sorted
@@ -11,4 +14,29 @@ class HomeController < ApplicationController
   def error_404
     render_404
   end
+  
+  def coupon_use_intro
+    set_seo_meta("代金券使用")
+  end
+  
+  def deposit_guarantee
+    set_seo_meta("保证金担保")
+  end
+  
+  def compensate_apply
+    set_seo_meta("赔付申请")
+  end
+  
+  def interest_protect
+    set_seo_meta("权益保护")
+  end
+  
+  def user_agreement
+    set_seo_meta("用户协议")
+  end
+  
+  def help_center
+    set_seo_meta("维权中心")
+  end
+  
 end

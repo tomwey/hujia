@@ -2,7 +2,7 @@
 <div class="header-top">
   <div class="wrap clearfix">
     <div class="fl">
-        <%= link_to "收藏#{SiteConfig.app_name}", 'javascript:;', title: "收藏#{SiteConfig.app_name}", class:"favorite", onclick: "App.addToFavorite(this,'http://hujia361.com')" %>
+        <%= link_to "收藏#{SiteConfig.app_name}", 'javascript:;', title: "收藏#{SiteConfig.app_name}", class:"favorite", onclick: "addToFavorite('http://hujia361.com', 'U驾网')" %>
     </div>
     <div class="fr">
       <% if user_signed_in? %>

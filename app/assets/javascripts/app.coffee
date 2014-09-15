@@ -5,8 +5,17 @@ window.App =
     $(to).before("<div data-alert class='alert-message'><a class='close' href='#'>X</a>#{msg}</div>")
   
   # 收藏本站
-  addToFavorite: (el, url) ->
-    
+  # addToFavorite: (url, title) ->
+  #   ctrl=(navigator.userAgent.toLowerCase()).indexOf('mac') !=-1 ? 'Command/Cmd': 'CTRL';
+  #   if(document.all){
+  #     window.external.addFavorite(url, title);
+  #   } else if (window.sidebar) {
+  #      window.sidebar.addPanel(title, utl, "");
+  #   } else{ 
+  #     alert('您可以通过快捷键' + ctrl + ' + D 加入到收藏夹');
+  #   }
+  #   
+  #   false
 
   # 删除评论
   deleteComment: (el) ->

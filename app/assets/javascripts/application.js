@@ -23,3 +23,15 @@ function add_fields(link, association, content) {
   var regexp = new RegExp("new_" + association, "g");
   $(link).parent().before(content.replace(regexp, new_id));
 }
+
+function addToFavorite(url, title) {
+  var ctrl = (navigator.userAgent.toLowerCase()).indexOf('mac') !=-1 ? 'Command/Cmd' : 'CTRL';
+  if(document.all){
+    window.external.addFavorite(url, title);
+  } else if (window.sidebar) {
+     window.sidebar.addPanel(title, utl, "");
+  } else{ 
+    alert('您可以通过快捷键' + ctrl + ' + D 加入到收藏夹');
+  }
+  return false;
+}

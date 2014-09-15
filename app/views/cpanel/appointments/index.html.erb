@@ -16,8 +16,8 @@
   <% @appointments.each do |appointment| %>
   <tr>
     <td class="first"><%= appointment.id %></td>
-    <td><%= appointment.user.nickname %></td>
-    <td><%= appointment.user.profile.real_name %></td>
+    <td><%= appointment.user.try(:nickname) %></td>
+    <td><%= appointment.user.profile.real_name if appointment.user.profile %></td>
     <td><%= render_appointable_type(appointment) %></td>
     <td><%= render_appointable_name(appointment) %></td>
     <td><%= l appointment.created_at, :format => :short %></td>

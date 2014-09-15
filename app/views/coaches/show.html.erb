@@ -58,6 +58,7 @@
               
         <div id="ratings">
           <h2>消费评价</h2>
+          <% if @coach.comments_count > 0 %>
           <div class="clearfix rateWrap" id="ratings">
   						<%= render "/comments/overall_rating", :commentable => @coach %>
   						<%= render "/comments/detail_rating", :commentable => @coach %>
@@ -69,7 +70,7 @@
           </ul>
   				
           <div style="text-align:center"><%= will_paginate @comments, :inner_window => 2, :params => { :anchor => 'comments' } %></div>
-          
+          <% end %>
         </div>
       
     </div>

@@ -523,18 +523,19 @@ her-wrap tr{height: 70px;line-height: 70px;}
     margin: 5px auto;
 }
 .QR ul {
-  margin-top: 80px;
+  margin-top: 75px;
+  padding-top: 5px;
 }
 .QR li {
-    margin: 25px 8px;
+    margin: 0 8px 23px 8px;
 //    color: #333; 
 //    width: 160px;
 //    *width: 180px;
 //    padding-left: 15px;
 }
 
-.QR a{ font-size: 12px; font-family: "黑体"; color: #262626; &:hover { text-decoration: none; }; }
-.QR a.min { font-size: 10px;}
+.QR a{ display:block; height: 20px; line-height:20px; font-size: 12px; font-family: "黑体"; color: #262626; &:hover { text-decoration: none; }; }
+.QR a.min { font-size: 12px; margin-top: -1px;}
 
 /*page*/
 .pageWrap{font:16px  "微软雅黑"；}

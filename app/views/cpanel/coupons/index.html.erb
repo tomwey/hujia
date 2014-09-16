@@ -23,14 +23,14 @@
     <td class="first"><%= coupon.id %></td>
     <td width="15%"><%= coupon.title %></td>
     <td width="5%"><%= coupon.value %></td>
-    <td width="3%"><%= coupon.publish_count %></td>
-    <td width="3%"><%= coupon.claims_count %></td>
-    <td width="3%"><%= coupon.actives_count %></td>
-    <td width="15%"><%= coupon.start_date %></td>
-    <td width="15%"><%= coupon.end_date %></td>
+    <td width="5%"><%= coupon.publish_count %></td>
+    <td width="5%"><%= coupon.claims_count %></td>
+    <td width="5%"><%= coupon.actives_count %></td>
+    <td width="12%"><%= coupon.start_date %></td>
+    <td width="12%"><%= coupon.end_date %></td>
     <td width="15%"><%= render_owner(coupon) %></td>
-    <td width="15%"><%= l coupon.created_at, :format => :short %></td>
-    <td width="5%">
+    <td width="12%"><%= l coupon.created_at, :format => :short %></td>
+    <td width="10%">
       <%= link_to "编辑", edit_cpanel_coupon_path(coupon), :class => "btn btn-mini" %>
       <%= link_to "删除", cpanel_coupon_path(coupon), :confirm => "你确定吗？", :method => :delete, :class => "btn btn-mini btn-danger" %>
     </td>

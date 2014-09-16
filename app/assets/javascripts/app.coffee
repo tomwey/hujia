@@ -19,6 +19,10 @@ window.App =
 
   # 删除评论
   deleteComment: (el) ->
+    result = confirm("你确定吗？")
+    if !result
+      return false
+      
     id = $(el).data("id")
     tr = $("#comment_tr_#{id}")
     $.ajax

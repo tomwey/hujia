@@ -10,6 +10,11 @@ class Comment < ActiveRecord::Base
   scope :visibled, lambda { where( :visible => true ) }
 
   validates_presence_of :content
+  
+  validates :overall_rating, numericality: { :greater_than_or_equal_to => 1.0, :less_than_or_equal_to => 5.0 }
+  validates :service_rating,numericality: { :greater_than_or_equal_to => 1.0, :less_than_or_equal_to => 5.0 }
+  validates :env_rating,numericality: { :greater_than_or_equal_to => 1.0, :less_than_or_equal_to => 5.0 }
+  validates :attitude_rating,numericality: { :greater_than_or_equal_to => 1.0, :less_than_or_equal_to => 5.0 }
 
   def avarge_rating
     (self.overall_rating + self.attitude_rating + self.service_rating + self.env_rating) / 4.0

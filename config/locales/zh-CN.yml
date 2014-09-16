@@ -93,6 +93,10 @@
         subtitle: "副标题"
       comment:
         content: "内容"
+        overall_rating: "总体评分"
+        attitude_rating: "态度评分"
+        service_rating: "服务评分"
+        env_rating: "环境评分"
       province:
         name: "省份名"
         code: "省份代码"

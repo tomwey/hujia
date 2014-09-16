@@ -5,7 +5,7 @@
             <%= render_comment_user_info(comment) %></span></div> 
         <div class="fr">
           <% if comment.is_show_user_info %>
-           <input type="button" value="和她聊聊" data-qq="<%= comment.user.profile.qq if comment.user.profile %>" class="btn talk-btn">
+           <input type="button" value="和他聊聊" data-qq="<%= comment.user.profile.qq if comment.user.profile %>" class="btn talk-btn">
            <% end %>
             <span class="rate-starMax ">
                 <span style="width: <%= render_star_percent_for(comment) %>%;" class="rate-starMaxH ">

@@ -511,30 +511,30 @@ her-wrap tr{height: 70px;line-height: 70px;}
 
 .QR {
     position: fixed;
-    top: 10%;
-    right: 20px;
-    width: 163px;
-    height: 510px;
+    top: 20%;
+    right: 15px;
+    width: 123px;
+    height: 407px;
     background: image-url("sidebar-intro.jpg") no-repeat;
 }
 .QR img {
-    width: 150px;
-    height: 150px;
-    margin: 12px auto;
+    width: 115px;
+    height: 115px;
+    margin: 5px auto;
 }
 .QR ul {
-  margin-top: 100px;
+  margin-top: 80px;
 }
 .QR li {
-    margin: 30px 20px;
+    margin: 25px 8px;
 //    color: #333; 
 //    width: 160px;
 //    *width: 180px;
 //    padding-left: 15px;
 }
 
-.QR a{ font-size: 14px; font-family: "黑体"; color: #262626; &:hover { text-decoration: none; }; }
-.QR a.min { font-size: 12px;}
+.QR a{ font-size: 12px; font-family: "黑体"; color: #262626; &:hover { text-decoration: none; }; }
+.QR a.min { font-size: 10px;}
 
 /*page*/
 .pageWrap{font:16px  "微软雅黑"；}

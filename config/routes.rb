@@ -23,6 +23,7 @@ HujiaWebsite::Application.routes.draw do
   # match 'u/sign_up' => 'users/registrations#new', :user => { :user_type => 'customer' }, via: :get
   match 'account/update_private_token', to: 'users#update_private_token', via: :post, as: :update_private_token_account
   
+  match '/user/update_status', to: 'users#update_status', via: :put
   # mount Sidekiq::Web, at: "/sidekiq"
   
   resources :appointments, only: [:index, :create, :destroy] do
@@ -98,7 +99,7 @@ HujiaWebsite::Application.routes.draw do
   
   match '/users/bind' => 'users#bind', as: :bind_users, via: :put
   
-  match '*path', via: :all, to: 'home#error_404'
+  # match '*path', via: :all, to: 'home#error_404'
   
   resources :users, :path => "" do
     member do

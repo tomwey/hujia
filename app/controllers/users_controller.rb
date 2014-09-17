@@ -1,7 +1,7 @@
 # coding: utf-8
 class UsersController < ApplicationController
   before_filter :require_user
-  before_filter :find_user, :except => [:update_private_token, :bind]
+  before_filter :find_user, :except => [:update_private_token, :bind, :update_status]
   
   layout 'user_layout', :except => [:update_private_token]
   
@@ -40,6 +40,18 @@ class UsersController < ApplicationController
     @vouchings = current_user.vouchings.includes(:coupon).order('created_at desc').paginate(page: params[:page], per_page: 30)
     
     set_seo_meta("我的代金券")
+  end
+  
+  def update_status
+    profile = current_user.profile
+    if profile
+      puts '1111'
+      profile.has_view_help = true
+      profile.save(:validate => false)
+      render :text => "1"
+    else
+      render :text => "-1"
+    end
   end
   
   def actived_coupons

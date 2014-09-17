@@ -16,6 +16,45 @@
 
 <%= raw SiteConfig.qr_and_use_intro %>
 
+<% if current_user && current_user.sign_in_count == 1 && (not current_user.profile.try(:has_view_help)) %>
+
+<!--    overlay step start-->
+    <div class="step-overlay">
+        <div class="step-conent">
+           <h1>不知道网站怎么使用？先了解下使用流程吧！ <span class="close">跳过></span></h1>
+             <div class="topicBox2 fl">
+                        <div class="topicList">
+                            <ul class="topicul clearfix">
+                                <li>
+                                   <h2>第一步：请注册账号并登陆</h2>
+                                    <div><img src="/assets/step1.jpg" alt="step" class="stepImg"></div>
+                                </li>
+                                <li>
+                                   <h2>第二步：找教练；可以选择自己所在的校区，也可以直接点击人气教练</h2>
+                                    <div><img src="/assets/step2.jpg" alt="step" class="stepImg"></div>
+                                </li>
+                                <li>
+                                  <h2>第三步：领取代金券并报名</h2>
+                                   <div> <img src="/assets/step3.gif" alt="step" class="stepImg"></div>
+                                </li>
+                                <li>
+                                  <h2>第四步：线下缴费，上传验证码</h2>
+                                   <div> <img src="/assets/step4.gif" alt="step" class="stepImg"></div>
+                                </li>
+                                <li>
+                                  <h2>第五步：对教练进行评价</h2>
+                                   <div> <img src="/assets/step5.jpg" alt="step" class="stepImg"></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="javascript:;" class="arrow pre" id="prev">Pre</a>
+                        <a href="javascript:;" class="arrow next" id="next">Next</a>
+                    </div>
+        </div>
+    </div>
+<!--    overlay step end -->
+<% end %>
+
 <% content_for :scripts do %>
 
   <script type="text/javascript">
@@ -68,5 +107,70 @@
         }
     });
 </script>
+
+<script type="text/javascript">
+       //图片滚动 top 
+       $(function () {
+           //配置变量
+           var config = {
+               showNum: 5, //设置滚动的显示个数
+               autoScroll: false //是否自动滚动，默认为 false 
+           }
+           var scrollUlWidth = $('ul.topicul li').outerWidth(true), //单个li 的宽度
+               scrollUlLeft = 0, //.scroll_ul 初使化时的 left 值为 0
+               prevAllow = true, //为了防止连续点击上一页按钮
+               nextAllow = true; //为了防止连续点击下一页按钮 
+
+           //计算父容量限宽
+           $('.topicList').width(config.showNum * scrollUlWidth);
+           //点击上一页
+           $('#prev').click(function () {
+               if (prevAllow) {
+                   prevAllow = false;
+                   scrollUlLeft = scrollUlLeft - scrollUlWidth;
+                   $('.topicul').css('left', scrollUlLeft);
+                   //复制最后一个 li 并插入到 ul 的最前面
+                   $('.topicul li:last').clone().prependTo('.topicul');
+                   //删除最后一个 li
+                   $('.topicul li:last').remove();
+                   $('.topicul').animate({
+                       left: scrollUlLeft + scrollUlWidth
+                   }, 10, function () {
+                       scrollUlLeft = parseInt($('.topicul').css('left'), 10);
+                       prevAllow = true;
+                   })
+               }
+           });
+           //点击下一页
+           $('#next').click(function () {
+               if (nextAllow) {
+                   nextAllow = false;
+                   $('.topicul').animate({
+                       left: scrollUlLeft - scrollUlWidth
+                   }, 10, function () {
+                       scrollUlLeft = parseInt($('.topicul').css('left'), 10);
+                       scrollUlLeft = scrollUlLeft + scrollUlWidth;
+                       $('.topicul').css('left', scrollUlLeft);
+                       //复制第一个 li 并插入到 ul 的最后面
+                       $('.topicul li:first').clone().appendTo('.topicul');
+                       //删除第一个 li
+                       $('.topicul li:first').remove();
+                       nextAllow = true;
+                   })
+               }
+           });
+       })
+   </script>
+   <script>
+       $(function(){
+           $(".close").click(function(){
+               $(".step-overlay").hide();
+               $.ajax({
+                 url: "/user/update_status",
+                 type: "put"
+               })
+           });
+       })
+   </script>
 
 <% end %>

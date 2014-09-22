@@ -18,11 +18,12 @@
   <tr id="comment_tr_<%= comment.id %>">
     <td class="first"><%= comment.id %></td>
     <td width="5%"><%= comment.user.try(:nickname) %></td>
-    <td width="30%"><%= comment.content %></td>
+    <td width="25%"><%= comment.content %></td>
     <td width="15%"><%= render_all_ratings(comment) %></td>
     <td width="20%"><%= render_ownerable_title(comment.commentable) %></td>
     <td width="15%"><%= l comment.updated_at, :format => :short %></td>
-    <td width="5%">
+    <td width="10%">
+      <%= link_to "编辑", edit_cpanel_comment_path(comment), :class => "btn btn-mini" %>
       <a href="#" class="btn btn-mini btn-danger" data-remote="true" data-id="<%= comment.id %>" onclick="App.deleteComment(this)">删除</a>
     </td>
   </tr>

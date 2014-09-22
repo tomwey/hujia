@@ -54,9 +54,9 @@ module AppointmentsHelper
     
     
     link = if current_user.blank?
-      link_to "领取代金券报名", new_user_session_path, :class => "detail-btn"
+      link_to "免费领取代金券并报名", new_user_session_path, :class => "detail-btn"
     else
-      link_to "领取代金券报名", appointments_path(:item => "#{appointable.class},#{appointable.id}"), method: :post,  class: "detail-btn", 'data-type' => appointable.class, 'data-id' => appointable.id, onclick:"App.appointable(this);" 
+      link_to "免费领取代金券并报名", appointments_path(:item => "#{appointable.class},#{appointable.id}"), method: :post,  class: "detail-btn", 'data-type' => appointable.class, 'data-id' => appointable.id, onclick:"App.appointable(this);" 
     end
     
     "#{link} &emsp;".html_safe

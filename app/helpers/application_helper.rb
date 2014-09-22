@@ -238,7 +238,7 @@ module ApplicationHelper
     if ownerable.class.to_s == 'Coach'
       "【#{ownerable.company}】#{ownerable.real_name}"
     else
-      "#{ownerable.name}"
+      "#{ownerable.try(:name)}"
     end
   end
   
